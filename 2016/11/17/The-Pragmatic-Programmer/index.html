@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>程序员修炼之道-读书笔记  | muhlenXi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2016/11/17/The-Pragmatic-Programmer
+前言：
+程序员修炼之道-从小工到专家，是一本初学者、中高级开发人员或软件项目经理都可以读的书。本书涵盖的主题从个人责任、职业发展、直到用于使代码保持灵活、并且易于改编和复用的各种框架技术，利用许多富有娱乐性的奇闻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序员修炼之道-读书笔记 ">
+<meta property="og:url" content="http://yoursite.com/2016/11/17/The-Pragmatic-Programmer/index.html">
+<meta property="og:site_name" content="muhlenXi">
+<meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2016/11/17/The-Pragmatic-Programmer
+前言：
+程序员修炼之道-从小工到专家，是一本初学者、中高级开发人员或软件项目经理都可以读的书。本书涵盖的主题从个人责任、职业发展、直到用于使代码保持灵活、并且易于改编和复用的各种框架技术，利用许多富有娱乐性的奇闻">
+<meta property="og:updated_time" content="2017-03-24T14:36:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序员修炼之道-读书笔记 ">
+<meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2016/11/17/The-Pragmatic-Programmer
+前言：
+程序员修炼之道-从小工到专家，是一本初学者、中高级开发人员或软件项目经理都可以读的书。本书涵盖的主题从个人责任、职业发展、直到用于使代码保持灵活、并且易于改编和复用的各种框架技术，利用许多富有娱乐性的奇闻">
+  
+    <link rel="alternative" href="/atom.xml" title="muhlenXi" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.2d7529.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
+
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      
+<div class="overlay" style="background: #4d4d4d"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://7xvffo.com1.z0.glb.clouddn.com/dabai.jpg" class="js-avatar">
+		</a>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">muhlenXi</a></h1>
+		</hgroup>
+		
+		<p class="header-subtitle">他最大的快乐一直来自学习本身。</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+    		
+    			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/muhlenXi" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/muhlenXi" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/mulenXi" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="jianshu" target="_blank" href="http://www.jianshu.com/u/2ad16884a0cd" title="jianshu"><i class="icon-jianshu"></i></a>
+		        
+					<a class="douban" target="_blank" href="https://www.douban.com/people/148807497/" title="douban"><i class="icon-douban"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      
+<nav id="mobile-nav">
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+	<div class="btnctn js-mobile-btnctn">
+  		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
+	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://7xvffo.com1.z0.glb.clouddn.com/dabai.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author js-header-author">muhlenXi</h1>
+			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>他最大的快乐一直来自学习本身。<i class="icon icon-quo-right"></i></p>
+			
+			
+			
+				
+			
+				
+			
+			
+			
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/muhlenXi" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/muhlenXi" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/mulenXi" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="jianshu" target="_blank" href="http://www.jianshu.com/u/2ad16884a0cd" title="jianshu"><i class="icon-jianshu"></i></a>
+			        
+						<a class="douban" target="_blank" href="https://www.douban.com/people/148807497/" title="douban"><i class="icon-douban"></i></a>
+			        
+				</div>
+			</nav>
+
+			<nav class="header-menu js-header-menu">
+				<ul style="width: 50%">
+				
+				
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+		</header>				
+	</div>
+	<div class="mobile-mask" style="display:none" q-show="isShow"></div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-The-Pragmatic-Programmer" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      程序员修炼之道-读书笔记 
+    </h1>
+  
+
+        
+        <a href="/2016/11/17/The-Pragmatic-Programmer/" class="archive-article-date">
+  	<time datetime="2016-11-17T01:53:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/11/17/The-Pragmatic-Programmer" target="_blank" rel="external">http://muhlenxi.com/2016/11/17/The-Pragmatic-Programmer</a></em></p>
+<h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><blockquote>
+<p>程序员修炼之道-从小工到专家，是一本初学者、中高级开发人员或软件项目经理都可以读的书。本书涵盖的主题从个人责任、职业发展、直到用于使代码保持灵活、并且易于改编和复用的各种框架技术，利用许多富有娱乐性的奇闻轶事、有思想的例子及有趣的类比，全面阐述了软件开发的许多不同方面的最佳实践和重大陷阱。</p>
+</blockquote>
+<p>学习贵在记录和总结收获！点击阅读全文了解更多！</p>
+<p><a id="more"></a>　　</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>何为经典书或上品？</p>
+<blockquote>
+<p>经典书指的是选材精良、内容精炼、讲述生动、外延丰盛、表现手法体贴入微的读品，它们会成为读者的知识和经验库的重要组成部分，并且拥有从不断重读中汲取养分的空间。</p>
+</blockquote>
+<p><em>注重实效的程序员应该不断学习！</em></p>
+<p>能不能让正确的原则指导正确的行动本身，其实就是区分是否是高手的一个显著标志。</p>
+<p>注重实效不应该局限于任何特定的技术，而是应该拥有足够广博的背静和经验基础。</p>
+<p>你的背景源于对计算机科学的基本原理的理解。你的经验来自广泛的实际项目。理论与实践的结合使你强大起来。</p>
+<p><em>注重实效的程序员的特征</em></p>
+<ul>
+<li>1、早期的采纳者/快速的改编者。</li>
+<li>2、好奇。</li>
+<li>3、批判的思考者。</li>
+<li>4、有现实感。</li>
+<li>5、多才多艺。</li>
+</ul>
+<p><em>Notice 1:</em> 关心你的技艺</p>
+<blockquote>
+<p>Care About Your Craft</p>
+<p>如果你不在乎能否漂亮地开发出软件，你又为何要耗费生命去开发软件呢？</p>
+</blockquote>
+<p><em>Notice 2:</em> 思考你的工作</p>
+<blockquote>
+<p>Think!About Your Work </p>
+<p>关掉自动驾驶仪，接管操作。不断地批评和评估你的工作。</p>
+</blockquote>
+<h5 id="1、我的源码让猫吃了"><a href="#1、我的源码让猫吃了" class="headerlink" title="1、我的源码让猫吃了"></a>1、我的源码让猫吃了</h5><p><em>Notice 3:</em> 提供各种选择，而不是蹩脚的借口。</p>
+<blockquote>
+<p>Provide Options,Don’t Make Lame Excuses </p>
+<p>要提供各种选择，而不是找借口。不要说事情做不到；说明能够做什么。</p>
+</blockquote>
+<h5 id="2、软件的熵"><a href="#2、软件的熵" class="headerlink" title="2、软件的熵"></a>2、软件的熵</h5><p><em>Notice 4:</em> 不要容忍破窗户</p>
+<blockquote>
+<p>Don’t Live with Broken Windows </p>
+<p>当你看到糟糕的设计、错误的决策和糟糕的代码时，修正它们。</p>
+</blockquote>
+<h5 id="3、石头汤与煮青蛙"><a href="#3、石头汤与煮青蛙" class="headerlink" title="3、石头汤与煮青蛙"></a>3、石头汤与煮青蛙</h5><p><em>Notice 5:</em> 做变化的催化剂</p>
+<blockquote>
+<p>Be a Catalyst for Change </p>
+<p>你不能强迫人们改变。相反你可以向他们展示未来可能会怎么样，并帮助他们参与对未来的创造。</p>
+</blockquote>
+<p><em>Notice 6:</em> 记住大图景</p>
+<blockquote>
+<p>Remember the Big Picture </p>
+<p>不要太过专注细节，以致忘了查看你周围正在发生什么。 </p>
+</blockquote>
+<h5 id="4、足够好的软件"><a href="#4、足够好的软件" class="headerlink" title="4、足够好的软件"></a>4、足够好的软件</h5><p><em>Notice 7:</em> 使质量成为需求问题</p>
+<blockquote>
+<p>Make Quality a Requirements Issue </p>
+<p>让你的用户参与确定项目真正的质量需求。 </p>
+</blockquote>
+<h5 id="5、你的知识财产"><a href="#5、你的知识财产" class="headerlink" title="5、你的知识财产"></a>5、你的知识财产</h5><p><em>Notice 8:</em> 定期为你的知识资产投资</p>
+<blockquote>
+<p>Invest Regularly in Your Knowledge Portfolio </p>
+<p>让学习成为习惯。</p>
+</blockquote>
+<p><em>Notice 9:</em> 批判的分析你读到的和听到的</p>
+<blockquote>
+<p>Critically Analyze What You Read and Hear </p>
+<p>不要被供应商、媒体炒作、或教条左右。要按照你自己的看法和你的项目的情况去对信息进行分析。</p>
+</blockquote>
+<p>经营资产的方法：</p>
+<ul>
+<li>1、定期投资</li>
+<li>2、多元化</li>
+<li>3、管理风险。</li>
+<li>4、低买高卖。</li>
+<li>5、重新评估和平衡。</li>
+</ul>
+<h5 id="6、交流"><a href="#6、交流" class="headerlink" title="6、交流"></a>6、交流</h5><p><em>Notice 10:</em> 你说什么和你怎么说同样重要</p>
+<blockquote>
+<p>It‘s Both What You Say and the Way You Say It </p>
+<p>如果你不能有效地向他人传达你了不起的想法，这些想法就毫无用处。</p>
+</blockquote>
+<p>总结：</p>
+<ul>
+<li>知道你想要说什么。</li>
+</ul>
+<p>　　<em>不断反问自己：“这是否讲清了我要说的所有内容？”</em></p>
+<ul>
+<li><p>了解你的听众。</p>
+<p>  你想让他们学到什么？</p>
+<p>  他们对你讲的什么感兴趣？</p>
+<p>  他们有多富有经验？</p>
+<p>  他们想要多少细节？</p>
+<p>  你想让谁拥有这些信息？</p>
+<p>  你如何促使他们听你说话？</p>
+</li>
+<li><p>选择时机。</p>
+</li>
+<li>选择风格。</li>
+<li>让文档美观。</li>
+<li>让听众参与。</li>
+<li>做倾听者。</li>
+<li>回复他人。</li>
+</ul>
+<h5 id="7、重复的危害"><a href="#7、重复的危害" class="headerlink" title="7、重复的危害"></a>7、重复的危害</h5><p><em>Notice 11:</em> 不要重复你自己</p>
+<blockquote>
+<p>DRY - Don’t Repeat Yourself  </p>
+<p>系统中的每一项知识都必须具有单一、无歧义、权威的表示。</p>
+</blockquote>
+<p><em>Notice 12:</em> 让复用变得容易。</p>
+<blockquote>
+<p>Make It Easy to Reuse  </p>
+<p>如果复用很容易，人们就会去复用。创造一个支持复用的环境。</p>
+</blockquote>
+<h5 id="8、正交性"><a href="#8、正交性" class="headerlink" title="8、正交性"></a>8、正交性</h5><p><em>Notice 13:</em> 消除无关事物之间的影响。</p>
+<blockquote>
+<p>Eliminate Effects Between Unrelated Things </p>
+<p>设计自足、独立、并具有单一、良好定义的目的的组件。 </p>
+</blockquote>
+<p><em>注意事项:</em></p>
+<ul>
+<li><p>让你的代码保持解耦</p>
+</li>
+<li><p>避免使用全局数据</p>
+</li>
+<li><p>避免编写相似的函数。</p>
+</li>
+</ul>
+<h5 id="9、可撤销性"><a href="#9、可撤销性" class="headerlink" title="9、可撤销性"></a>9、可撤销性</h5><p><em>Notice 14:</em> 不存在最终决策。</p>
+<blockquote>
+<p>There Are No Final Decisions  </p>
+<p>没有决策时浇筑在石头上的。相反，要把每项决策都视为写在沙滩上的，并为变化做好计划。</p>
+</blockquote>
+<h5 id="10、曳光弹"><a href="#10、曳光弹" class="headerlink" title="10、曳光弹"></a>10、曳光弹</h5><p><em>Notice 15:</em> 用曳光弹找到目标。</p>
+<blockquote>
+<p>Use Tracer Bullets to Find the Target </p>
+<p>曳光弹能通过试验各种事物并检查它们离目标有多远来让你追踪目标。</p>
+</blockquote>
+<p>优点：</p>
+<ul>
+<li>1、用户能够及早看到能工作的东西。</li>
+<li>2、开发者构建了一个他们能在其中工作的结构。</li>
+<li>3、你有了一个集成平台。</li>
+<li>4、你有了可用于演示的东西。</li>
+<li>5、你将更能够感觉到工作进展。</li>
+</ul>
+<h5 id="11、原型与便签"><a href="#11、原型与便签" class="headerlink" title="11、原型与便签"></a>11、原型与便签</h5><p><em>Notice 16:</em> 为了学习而制作模型。</p>
+<blockquote>
+<p>Prototype to Learn </p>
+<p>原型制作是一种学习经验。其价值并不在于所产生的代码，而在于所学到的经验教训。</p>
+</blockquote>
+<p><em>应制作原型的事物：架构、已有系统中的新功能、外部数据的结构或内容、第三方工具或组件、性能问题、用户界面设计。</em></p>
+<h5 id="12、领域语言"><a href="#12、领域语言" class="headerlink" title="12、领域语言"></a>12、领域语言</h5><blockquote>
+<p>语言的界限就是一个人的世界的界限。  — 维特根斯坦</p>
+</blockquote>
+<p><em>Notice 17:</em> 靠近问题领域编程</p>
+<blockquote>
+<p>Program Close to the Problem domain</p>
+<p>用你的用户的语言进行设计和编码。</p>
+</blockquote>
+<h5 id="13、估算"><a href="#13、估算" class="headerlink" title="13、估算"></a>13、估算</h5><p><em>Notice 18:</em> 估算，以避免意外</p>
+<blockquote>
+<p>Estimate to Avoid Surprises</p>
+<p>在着手之前先进行估算。你将提前发现潜在的问题。  </p>
+</blockquote>
+<p><em>Notice 19:</em> 通过代码对进度表进行迭代</p>
+<blockquote>
+<p>Iterate the Schedule with the code</p>
+<p>用你在进行实现时获得的经验提炼项目的时间标度。 </p>
+</blockquote>
+<h5 id="14、纯文本的威力"><a href="#14、纯文本的威力" class="headerlink" title="14、纯文本的威力"></a>14、纯文本的威力</h5><p><em>Notice 20:</em> 用纯文本保存知识</p>
+<blockquote>
+<p>Keep Knowledge in Plain Text </p>
+<p>纯文本不会过时。它能够帮助你有效利用你的工作，并简化调试和测试。</p>
+</blockquote>
+<h5 id="15、shell游戏"><a href="#15、shell游戏" class="headerlink" title="15、shell游戏"></a>15、shell游戏</h5><p><em>Notice 21:</em> 利用命令shell的力量</p>
+<blockquote>
+<p>Use the Power of Command Shells </p>
+<p>当图形界面无能为力时使用shell。</p>
+</blockquote>
+<h5 id="16、强力编辑"><a href="#16、强力编辑" class="headerlink" title="16、强力编辑"></a>16、强力编辑</h5><p><em>Notice 22:</em> 用好一种编辑器</p>
+<blockquote>
+<p>Use a Single Editor Well </p>
+<p>编辑器应该是你的手的延伸；确保你的编辑器是可配置、可扩展和可编程的。</p>
+</blockquote>
+<h5 id="17、源码控制"><a href="#17、源码控制" class="headerlink" title="17、源码控制"></a>17、源码控制</h5><p><em>Notice 23:</em> 总是使用源码控制</p>
+<blockquote>
+<p>Always User Source Code Control </p>
+<p>源码控制是你的工作的时间机器—你能够回到过去。</p>
+</blockquote>
+<h5 id="18、调试"><a href="#18、调试" class="headerlink" title="18、调试"></a>18、调试</h5><p><em>Notice 24:</em> 要修正问题，而不是发出指责</p>
+<blockquote>
+<p>Fix the Problem，Not the Blame</p>
+<p>是你的过错还是别人的过错，并不是真的很有关系—它仍然是你的问题，它仍然需要修正。 </p>
+</blockquote>
+<p><em>Notice 25:</em> 不要恐慌</p>
+<blockquote>
+<p>Don’t Panic  </p>
+<p>做一次深呼吸，思考什么可能是bug的原因。</p>
+</blockquote>
+<p><em>Notice 26:</em> “Select”没有问题</p>
+<blockquote>
+<p>“Select” Isn’t Broken </p>
+<p>在OS或编译器、甚至是第三方产品或库中很少发现bug。bug很可能是在应用中。</p>
+</blockquote>
+<p><em>Notice 27:</em> 不要假定，要证明</p>
+<blockquote>
+<p>Don’t Assume it - Prove It </p>
+<p>在实际环境中—使用真正的数据和边界条件—证明你的假定。</p>
+</blockquote>
+<h5 id="19、文本操纵"><a href="#19、文本操纵" class="headerlink" title="19、文本操纵"></a>19、文本操纵</h5><p><em>Notice 28:</em> 学习一种文本操作语言</p>
+<blockquote>
+<p>Learn a Text Manipulation Language </p>
+<p>你用每天的很大一部分时间处理文本，为什么不让计算机替你完成部分工作呢？</p>
+</blockquote>
+<h5 id="20、代码生成器"><a href="#20、代码生成器" class="headerlink" title="20、代码生成器"></a>20、代码生成器</h5><p><em>Notice 29:</em> 编写能编写代码的代码</p>
+<blockquote>
+<p>Write Code That Writes Code</p>
+<p>代码生成器能提高你的生产率，并有助于避免重复。  </p>
+</blockquote>
+<p><em>Notice 30:</em> 你不可能写出完美的软件</p>
+<blockquote>
+<p>You Can’t Write Perfect Software</p>
+<p>软件不可能完美。保护你的代码和用户，使它（他）们免于能够遇见的错误。</p>
+</blockquote>
+<h5 id="21、按合约设计-（Design-By-Contract）"><a href="#21、按合约设计-（Design-By-Contract）" class="headerlink" title="21、按合约设计 （Design By Contract）"></a>21、按合约设计 （Design By Contract）</h5><p><em>Notice 31:</em> 通过合约进行设计</p>
+<blockquote>
+<p>Design with contracts</p>
+<p>使用合约建立文档，并检验代码所做的事情正好是它声明要做的。 </p>
+</blockquote>
+<h5 id="22、死程序不说谎"><a href="#22、死程序不说谎" class="headerlink" title="22、死程序不说谎"></a>22、死程序不说谎</h5><p><em>Notice 32:</em> 早崩溃</p>
+<blockquote>
+<p>Crash Early</p>
+<p>死程序造成的危害通常比有问题的程序要小的多。</p>
+</blockquote>
+<h5 id="23、断言式编程"><a href="#23、断言式编程" class="headerlink" title="23、断言式编程"></a>23、断言式编程</h5><p><em>Notice 33:</em> 用断言避免不可能发生的事情</p>
+<blockquote>
+<p>If It Can’t Happen,Use Assertions to Ensure That It Won’t </p>
+<p>断言验证你的各种假设。在一个不确定的世界里，用断言保护你的代码。</p>
+</blockquote>
+<h5 id="24、何时使用异常"><a href="#24、何时使用异常" class="headerlink" title="24、何时使用异常"></a>24、何时使用异常</h5><p><em>Notice 34:</em> 将异常用于异常的问题</p>
+<blockquote>
+<p>Use Exceptions for Exceptional Problems</p>
+<p>异常可能会遭受经典的意大利面条式代码的所有可读性和可维护问题的折磨。将异常保留给异常的事物。 </p>
+</blockquote>
+<h5 id="25、怎样配平资源"><a href="#25、怎样配平资源" class="headerlink" title="25、怎样配平资源"></a>25、怎样配平资源</h5><p><em>Notice 35:</em> 要有始有终</p>
+<blockquote>
+<p>Finish What You Start </p>
+<p>只要可能，分配某资源的例程或对象也应该负责解除其分配。</p>
+</blockquote>
+<h5 id="26、解耦与得墨忒耳法则"><a href="#26、解耦与得墨忒耳法则" class="headerlink" title="26、解耦与得墨忒耳法则"></a>26、解耦与得墨忒耳法则</h5><p><em>Notice 36:</em> 使模块之间的耦合减至最少</p>
+<blockquote>
+<p>Minimize Coupling Between Modules</p>
+<p>通过编写“羞怯的”代码并应用得墨忒尔法则来避免耦合。  </p>
+</blockquote>
+<h4 id="27、元程序设计"><a href="#27、元程序设计" class="headerlink" title="27、元程序设计"></a>27、元程序设计</h4><p><em>Notice 37:</em> 要配置，不要集成</p>
+<blockquote>
+<p>Configure,Don’t Integrate</p>
+<p>要将应用的各种技术选择实现为配置选项，而不是通过集成或工程方法实现。  </p>
+</blockquote>
+<p><em>Notice 38:</em> 将抽象放进代码，细节放进元数据</p>
+<blockquote>
+<p>Put Abstractions in Code,Details in Metadata</p>
+<p>为一般情况编程，将细节放在被编译的代码库之外。 </p>
+</blockquote>
+<h4 id="28、时间耦合"><a href="#28、时间耦合" class="headerlink" title="28、时间耦合"></a>28、时间耦合</h4><p><em>Notice 39:</em> 分析工作流，以改善并发性</p>
+<blockquote>
+<p>Analyze Workflow to Improve Concurrency </p>
+<p>利用你的用户的工作流中的并发性。</p>
+</blockquote>
+<p><em>Notice 40:</em> 用服务进行设计</p>
+<blockquote>
+<p>Design Using Services</p>
+<p>根据服务—独立的、在良好定义、一致的接口之后的并发对象—进行设计。 </p>
+</blockquote>
+<p><em>Notice 41:</em> 总是为并发进行设计</p>
+<blockquote>
+<p>Always Design for Concurrency</p>
+<p>容许并发，你将会设计出更整洁、具有更少假定的接口。 </p>
+</blockquote>
+<h4 id="29、它只是视图"><a href="#29、它只是视图" class="headerlink" title="29、它只是视图"></a>29、它只是视图</h4><p><em>Notice 42:</em> 使视图与模型分离</p>
+<blockquote>
+<p>Separate Views from Models </p>
+<p>要根据模型和视图设计你的应用，从而以低廉的代码获取灵活性。</p>
+</blockquote>
+<h4 id="30、黑板"><a href="#30、黑板" class="headerlink" title="30、黑板"></a>30、黑板</h4><p><em>Notice 43:</em> 用黑板协调工作流</p>
+<blockquote>
+<p>Use Blackboards to Coordinate Workflow </p>
+<p>用黑板协调完全不同的事实和因素，同时又使各参与方保持独立和隔离。</p>
+</blockquote>
+<h4 id="31、靠巧合编程"><a href="#31、靠巧合编程" class="headerlink" title="31、靠巧合编程"></a>31、靠巧合编程</h4><p><em>Notice 44:</em> 不要靠巧合编程</p>
+<blockquote>
+<p>Don’t Program by Coincidence</p>
+<p>只依靠可靠的事物。注意偶发的复杂性，不要把幸运的巧合与有目的的计划混为一谈。 </p>
+</blockquote>
+<h4 id="32、算法速率"><a href="#32、算法速率" class="headerlink" title="32、算法速率"></a>32、算法速率</h4><p><em>Notice 45:</em> 估算你的算法的阶</p>
+<blockquote>
+<p>Estimate the Order of Your Algorithms</p>
+<p>在你编写代码之前，先大致估算事情需要多长时间。  </p>
+</blockquote>
+<p><em>Notice 46:</em> 测试你的估算</p>
+<blockquote>
+<p>Test Your Estimates </p>
+<p>对算法的数学分析并不会告诉你每一件事情。在你的代码的目标环境中测定它的速度。</p>
+</blockquote>
+<h4 id="33、重构"><a href="#33、重构" class="headerlink" title="33、重构"></a>33、重构</h4><p><em>重写、重做和重新架构代码合起来，称为重构（refactoring）。</em></p>
+<p><em>Notice 47:</em> 早重构，常重构</p>
+<blockquote>
+<p>Refactor Early，Refactor often</p>
+<p>就和你会在花园中除草、并重新布置一样，在需要时对代码进行重写、重做和重新架构。要铲除问题的根源。</p>
+</blockquote>
+<h4 id="34、易于测试的代码"><a href="#34、易于测试的代码" class="headerlink" title="34、易于测试的代码"></a>34、易于测试的代码</h4><p><em>Notice 48:</em> 为测试而设计</p>
+<blockquote>
+<p>Design to Test</p>
+<p>在你还没有编写代码时就开始思考测试问题。 </p>
+</blockquote>
+<p><em>Notice 49:</em>  测试你的软件，否则你的用户就得测试</p>
+<blockquote>
+<p>Test Your Software,or Your Users Will</p>
+<p>无情的测试。不要让你的用户为你查找bug。</p>
+</blockquote>
+<h4 id="35、易于测试的代码"><a href="#35、易于测试的代码" class="headerlink" title="35、易于测试的代码"></a>35、易于测试的代码</h4><p><em>Notice 50:</em> 不要使用你不理解的向导代码</p>
+<blockquote>
+<p>Don’t Use Wizard Code You Don’t Understand</p>
+<p>向导可以生成大量代码。在你把他们合并进你的项目之前，确保你理解全部这些代码。 </p>
+</blockquote>
+<h4 id="36、需求之坑"><a href="#36、需求之坑" class="headerlink" title="36、需求之坑"></a>36、需求之坑</h4><p><em>Notice 51:</em> 不要搜集需求—挖掘它们</p>
+<blockquote>
+<p>Don’t Gather Requirements - Dig for Them</p>
+<p>需求很少存在于表面上。他们深深地埋藏在层层假定、误解和政治手段的下面。</p>
+</blockquote>
+<p><em>Notice 52:</em> 与用户一同工作，以像用户一样思考</p>
+<blockquote>
+<p>Work with a User to Think Like a User</p>
+<p>要了解系统实际上将如何被使用，这是最好的方法。</p>
+</blockquote>
+<p><em>Notice 53:</em> 抽象比细节活的更长久</p>
+<blockquote>
+<p>Abstractions Live Longer than Details</p>
+<p>“投资”于抽象，而不是实现。抽象能在来自不同的实现和新技术的变化的“攻击”之下存活下去。</p>
+</blockquote>
+<p><em>Notice 54:</em> 使用项目词汇表</p>
+<blockquote>
+<p>Use a Project Glossary</p>
+<p>创建并维护项目中使用的专用术语和词汇的单一信息源。</p>
+</blockquote>
+<h4 id="37、解开不可能解开的谜题"><a href="#37、解开不可能解开的谜题" class="headerlink" title="37、解开不可能解开的谜题"></a>37、解开不可能解开的谜题</h4><p><em>Notice 55:</em> 不要在盒子外面思考—要找到盒子</p>
+<blockquote>
+<p>Don’t Think Outside the Box - Find the Box</p>
+<p>在遇到不可能解决的问题时，要确定真正的约束。问问你自己：“它必须以这种方式完成么？它真的必须完成吗？” </p>
+</blockquote>
+<h4 id="38、等你准备好"><a href="#38、等你准备好" class="headerlink" title="38、等你准备好"></a>38、等你准备好</h4><p><em>Notice 56:</em> 倾听反复出现的疑虑—等你准备好再开始</p>
+<blockquote>
+<p>Listen to Nagging Doubts - Start When You’re Ready</p>
+<p>你的一生都在积累经验。不要忽视反复出现的疑虑。</p>
+</blockquote>
+<h4 id="39、规范陷阱"><a href="#39、规范陷阱" class="headerlink" title="39、规范陷阱"></a>39、规范陷阱</h4><p><em>Notice 57:</em> 对有些事情“做”胜于“描述”。</p>
+<blockquote>
+<p>Some Things Are Better Done than Described</p>
+<p>不要掉进规范的螺旋—在某个时刻，你需要开始编码。</p>
+</blockquote>
+<h4 id="40、圆圈与箭头"><a href="#40、圆圈与箭头" class="headerlink" title="40、圆圈与箭头"></a>40、圆圈与箭头</h4><p><em>Notice 58:</em> 不要做形式方法的奴隶</p>
+<blockquote>
+<p>Don’t Be a Slave to Formal Methods</p>
+<p>如果你没有把某项技术放进你的开发实践和能力的语境中，不要盲目地采用它。</p>
+</blockquote>
+<p><em>Notice 59:</em> 昂贵的工具不一定能制造出更好的设计</p>
+<blockquote>
+<p>Expensive Tools Do Not Produce Better Designs</p>
+<p>小心供应商的炒作，行业教条，以及价格标签的诱惑。要根据工具的价值判断它们。</p>
+</blockquote>
+<h4 id="41、注重实效的团队"><a href="#41、注重实效的团队" class="headerlink" title="41、注重实效的团队"></a>41、注重实效的团队</h4><p><em>Notice 60:</em> 围绕功能、而不是工作职务进行组织</p>
+<blockquote>
+<p>Organize Around Functionality,Not Job Functions</p>
+<p>不要把设计师和编码员分开，也不要把测试员与数据建模员分开。按照你构建代码的方式构建团队。</p>
+</blockquote>
+<h5 id="42、无处不在的自动化"><a href="#42、无处不在的自动化" class="headerlink" title="42、无处不在的自动化"></a>42、无处不在的自动化</h5><p><em>Notice 61:</em> 不要使用手工流程</p>
+<blockquote>
+<p>Don’t Use Manual Procedures </p>
+<p>shell脚本或批文件会一次次地以同一顺序执行同样的指令。</p>
+</blockquote>
+<h5 id="43、无情的测试"><a href="#43、无情的测试" class="headerlink" title="43、无情的测试"></a>43、无情的测试</h5><p><em>Notice 62:</em> 早测试，常测试，自动测试。</p>
+<blockquote>
+<p>Test Early，Test More，Test Automatically </p>
+<p> 与呆在书架上的测试计划相比，每次构建时运行的测试要有效得多。</p>
+</blockquote>
+<p><em>Notice 63:</em> 要通过全部测试，编码才算完成。</p>
+<blockquote>
+<p>Coding Ain’t Done Til All the Tests Run</p>
+<p> 就是这样</p>
+</blockquote>
+<p><em>Notice 64:</em> 通过蓄意破坏测试你的测试。</p>
+<blockquote>
+<p>User Saboteurs to Test Your Testing</p>
+<p>在单独的软件副本上故意引入bug，以检验测试能否抓住它们。</p>
+</blockquote>
+<p><em>Notice 65:</em> 测试状态覆盖。而不是代码覆盖。</p>
+<blockquote>
+<p>Test State Coverage，Not Code Coverage</p>
+<p>确定并测试重要的程序状态。只是测试代码行是不够的。</p>
+</blockquote>
+<p><em>Notice 66:</em> 一个bug只抓住一次。</p>
+<blockquote>
+<p>Find Bugs Once</p>
+<p>一旦测试员找到一个bug，这应该是测试员最后一次找到它。此后自动测试应该对其进行检查。</p>
+</blockquote>
+<h5 id="44、全都是写"><a href="#44、全都是写" class="headerlink" title="44、全都是写"></a>44、全都是写</h5><p><em>Notice 67:</em> 把英语当作又一种编程语言。</p>
+<blockquote>
+<p>Treat English as Just Another Programming Language </p>
+<p>像你编写代码一样编写文档：遵守DRY原则、使用元数据、MVC、自动生成等等 。</p>
+</blockquote>
+<p><em>Notice 68:</em> 把文档建在里面，不要拴在外面。</p>
+<blockquote>
+<p>Build Documentation In，Don’t Bolt It On </p>
+<p> 与代码分离的文档不太可能被修正和更新。</p>
+</blockquote>
+<h5 id="45、极大的期望"><a href="#45、极大的期望" class="headerlink" title="45、极大的期望"></a>45、极大的期望</h5><p><em>Notice 69:</em> 温和地超出用户的期望。</p>
+<blockquote>
+<p>Gently Exceed Your Users’ Expectations </p>
+<p> 要理解你的用户的期望，然后给他们的东西要多那么一点。</p>
+</blockquote>
+<h5 id="46、傲慢与偏见"><a href="#46、傲慢与偏见" class="headerlink" title="46、傲慢与偏见"></a>46、傲慢与偏见</h5><p><em>Notice 70:</em> 在你的作品上签名。</p>
+<blockquote>
+<p>Sign Your Work </p>
+<p>过去时代的手艺人在能为他们的作品上签名而自豪 。你也应该如此。</p>
+</blockquote>
+<h4 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h4><p><em>读完一本书不难。难得就是在生活中去践行书中的方法论，去验证是否说的有道理，希望自己在以后的生活和学习中能够慢一些、收获多一些。2017！加油！</em></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/Alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/WeChat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">程序员修炼之道</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/学习笔记/" class="article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/11/17/The-Pragmatic-Programmer/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/15/About-Git/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Git学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/11/Jiguang-Push/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于集成极光推送</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="The-Pragmatic-Programmer" data-title="程序员修炼之道-读书笔记 " data-url="http://yoursite.com/2016/11/17/The-Pragmatic-Programmer/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"muhlenXi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 muhlenXi
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true,
+		showTags: false
+	}
+</script>
+
+<script>!function(t){function n(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var e={};return n.m=t,n.c=e,n.p="./",n(0)}([function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t,n){var e=/\/|index.html/g;return t.replace(e,"")===n.replace(e,"")}function i(){for(var t=document.querySelectorAll(".js-header-menu li a"),n=window.location.pathname,e=0,r=t.length;e<r;e++){var i=t[e];o(n,i.getAttribute("href"))&&(0,d.default)(i,"active")}}function u(t){for(var n=t.offsetLeft,e=t.offsetParent;null!==e;)n+=e.offsetLeft,e=e.offsetParent;return n}function f(t){for(var n=t.offsetTop,e=t.offsetParent;null!==e;)n+=e.offsetTop,e=e.offsetParent;return n}function c(t,n,e,r,o){var i=u(t),c=f(t)-n;if(c-e<=o){var a=t.$newDom;a||(a=t.cloneNode(!0),(0,h.default)(t,a),t.$newDom=a,a.style.position="fixed",a.style.top=(e||c)+"px",a.style.left=i+"px",a.style.zIndex=r||2,a.style.width="100%",a.style.color="#fff"),a.style.visibility="visible",t.style.visibility="hidden"}else{t.style.visibility="visible";var s=t.$newDom;s&&(s.style.visibility="hidden")}}function a(){var t=document.querySelector(".js-overlay"),n=document.querySelector(".js-header-menu");c(t,document.body.scrollTop,-63,2,0),c(n,document.body.scrollTop,1,3,0)}function s(){document.querySelector("#container").addEventListener("scroll",function(t){a()}),window.addEventListener("scroll",function(t){a()}),a()}function l(){x.default.versions.mobile&&window.screen.width<800&&(i(),s())}var p=e(71),d=r(p),v=e(72),y=(r(v),e(84)),h=r(y),b=e(69),x=r(b),m=e(75),g=r(m),w=e(70);l(),(0,w.addLoadEvent)(function(){g.default.init()}),t.exports={}},function(t,n){var e=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=e)},function(t,n){var e={}.hasOwnProperty;t.exports=function(t,n){return e.call(t,n)}},function(t,n,e){var r=e(49),o=e(15);t.exports=function(t){return r(o(t))}},function(t,n,e){t.exports=!e(8)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n,e){var r=e(6),o=e(12);t.exports=e(4)?function(t,n,e){return r.f(t,n,o(1,e))}:function(t,n,e){return t[n]=e,t}},function(t,n,e){var r=e(10),o=e(30),i=e(24),u=Object.defineProperty;n.f=e(4)?Object.defineProperty:function(t,n,e){if(r(t),n=i(n,!0),r(e),o)try{return u(t,n,e)}catch(t){}if("get"in e||"set"in e)throw TypeError("Accessors not supported!");return"value"in e&&(t[n]=e.value),t}},function(t,n,e){var r=e(22)("wks"),o=e(13),i=e(1).Symbol,u="function"==typeof i,f=t.exports=function(t){return r[t]||(r[t]=u&&i[t]||(u?i:o)("Symbol."+t))};f.store=r},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n,e){var r=e(35),o=e(16);t.exports=Object.keys||function(t){return r(t,o)}},function(t,n,e){var r=e(11);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n){var e=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++e+r).toString(36))}},function(t,n){var e=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=e)},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,n){t.exports={}},function(t,n){t.exports=!0},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,e){var r=e(6).f,o=e(2),i=e(7)("toStringTag");t.exports=function(t,n,e){t&&!o(t=e?t:t.prototype,i)&&r(t,i,{configurable:!0,value:n})}},function(t,n,e){var r=e(22)("keys"),o=e(13);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,n,e){var r=e(1),o="__core-js_shared__",i=r[o]||(r[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,n){var e=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:e)(t)}},function(t,n,e){var r=e(11);t.exports=function(t,n){if(!r(t))return t;var e,o;if(n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;if("function"==typeof(e=t.valueOf)&&!r(o=e.call(t)))return o;if(!n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,n,e){var r=e(1),o=e(14),i=e(18),u=e(26),f=e(6).f;t.exports=function(t){var n=o.Symbol||(o.Symbol=i?{}:r.Symbol||{});"_"==t.charAt(0)||t in n||f(n,t,{value:u.f(t)})}},function(t,n,e){n.f=e(7)},function(t,n,e){var r=e(1),o=e(14),i=e(46),u=e(5),f="prototype",c=function(t,n,e){var a,s,l,p=t&c.F,d=t&c.G,v=t&c.S,y=t&c.P,h=t&c.B,b=t&c.W,x=d?o:o[n]||(o[n]={}),m=x[f],g=d?r:v?r[n]:(r[n]||{})[f];d&&(e=n);for(a in e)s=!p&&g&&void 0!==g[a],s&&a in x||(l=s?g[a]:e[a],x[a]=d&&"function"!=typeof g[a]?e[a]:h&&s?i(l,r):b&&g[a]==l?function(t){var n=function(n,e,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(n);case 2:return new t(n,e)}return new t(n,e,r)}return t.apply(this,arguments)};return n[f]=t[f],n}(l):y&&"function"==typeof l?i(Function.call,l):l,y&&((x.virtual||(x.virtual={}))[a]=l,t&c.R&&m&&!m[a]&&u(m,a,l)))};c.F=1,c.G=2,c.S=4,c.P=8,c.B=16,c.W=32,c.U=64,c.R=128,t.exports=c},function(t,n){var e={}.toString;t.exports=function(t){return e.call(t).slice(8,-1)}},function(t,n,e){var r=e(11),o=e(1).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,n,e){t.exports=!e(4)&&!e(8)(function(){return 7!=Object.defineProperty(e(29)("div"),"a",{get:function(){return 7}}).a})},function(t,n,e){"use strict";var r=e(18),o=e(27),i=e(36),u=e(5),f=e(2),c=e(17),a=e(51),s=e(20),l=e(58),p=e(7)("iterator"),d=!([].keys&&"next"in[].keys()),v="@@iterator",y="keys",h="values",b=function(){return this};t.exports=function(t,n,e,x,m,g,w){a(e,n,x);var O,S,_,j=function(t){if(!d&&t in A)return A[t];switch(t){case y:return function(){return new e(this,t)};case h:return function(){return new e(this,t)}}return function(){return new e(this,t)}},P=n+" Iterator",E=m==h,M=!1,A=t.prototype,T=A[p]||A[v]||m&&A[m],L=T||j(m),N=m?E?j("entries"):L:void 0,C="Array"==n?A.entries||T:T;if(C&&(_=l(C.call(new t)),_!==Object.prototype&&(s(_,P,!0),r||f(_,p)||u(_,p,b))),E&&T&&T.name!==h&&(M=!0,L=function(){return T.call(this)}),r&&!w||!d&&!M&&A[p]||u(A,p,L),c[n]=L,c[P]=b,m)if(O={values:E?L:j(h),keys:g?L:j(y),entries:N},w)for(S in O)S in A||i(A,S,O[S]);else o(o.P+o.F*(d||M),n,O);return O}},function(t,n,e){var r=e(10),o=e(55),i=e(16),u=e(21)("IE_PROTO"),f=function(){},c="prototype",a=function(){var t,n=e(29)("iframe"),r=i.length,o="<",u=">";for(n.style.display="none",e(48).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write(o+"script"+u+"document.F=Object"+o+"/script"+u),t.close(),a=t.F;r--;)delete a[c][i[r]];return a()};t.exports=Object.create||function(t,n){var e;return null!==t?(f[c]=r(t),e=new f,f[c]=null,e[u]=t):e=a(),void 0===n?e:o(e,n)}},function(t,n,e){var r=e(35),o=e(16).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,n){n.f=Object.getOwnPropertySymbols},function(t,n,e){var r=e(2),o=e(3),i=e(45)(!1),u=e(21)("IE_PROTO");t.exports=function(t,n){var e,f=o(t),c=0,a=[];for(e in f)e!=u&&r(f,e)&&a.push(e);for(;n.length>c;)r(f,e=n[c++])&&(~i(a,e)||a.push(e));return a}},function(t,n,e){t.exports=e(5)},function(t,n,e){var r=e(15);t.exports=function(t){return Object(r(t))}},function(t,n,e){t.exports={default:e(41),__esModule:!0}},function(t,n,e){t.exports={default:e(42),__esModule:!0}},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}n.__esModule=!0;var o=e(39),i=r(o),u=e(38),f=r(u),c="function"==typeof f.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":typeof t};n.default="function"==typeof f.default&&"symbol"===c(i.default)?function(t){return"undefined"==typeof t?"undefined":c(t)}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":"undefined"==typeof t?"undefined":c(t)}},function(t,n,e){e(65),e(63),e(66),e(67),t.exports=e(14).Symbol},function(t,n,e){e(64),e(68),t.exports=e(26).f("iterator")},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n){t.exports=function(){}},function(t,n,e){var r=e(3),o=e(61),i=e(60);t.exports=function(t){return function(n,e,u){var f,c=r(n),a=o(c.length),s=i(u,a);if(t&&e!=e){for(;a>s;)if(f=c[s++],f!=f)return!0}else for(;a>s;s++)if((t||s in c)&&c[s]===e)return t||s||0;return!t&&-1}}},function(t,n,e){var r=e(43);t.exports=function(t,n,e){if(r(t),void 0===n)return t;switch(e){case 1:return function(e){return t.call(n,e)};case 2:return function(e,r){return t.call(n,e,r)};case 3:return function(e,r,o){return t.call(n,e,r,o)}}return function(){return t.apply(n,arguments)}}},function(t,n,e){var r=e(9),o=e(34),i=e(19);t.exports=function(t){var n=r(t),e=o.f;if(e)for(var u,f=e(t),c=i.f,a=0;f.length>a;)c.call(t,u=f[a++])&&n.push(u);return n}},function(t,n,e){t.exports=e(1).document&&document.documentElement},function(t,n,e){var r=e(28);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,n,e){var r=e(28);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,n,e){"use strict";var r=e(32),o=e(12),i=e(20),u={};e(5)(u,e(7)("iterator"),function(){return this}),t.exports=function(t,n,e){t.prototype=r(u,{next:o(1,e)}),i(t,n+" Iterator")}},function(t,n){t.exports=function(t,n){return{value:n,done:!!t}}},function(t,n,e){var r=e(9),o=e(3);t.exports=function(t,n){for(var e,i=o(t),u=r(i),f=u.length,c=0;f>c;)if(i[e=u[c++]]===n)return e}},function(t,n,e){var r=e(13)("meta"),o=e(11),i=e(2),u=e(6).f,f=0,c=Object.isExtensible||function(){return!0},a=!e(8)(function(){return c(Object.preventExtensions({}))}),s=function(t){u(t,r,{value:{i:"O"+ ++f,w:{}}})},l=function(t,n){if(!o(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,r)){if(!c(t))return"F";if(!n)return"E";s(t)}return t[r].i},p=function(t,n){if(!i(t,r)){if(!c(t))return!0;if(!n)return!1;s(t)}return t[r].w},d=function(t){return a&&v.NEED&&c(t)&&!i(t,r)&&s(t),t},v=t.exports={KEY:r,NEED:!1,fastKey:l,getWeak:p,onFreeze:d}},function(t,n,e){var r=e(6),o=e(10),i=e(9);t.exports=e(4)?Object.defineProperties:function(t,n){o(t);for(var e,u=i(n),f=u.length,c=0;f>c;)r.f(t,e=u[c++],n[e]);return t}},function(t,n,e){var r=e(19),o=e(12),i=e(3),u=e(24),f=e(2),c=e(30),a=Object.getOwnPropertyDescriptor;n.f=e(4)?a:function(t,n){if(t=i(t),n=u(n,!0),c)try{return a(t,n)}catch(t){}if(f(t,n))return o(!r.f.call(t,n),t[n])}},function(t,n,e){var r=e(3),o=e(33).f,i={}.toString,u="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],f=function(t){try{return o(t)}catch(t){return u.slice()}};t.exports.f=function(t){return u&&"[object Window]"==i.call(t)?f(t):o(r(t))}},function(t,n,e){var r=e(2),o=e(37),i=e(21)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n,e){var r=e(23),o=e(15);t.exports=function(t){return function(n,e){var i,u,f=String(o(n)),c=r(e),a=f.length;return c<0||c>=a?t?"":void 0:(i=f.charCodeAt(c),i<55296||i>56319||c+1===a||(u=f.charCodeAt(c+1))<56320||u>57343?t?f.charAt(c):i:t?f.slice(c,c+2):(i-55296<<10)+(u-56320)+65536)}}},function(t,n,e){var r=e(23),o=Math.max,i=Math.min;t.exports=function(t,n){return t=r(t),t<0?o(t+n,0):i(t,n)}},function(t,n,e){var r=e(23),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,n,e){"use strict";var r=e(44),o=e(52),i=e(17),u=e(3);t.exports=e(31)(Array,"Array",function(t,n){this._t=u(t),this._i=0,this._k=n},function(){var t=this._t,n=this._k,e=this._i++;return!t||e>=t.length?(this._t=void 0,o(1)):"keys"==n?o(0,e):"values"==n?o(0,t[e]):o(0,[e,t[e]])},"values"),i.Arguments=i.Array,r("keys"),r("values"),r("entries")},function(t,n){},function(t,n,e){"use strict";var r=e(59)(!0);e(31)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,n=this._t,e=this._i;return e>=n.length?{value:void 0,done:!0}:(t=r(n,e),this._i+=t.length,{value:t,done:!1})})},function(t,n,e){"use strict";var r=e(1),o=e(2),i=e(4),u=e(27),f=e(36),c=e(54).KEY,a=e(8),s=e(22),l=e(20),p=e(13),d=e(7),v=e(26),y=e(25),h=e(53),b=e(47),x=e(50),m=e(10),g=e(3),w=e(24),O=e(12),S=e(32),_=e(57),j=e(56),P=e(6),E=e(9),M=j.f,A=P.f,T=_.f,L=r.Symbol,N=r.JSON,C=N&&N.stringify,k="prototype",F=d("_hidden"),q=d("toPrimitive"),I={}.propertyIsEnumerable,B=s("symbol-registry"),D=s("symbols"),W=s("op-symbols"),H=Object[k],K="function"==typeof L,R=r.QObject,J=!R||!R[k]||!R[k].findChild,U=i&&a(function(){return 7!=S(A({},"a",{get:function(){return A(this,"a",{value:7}).a}})).a})?function(t,n,e){var r=M(H,n);r&&delete H[n],A(t,n,e),r&&t!==H&&A(H,n,r)}:A,G=function(t){var n=D[t]=S(L[k]);return n._k=t,n},$=K&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},z=function(t,n,e){return t===H&&z(W,n,e),m(t),n=w(n,!0),m(e),o(D,n)?(e.enumerable?(o(t,F)&&t[F][n]&&(t[F][n]=!1),e=S(e,{enumerable:O(0,!1)})):(o(t,F)||A(t,F,O(1,{})),t[F][n]=!0),U(t,n,e)):A(t,n,e)},Y=function(t,n){m(t);for(var e,r=b(n=g(n)),o=0,i=r.length;i>o;)z(t,e=r[o++],n[e]);return t},Q=function(t,n){return void 0===n?S(t):Y(S(t),n)},X=function(t){var n=I.call(this,t=w(t,!0));return!(this===H&&o(D,t)&&!o(W,t))&&(!(n||!o(this,t)||!o(D,t)||o(this,F)&&this[F][t])||n)},V=function(t,n){if(t=g(t),n=w(n,!0),t!==H||!o(D,n)||o(W,n)){var e=M(t,n);return!e||!o(D,n)||o(t,F)&&t[F][n]||(e.enumerable=!0),e}},Z=function(t){for(var n,e=T(g(t)),r=[],i=0;e.length>i;)o(D,n=e[i++])||n==F||n==c||r.push(n);return r},tt=function(t){for(var n,e=t===H,r=T(e?W:g(t)),i=[],u=0;r.length>u;)!o(D,n=r[u++])||e&&!o(H,n)||i.push(D[n]);return i};K||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),n=function(e){this===H&&n.call(W,e),o(this,F)&&o(this[F],t)&&(this[F][t]=!1),U(this,t,O(1,e))};return i&&J&&U(H,t,{configurable:!0,set:n}),G(t)},f(L[k],"toString",function(){return this._k}),j.f=V,P.f=z,e(33).f=_.f=Z,e(19).f=X,e(34).f=tt,i&&!e(18)&&f(H,"propertyIsEnumerable",X,!0),v.f=function(t){return G(d(t))}),u(u.G+u.W+u.F*!K,{Symbol:L});for(var nt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),et=0;nt.length>et;)d(nt[et++]);for(var nt=E(d.store),et=0;nt.length>et;)y(nt[et++]);u(u.S+u.F*!K,"Symbol",{for:function(t){return o(B,t+="")?B[t]:B[t]=L(t)},keyFor:function(t){if($(t))return h(B,t);throw TypeError(t+" is not a symbol!")},useSetter:function(){J=!0},useSimple:function(){J=!1}}),u(u.S+u.F*!K,"Object",{create:Q,defineProperty:z,defineProperties:Y,getOwnPropertyDescriptor:V,getOwnPropertyNames:Z,getOwnPropertySymbols:tt}),N&&u(u.S+u.F*(!K||a(function(){var t=L();return"[null]"!=C([t])||"{}"!=C({a:t})||"{}"!=C(Object(t))})),"JSON",{stringify:function(t){if(void 0!==t&&!$(t)){for(var n,e,r=[t],o=1;arguments.length>o;)r.push(arguments[o++]);return n=r[1],"function"==typeof n&&(e=n),!e&&x(n)||(n=function(t,n){if(e&&(n=e.call(this,t,n)),!$(n))return n}),r[1]=n,C.apply(N,r)}}}),L[k][q]||e(5)(L[k],q,L[k].valueOf),l(L,"Symbol"),l(Math,"Math",!0),l(r.JSON,"JSON",!0)},function(t,n,e){e(25)("asyncIterator")},function(t,n,e){e(25)("observable")},function(t,n,e){e(62);for(var r=e(1),o=e(5),i=e(17),u=e(7)("toStringTag"),f=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],c=0;c<5;c++){var a=f[c],s=r[a],l=s&&s.prototype;l&&!l[u]&&o(l,u,a),i[a]=i.Array}},function(t,n){"use strict";var e={versions:function(){var t=window.navigator.userAgent;return{trident:t.indexOf("Trident")>-1,presto:t.indexOf("Presto")>-1,webKit:t.indexOf("AppleWebKit")>-1,gecko:t.indexOf("Gecko")>-1&&t.indexOf("KHTML")==-1,mobile:!!t.match(/AppleWebKit.*Mobile.*/),ios:!!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),android:t.indexOf("Android")>-1||t.indexOf("Linux")>-1,iPhone:t.indexOf("iPhone")>-1||t.indexOf("Mac")>-1,iPad:t.indexOf("iPad")>-1,webApp:t.indexOf("Safari")==-1,weixin:t.indexOf("MicroMessenger")==-1}}()};t.exports=e},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}var o=e(40),i=r(o),u=function(){function t(t,n,e){return n||e?String.fromCharCode(n||e):o[t]||t}function n(t){return l[t]}var e=/&quot;|&lt;|&gt;|&amp;|&nbsp;|&apos;|&#(\d+);|&#(\d+)/g,r=/['<> "&]/g,o={"&quot;":'"',"&lt;":"<","&gt;":">","&amp;":"&","&nbsp;":" "},f=/\u00a0/g,c=/<br\s*\/?>/gi,a=/\r?\n/g,s=/\s/g,l={};for(var p in o)l[o[p]]=p;return o["&apos;"]="'",l["'"]="&#39;",{encode:function(t){return t?(""+t).replace(r,n).replace(a,"<br/>").replace(s,"&nbsp;"):""},decode:function(n){return n?(""+n).replace(c,"\n").replace(e,t).replace(f," "):""},encodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},encodeBase16forJSON:function(t){if(!t)return t;t=t.replace(/[\u4E00-\u9FBF]/gi,function(t){return escape(t).replace("%u","\\u")});for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},decodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e+=2)n.push(String.fromCharCode("0x"+t.slice(e,e+2)));return n.join("")},encodeObject:function(t){if(t instanceof Array)for(var n=0,e=t.length;e>n;n++)t[n]=u.encodeObject(t[n]);else if("object"==("undefined"==typeof t?"undefined":(0,i.default)(t)))for(var r in t)t[r]=u.encodeObject(t[r]);else if("string"==typeof t)return u.encode(t);return t},loadScript:function(t){var n=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(n),n.setAttribute("src",t)},addLoadEvent:function(t){var n=window.onload;"function"!=typeof window.onload?window.onload=t:window.onload=function(){n(),t()}}}}();t.exports=u},function(t,n){function e(t,n){t.classList?t.classList.add(n):t.className+=" "+n}t.exports=e},function(t,n){function e(t,n){if(t.classList)t.classList.remove(n);else{var e=new RegExp("(^|\\b)"+n.split(" ").join("|")+"(\\b|$)","gi");t.className=t.className.replace(e," ")}}t.exports=e},,,function(t,n){"use strict";function e(){var t=document.querySelector("#page-nav");if(t&&!document.querySelector("#page-nav .extend.prev")&&(t.innerHTML='<a class="extend prev disabled" rel="prev">&laquo; Prev</a>'+t.innerHTML),t&&!document.querySelector("#page-nav .extend.next")&&(t.innerHTML=t.innerHTML+'<a class="extend next disabled" rel="next">Next &raquo;</a>'),yiliaConfig&&yiliaConfig.open_in_new){var n=document.querySelectorAll(".article-entry a:not(.article-more-a)");n.forEach(function(t){t.setAttribute("target","_blank")})}var e=document.querySelector("#js-aboutme");e&&0!==e.length&&(e.innerHTML=e.innerText)}t.exports={init:e}},,,,,,,,,function(t,n){function e(t,n){if("string"==typeof n)return t.insertAdjacentHTML("afterend",n);var e=t.nextSibling;return e?t.parentNode.insertBefore(n,e):t.parentNode.appendChild(n)}t.exports=e}])</script><script src="/./main.2d7529.js"></script><script>!function(){var e=function(e){var t=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(t),t.setAttribute("src",e)};e("/slider.885efe.js")}()</script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-nav header-menu">
+    
+    
+      
+      
+      
+    
+      
+      
+      
+    
+      
+      
+      
+    
+    
+
+    <ul style="width: 70%">
+    
+    
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      
+        
+    </ul>
+  </div>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">大话设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Next</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Objective-C Notes</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Swift开发者必备Tips</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">zsh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://www.boxueio.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Boxue</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.vii-lin.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>vii-lin</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://onevcat.com/#blog" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>onevcat</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://blog.devtang.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>唐巧</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://blog.ibireme.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ibireme</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://liuyanwei.jumppo.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>刘彦玮</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://stormzhang.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>stormzhang</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://litten.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>litten</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">muhlenXi，&lt;br&gt;90后北方汉子&lt;br&gt;&lt;br&gt;热爱旅行与DIY，&lt;br/&gt;目前是一枚程序猿&lt;br/&gt;&lt;br/&gt;乐天达观、成熟稳重。&lt;br&gt;认为信仰只是个人内心的一种修行！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

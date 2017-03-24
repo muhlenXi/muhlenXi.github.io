@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>Effective objective-C 2.0 学习笔记 | muhlenXi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2015/11/10/Effective-Objective-C-2-0
+前言：
+Effective objective-C,翻译过来是编写高质量 iOS 与 OS X 代码的52个有效方法，作者是 Matt Galloway ，本书是世界级 C++ 开发大师 Scott Meyer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective objective-C 2.0 学习笔记">
+<meta property="og:url" content="http://yoursite.com/2015/11/10/Effective-objective-C-2-0/index.html">
+<meta property="og:site_name" content="muhlenXi">
+<meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2015/11/10/Effective-Objective-C-2-0
+前言：
+Effective objective-C,翻译过来是编写高质量 iOS 与 OS X 代码的52个有效方法，作者是 Matt Galloway ，本书是世界级 C++ 开发大师 Scott Meyer">
+<meta property="og:updated_time" content="2017-03-24T14:36:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Effective objective-C 2.0 学习笔记">
+<meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2015/11/10/Effective-Objective-C-2-0
+前言：
+Effective objective-C,翻译过来是编写高质量 iOS 与 OS X 代码的52个有效方法，作者是 Matt Galloway ，本书是世界级 C++ 开发大师 Scott Meyer">
+  
+    <link rel="alternative" href="/atom.xml" title="muhlenXi" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.2d7529.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
+
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      
+<div class="overlay" style="background: #4d4d4d"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://7xvffo.com1.z0.glb.clouddn.com/dabai.jpg" class="js-avatar">
+		</a>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">muhlenXi</a></h1>
+		</hgroup>
+		
+		<p class="header-subtitle">他最大的快乐一直来自学习本身。</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+    		
+    			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/muhlenXi" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/muhlenXi" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/mulenXi" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="jianshu" target="_blank" href="http://www.jianshu.com/u/2ad16884a0cd" title="jianshu"><i class="icon-jianshu"></i></a>
+		        
+					<a class="douban" target="_blank" href="https://www.douban.com/people/148807497/" title="douban"><i class="icon-douban"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      
+<nav id="mobile-nav">
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+	<div class="btnctn js-mobile-btnctn">
+  		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
+	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://7xvffo.com1.z0.glb.clouddn.com/dabai.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author js-header-author">muhlenXi</h1>
+			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>他最大的快乐一直来自学习本身。<i class="icon icon-quo-right"></i></p>
+			
+			
+			
+				
+			
+				
+			
+			
+			
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/muhlenXi" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/muhlenXi" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/mulenXi" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="jianshu" target="_blank" href="http://www.jianshu.com/u/2ad16884a0cd" title="jianshu"><i class="icon-jianshu"></i></a>
+			        
+						<a class="douban" target="_blank" href="https://www.douban.com/people/148807497/" title="douban"><i class="icon-douban"></i></a>
+			        
+				</div>
+			</nav>
+
+			<nav class="header-menu js-header-menu">
+				<ul style="width: 50%">
+				
+				
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+		</header>				
+	</div>
+	<div class="mobile-mask" style="display:none" q-show="isShow"></div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-Effective-objective-C-2-0" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Effective objective-C 2.0 学习笔记
+    </h1>
+  
+
+        
+        <a href="/2015/11/10/Effective-objective-C-2-0/" class="archive-article-date">
+  	<time datetime="2015-11-10T06:52:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-11-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2015/11/10/Effective-Objective-C-2-0" target="_blank" rel="external">http://muhlenxi.com/2015/11/10/Effective-Objective-C-2-0</a></em></p>
+<h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><blockquote>
+<p>Effective objective-C,翻译过来是编写高质量 iOS 与 OS X 代码的52个有效方法，作者是 Matt Galloway ，本书是世界级 C++ 开发大师 Scott Meyers 亲自担当顾问编辑的 “Effective Software Development Series” 系列丛书中的新作，Amazon 全五星评价。全书从语法、接口与API设计、内存管理、框架等7大方面总结和探讨了 Objective-C 编程中 52 个鲜为人知的和容易被忽视的特性和陷阱！</p>
+</blockquote>
+<p>学习贵在记录和总结收获！点击阅读全文了解更多！　　</p>
+<a id="more"></a>
+<p>Objective-C 源自 Smalltalk ，是一门相当动态的语言，代码是在运行期（runtime）执行的！</p>
+<h4 id="第1条：了解Objective-C语言的起源"><a href="#第1条：了解Objective-C语言的起源" class="headerlink" title="第1条：了解Objective-C语言的起源"></a>第1条：了解Objective-C语言的起源</h4><p><em>C++,Java等使用的是function calling ，运行所执行的代码由编译器来决定。如果调用的函数是多态的，那么在运行时就要按照 virtual table (虚方法表) 来查出应该执行哪个函数实现。</em></p>
+<p><em>Objective-C语言使用的是动态绑定的 message structure (消息结构) ，其运行时所执行的代码由运行环境来决定；无论多态，总是在运行时才会去检查对象的类型和查找所要执行的方法。</em></p>
+<p>Objective-C 语言中的对象是用来指示对象的。</p>
+<p>举个🌰 ：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> * str = <span class="string">@"hello world"</span>;</div></pre></td></tr></table></figure>
+<p><em>对象所占的内存是分配在堆空间中！</em></p>
+<p><em>指向对象的指针变量分配在栈上！</em></p>
+<p><em>一般不含星号的变量也分配在栈上!</em> 如 CGRect，CGSize…</p>
+<h4 id="第2条：在类的头文件中尽量少引用其他头文件"><a href="#第2条：在类的头文件中尽量少引用其他头文件" class="headerlink" title="第2条：在类的头文件中尽量少引用其他头文件"></a>第2条：在类的头文件中尽量少引用其他头文件</h4><blockquote>
+<p><strong>除非确有必要，否则不要引入头文件！使用前向声明！</strong></p>
+</blockquote>
+<p>解决办法：在类的头文件中使用<code>前向声明</code>提到的类。并在.m文件中引入那些类的头文件。</p>
+<p>好处：降低了类之间的耦合度，减少了编译时间，</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@class</span>  <span class="title">XYJMyMenuTVC</span>;    //前向声明语法</span></div></pre></td></tr></table></figure>
+<p><em>有时无法使用前向声明，比如要声明某个类遵循一项协议。此时，尽量把<code>该类遵循某协议</code>的声明已到<code>匿名类</code>中。如果不行的话，就把协议单独放在一个头文件中，然后将其引入。</em></p>
+<h4 id="第3条：多用字面量语法，少用与之等价的方法"><a href="#第3条：多用字面量语法，少用与之等价的方法" class="headerlink" title="第3条：多用字面量语法，少用与之等价的方法"></a>第3条：多用字面量语法，少用与之等价的方法</h4><blockquote>
+<ul>
+<li><em>应该使用字面量语法来创建字符串、数值、数组、字典。与创建此类对象的常规方法相比，这么做更加简明扼要。</em></li>
+<li><em>应该通过取下标操作来访问数组下标或字典中键所对应的元素。</em></li>
+<li><em>用字面量语法创建数组或字典，若值中有 nil，则会抛出异常。因此，务必确保值里不含 nil ！</em></li>
+</ul>
+</blockquote>
+<p><em>字面量语法举例：</em></p>
+<p>举个🌰 ：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> * string = <span class="string">@"hello world"</span>;</div><div class="line">   </div><div class="line"><span class="built_in">NSNumber</span> * intNumber = @<span class="number">1</span>;</div><div class="line"><span class="built_in">NSNumber</span> * floatNumber = @<span class="number">2.5</span>f;</div><div class="line"><span class="built_in">NSNumber</span> * doubleNumber = @<span class="number">3.14159</span>;</div><div class="line"><span class="built_in">NSNumber</span> * boolNumber = @YES;</div><div class="line"><span class="built_in">NSNumber</span> * charNUmber = @<span class="string">'A'</span>;</div><div class="line">   </div><div class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"1"</span>,<span class="string">@"2"</span>];</div><div class="line"><span class="built_in">NSDictionary</span> * dic = @&#123;<span class="string">@"keyone"</span>:<span class="string">@"1"</span>,<span class="string">@"keytwo"</span>:<span class="string">@"2"</span>&#125;;</div></pre></td></tr></table></figure>
+<p><em>不可变对象转为可变对象：</em></p>
+<p>举个🌰 ：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSMutableArray</span> * arrayM = [@[<span class="string">@"1"</span>,<span class="string">@"2"</span>] mutableCopy];</div><div class="line"><span class="built_in">NSMutableString</span> * strM = [<span class="string">@"hello"</span> mutableCopy];</div><div class="line"><span class="built_in">NSMutableDictionary</span> * dicM = [@&#123;<span class="string">@"one"</span>:<span class="string">@"1"</span>&#125; mutableCopy];</div></pre></td></tr></table></figure>
+<h4 id="第4条：多用类型常量，少用-define预处理指令"><a href="#第4条：多用类型常量，少用-define预处理指令" class="headerlink" title="第4条：多用类型常量，少用#define预处理指令"></a>第4条：多用类型常量，少用#define预处理指令</h4><blockquote>
+<ul>
+<li><em>不要用预处理指令定义常量。这样定义出来的常量不含类型信息，编译器只是会在编译前据此查找与替换操作。即使有人重新定义了常量值，编译器也不会产生警告信息，这将导致应用程序中的常量值不一致。</em></li>
+<li><em>在实现文件中使用 <code>static const</code>  来定义 <code>只在编译单元内可见的常量</code>。由于此类常量不在全局符号表中，所以无须为其名称加前缀。</em></li>
+<li><em>在头文件中使用 <code>extern</code> 来声明全局常量，并在相关实现文件中定义其值。这种常量会出现在全局符号表中，所以其名称应加以区隔，通常用与之相关的类名称做前缀。</em></li>
+</ul>
+</blockquote>
+<p><em>常量名称的常用命名法是：若常量局限于某编译单元内，也就是实现文件之内，则在前面加字母 k ；</em></p>
+<p><em>若不打算公开某个常量，则应将其定义在使用该常量的实现文件里</em></p>
+<p><em>变量一定要同时用 static 与 const 来声明，如果试图修改由 const 修饰符所声明的变量，那么编译器就会报错！</em></p>
+<p>举个🌰 ：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">NSTimeInterval</span> kAnimationDuration = <span class="number">0.3</span>;  <span class="comment">//定义一个类型为NSTimeInterval的时间常量</span></div></pre></td></tr></table></figure>
+<p><em>若常量在类之外可见，则通常以类名为前缀。</em></p>
+<p><em>常量定义从右往左解读，注意 const 修饰符在常量类型中的位置。</em></p>
+<p>举个🌰 ：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">extern</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> XYJLoginManagerDidLoginNotification;  <span class="comment">//在.h文件中声明</span></div><div class="line"></div><div class="line"><span class="built_in">NSString</span> * <span class="keyword">const</span> XYJLoginManagerDidLoginNotification = <span class="string">@"XYJLoginManagerDidLoginNotification"</span>;  <span class="comment">//在.m文件中定义</span></div></pre></td></tr></table></figure>
+<h4 id="第5条：用枚举表示状态、选项、状态码"><a href="#第5条：用枚举表示状态、选项、状态码" class="headerlink" title="第5条：用枚举表示状态、选项、状态码"></a>第5条：用枚举表示状态、选项、状态码</h4><blockquote>
+<ul>
+<li><em>应该用枚举来表示状态机的状态、传递给方法的选项以及状态码等值，给这些值起个易懂的名字吧。</em></li>
+<li><em>如果把传递给某个方法的选项表示为枚举类型，而多个选项又可同时使用，那么就将各选项值定义为 2 的幂，以便通过按位或操作将其组合起来。</em></li>
+<li><em>用 NS_ENUM与NS_OPTIONS 宏来定义枚举类型，并指明底层数据类型。这样做可以确保枚举是用开发者所选的底层数据类型实现出来的，而不会采用编译器所选的类型。</em></li>
+<li><em>在处理枚举类型的 switch 语句中不要实现 default 分支，这样的话，加入新枚举之后，编译器就会提示开发者：switch 语句并未处理所有枚举。</em></li>
+</ul>
+</blockquote>
+<p><strong>凡是需要以 按位或 操作来组合的枚举都应使用 NS_OPTIONS 定义，若是枚举不需要互相组合，则应使用 NS_ENUM 来定义</strong></p>
+<p>举个🌰 ：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> : <span class="built_in">NSUInteger</span> &#123;</div><div class="line">    ConnectionStateDisconnected ,</div><div class="line">    ConnectionStateConnecting,</div><div class="line">    ConnectionStateConnected,</div><div class="line">&#125; TCPConnectionState;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span> (<span class="built_in">NSUInteger</span>,UDPConnectionState) &#123;</div><div class="line">    UDPConnectionStateDisconnected,</div><div class="line">    UDPConnectionStateConnecting,</div><div class="line">    UDPConnectionStateConnected,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="built_in">NS_OPTIONS</span>(<span class="built_in">NSUInteger</span>, PermittedDirection)&#123;</div><div class="line">    PermittedDirectionUp    = <span class="number">1</span> &lt;&lt; <span class="number">0</span>,</div><div class="line">    PermittedDirectionDown  = <span class="number">1</span> &lt;&lt; <span class="number">1</span>,</div><div class="line">    PermittedDirectionLeft  = <span class="number">1</span> &lt;&lt; <span class="number">2</span>,</div><div class="line">    PermittedDirectionRight = <span class="number">1</span> &lt;&lt; <span class="number">3</span>,</div><div class="line">    </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="第6条：理解属性这一概念"><a href="#第6条：理解属性这一概念" class="headerlink" title="第6条：理解属性这一概念"></a>第6条：理解属性这一概念</h4><blockquote>
+<ul>
+<li><em>可以用@property语法来定义对象中所封装的数据。</em></li>
+<li><em>通过 “attribute（特质)” 来指定存储数据所需的正确语义</em>。</li>
+<li><em>在设置属性所对应的实例变量时，一定要遵从该属性所声明的语义</em>。</li>
+<li><em>开发 iOS 程序时应该使用 noatomic 属性，因为 atomic 属性会严重影响性能</em>。</li>
+</ul>
+</blockquote>
+<p><em>在对象之间传递数据并执行任务的过程就叫做”消息传递”（Messaging）。</em></p>
+<p><em>当应用程序运行起来，为其提供相关支持的代码叫做 “Objective-C runtime”（运行期环境）</em></p>
+<p><em>在类的的实现代码里可以通过 <code>@synthesize</code> 语法来指定实例变量的名字</em></p>
+<p>举个🌰 ：  <em>要写在@implementation的下面</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@synthesize</span> firstName = _myFirstName;  <span class="comment">//将生成的实例变量命名为_myFirstName</span></div></pre></td></tr></table></figure>
+<p><em>在类的的实现代码里可以通过 <code>@dynamic</code> 语法来阻止编译器自动合成存取方法</em></p>
+<p>举个🌰 ：  <em>要写在 @implementation 的下面</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@dynamic</span> firstName;</div></pre></td></tr></table></figure>
+<p>属性的特质：</p>
+<ul>
+<li>1.原子性（atomic / noatomic）</li>
+<li>2、读写权限 （readwrite / readonly）</li>
+<li>3、内存管理语义（assign / strong / weak / unsafe_unretained / copy）</li>
+<li>4、方法名 （setter = 名字 / getter = 名字）</li>
+</ul>
+<h4 id="第7条：在对象内部尽量直接访问实例变量"><a href="#第7条：在对象内部尽量直接访问实例变量" class="headerlink" title="第7条：在对象内部尽量直接访问实例变量"></a>第7条：在对象内部尽量直接访问实例变量</h4><blockquote>
+<ul>
+<li><em>在对象内部 <code>读取数据</code> 时，应该直接通过 <code>实例变量</code> 来读，而在 <code>写入数据</code>时，则应通过 <code>属性</code> 来写。</em></li>
+<li><em>在 <code>初始化方法</code> 和 <code>dealloc</code> 方法中，总是应该直接通过 <code>实例变量</code> 来读写数据。</em></li>
+<li><em>有时候会使用 <code>懒加载</code> 配置某个数据，这种情况下，需要通过 <code>属性</code> 来读取数据。</em></li>
+</ul>
+</blockquote>
+<h4 id="第8条：理解-“对象等同性”-这一概念"><a href="#第8条：理解-“对象等同性”-这一概念" class="headerlink" title="第8条：理解 “对象等同性” 这一概念"></a>第8条：理解 “对象等同性” 这一概念</h4><blockquote>
+<ul>
+<li><em>若想检测的对象的等同性，请提供 <code>isEqual:</code> 和 <code>hash</code> 方法。</em></li>
+<li><em>相同的对象必须具有相同的哈希码，但是两个哈希码相同的对象却未必相同。</em></li>
+<li><em>不要盲目地逐个检测每条属性，而是依照具体需求来制定检测方案。</em></li>
+<li><em>编写 hash 方法时，应该使用计算速度快而且哈希码碰撞几率低的算法。</em></li>
+</ul>
+</blockquote>
+<h4 id="第9条：以“类族模式”-隐藏实现细节"><a href="#第9条：以“类族模式”-隐藏实现细节" class="headerlink" title="第9条：以“类族模式” 隐藏实现细节"></a>第9条：以“类族模式” 隐藏实现细节</h4><blockquote>
+<ul>
+<li><em>类族模式可以把实现细节隐藏在一套简单的公共接口后面。</em></li>
+<li><em>系统框架中经常使用类族。</em></li>
+<li><em>从类族的公共抽象基类中继承子类时要当心，若有开发文档，则应首先阅读。</em></li>
+</ul>
+</blockquote>
+<p><em>需要向类族中新增实体子类，需要遵守的几条规则：</em></p>
+<ul>
+<li>子类应该继承自类族的抽象基类。</li>
+<li>子类应该定义自己的数据存储方式。</li>
+<li>子类应当覆写超类文档中指明需要覆写的方法。</li>
+</ul>
+<h4 id="第10条：在既有类中使用关联对象存放自定义数据"><a href="#第10条：在既有类中使用关联对象存放自定义数据" class="headerlink" title="第10条：在既有类中使用关联对象存放自定义数据"></a>第10条：在既有类中使用关联对象存放自定义数据</h4><blockquote>
+<ul>
+<li><em>可以通过“关联对象”机制来把两个对象关联起来。</em></li>
+<li><em>定义关联对象时可指定内存管理语义，用以模仿定义属性时所采用的“拥有关系” 和 “非拥有关系”。</em></li>
+<li><em>只有其他做法不可行时才应选用关联对象，因为这种做法通常会引入难以查找的bug。</em></li>
+</ul>
+</blockquote>
+<p><strong>对象关联类型：</strong></p>
+<table>
+<thead>
+<tr>
+<th>关联对象</th>
+<th style="text-align:center">等效的@property属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OBJC_ASSOCIATION_ASSIGN</td>
+<td style="text-align:center">assign</td>
+</tr>
+<tr>
+<td>OBJC_ASSOCIATION_RETAIN_NONATOMIC</td>
+<td style="text-align:center">nonatomic,retain</td>
+</tr>
+<tr>
+<td>OBJC_ASSOCIATION_COPY_NONATOMIC</td>
+<td style="text-align:center">nonatomic,copy</td>
+</tr>
+<tr>
+<td>OBJC_ASSOCIATION_RETAIN</td>
+<td style="text-align:center">retain</td>
+</tr>
+<tr>
+<td>OBJC_ASSOCIATION_COPY</td>
+<td style="text-align:center">copy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>管理关联对象的方法：</strong></p>
+<p><em>以给定的键和策略为某对象设置关联对象值</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">objc_setAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">void</span> *key, d value, objc_AssociationPolicy policy)</div></pre></td></tr></table></figure>
+<p><em>从某对象中根据键获取设置关联对象的值</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">objc_getAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">const</span> <span class="keyword">void</span> *key)</div></pre></td></tr></table></figure>
+<p><em>移除指定对象的全部关联对象</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">objc_removeAssociatedObjects(<span class="keyword">id</span> object)</div></pre></td></tr></table></figure>
+<h4 id="第11条：理解objc-msgSend的作用"><a href="#第11条：理解objc-msgSend的作用" class="headerlink" title="第11条：理解objc_msgSend的作用"></a>第11条：理解objc_msgSend的作用</h4><blockquote>
+<ul>
+<li><em>消息由接收者、选择子及参数构成。给某对象发送消息（invoke a message）也就相当于在该对象上调用方法 (call a method)。</em></li>
+<li><em>发给某对象的全部消息都要由”动态消息派发系统（dynamic message dispatch system）来处理，该系统会查出对应的方法，并执行其代码。”</em></li>
+</ul>
+</blockquote>
+<p><code>objc_msgSend</code> 函数会依据接收者与选择子的类型来调用适当的方法。为了完成此操作，该方法需要在接收者所属的类中搜寻其”方法列表”（list of methods），如果能找到与选择子名称相符的方法，就跳至其实现代码。如果找不到，那就沿着继承体系继续向上查找，等找到合适的方法之后再跳转。如果做种还是找不到相符的方法，那就执行“消息转发” (message forwarding) 操作。</p>
+<h4 id="第12条：理解消息转发机制"><a href="#第12条：理解消息转发机制" class="headerlink" title="第12条：理解消息转发机制"></a>第12条：理解消息转发机制</h4><blockquote>
+<ul>
+<li>若对象无法响应某个选择子，则进入消息转发流程。</li>
+<li>通过运行期的动态方法解析功能，我们可以在需要用到某个方法时再将其加入类中。</li>
+<li>对象可以把其无法解读的某些选择子转交给其他对象来处理。</li>
+<li>经过上述两步之后，如果还是没办法处理选择子，那就启动完整的消息转发机制。</li>
+</ul>
+</blockquote>
+<p>消息转发分为两大阶段：</p>
+<p>第一阶段：<em>先征询接收者所属的类，看其是否能动态添加方法，以处理这个未知的选择子 (unknow selector)，这叫做动态方法解析（dynamic selector resolution）。</em></p>
+<p>第二阶段：(完整的消息转发机制 full forwarding mechanism )</p>
+<p>如果运行期系统已经把第一阶段执行完了，那么接收者自己就无法再以动态新增方法的手段来相应包含该选择子的消息了，这时，运行期系统会请求接收者以其他手段来处理与消息相关的方法调用。</p>
+<p>第一步：<em>如果有其他对象能够处理这条消息，则把消息转给那个对象，消息转发过程结束，一切如常。</em></p>
+<p>第二步：<em>如果没有（replacement receiver），则启动完整的消息转发机制，运行期系统会把与消息有关的全部细节都封装到 NSInvocation 对象中，再给接收者最后一次机会，令其设法解决当前还未处理的这条消息。</em></p>
+<p><em>对象收到无法解读的消息后，首先会调用其所属类的类方法：</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+(<span class="built_in">BOOL</span>)resolveInstanceMethod:(SEL)sel</div></pre></td></tr></table></figure>
+<h4 id="第13条：用方法调配技术-method-swizzling-调试黑盒方法"><a href="#第13条：用方法调配技术-method-swizzling-调试黑盒方法" class="headerlink" title="第13条：用方法调配技术(method swizzling)调试黑盒方法"></a>第13条：用方法调配技术(method swizzling)调试黑盒方法</h4><blockquote>
+<ul>
+<li>在运行期，可以向类中新增或替换选择子所对应的方法实现。</li>
+<li>使用另一份实现来替换原有的方法实现，这道工序叫做”方法调配”，开发者常用此技术向原有实现中添加新功能。</li>
+<li>一般来说，只有调试程序的时候才需要在运行期修改方法实现，这种做法不宜滥用。</li>
+</ul>
+</blockquote>
+<p><em>交换方法实现，举个 🌰：</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取lowercaseString的方法实现</span></div><div class="line">Method originalMethod = class_getInstanceMethod([<span class="built_in">NSString</span> <span class="keyword">class</span>], <span class="keyword">@selector</span>(lowercaseString));</div><div class="line"></div><div class="line"><span class="comment">//获取自定义的xyj_myLowercaseString的方法实现</span></div><div class="line">Method swappedMethod = class_getInstanceMethod([<span class="built_in">NSString</span> <span class="keyword">class</span>], <span class="keyword">@selector</span>(xyj_myLowercaseString));</div><div class="line"></div><div class="line"><span class="comment">//交换两个方法的实现</span></div><div class="line">method_exchangeImplementations(originalMethod, swappedMethod);</div></pre></td></tr></table></figure>
+<h4 id="第14条：理解”类对象”的用意"><a href="#第14条：理解”类对象”的用意" class="headerlink" title="第14条：理解”类对象”的用意"></a>第14条：理解”类对象”的用意</h4><blockquote>
+<ul>
+<li>每个实例都有一个指向 Class 对象的指针，用以表明其类型，而这些 Class 对象则构成了类的继承体系。</li>
+<li>如果对象的类型无法在编译期确定，那么就应该使用类型信息查询方法来探知。</li>
+<li>尽量使用类型查询方法来确定对象类型，而不要直接比较类对象，因为某些对象可能实现了消息转发功能。</li>
+</ul>
+</blockquote>
+<p><em>每个对象结构体的首个成员是Class类的变量，该变量定义了对象所属的类，通常称之为<code>is a</code>指针。</em> </p>
+<p><em><code>isMemberOfClass:</code>判断对象是否为某个特定类的实例。</em></p>
+<p><em><code>isKindOfClass:</code>判断对象是否为某类或其派生类的实例。</em></p>
+<h4 id="第15条：用前缀避免命名空间冲突"><a href="#第15条：用前缀避免命名空间冲突" class="headerlink" title="第15条：用前缀避免命名空间冲突"></a>第15条：用前缀避免命名空间冲突</h4><blockquote>
+<ul>
+<li>选择与你的公司、应用程序或二者皆有关联之名称作为类名的前缀，并在所有代码中均使用这一前缀。</li>
+<li>若自己所开发的程序库中用到了第三方库，则应为其中的名称加上前缀。</li>
+</ul>
+</blockquote>
+<p><em>Apple宣称其保留使用所有“两字母前缀（two-letter prefix）”的权利，所以你自己选用的前缀应该是三个字母的！</em></p>
+<h4 id="第16条：提供-“全能初始化方法（designed-initializer）”"><a href="#第16条：提供-“全能初始化方法（designed-initializer）”" class="headerlink" title="第16条：提供 “全能初始化方法（designed initializer）”"></a>第16条：提供 “全能初始化方法（designed initializer）”</h4><blockquote>
+<ul>
+<li>在类中提供一个全能初始化方法，并于文档中指明。其他初始化方法均应调用此方法。</li>
+<li>若子类的全能初始化方法与超类不同，则需覆写超类中的对应方法。</li>
+<li>如果超类的初始化方法不适用于子类，那么应该覆写这个超类方法，并在其中抛出异常。</li>
+</ul>
+</blockquote>
+<p><em><code>全能初始化方法</code>：指为对象提供必要信息以便其能完成工作的初始化方法。</em></p>
+<p><em>如何抛异常 举个 🌰 ：</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@throw</span> [<span class="built_in">NSException</span> exceptionWithName:<span class="built_in">NSInternalInconsistencyException</span> reason:<span class="string">@"这里写异常原因"</span> userInfo:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<h4 id="第17条：实现description方法"><a href="#第17条：实现description方法" class="headerlink" title="第17条：实现description方法"></a>第17条：实现description方法</h4><blockquote>
+<ul>
+<li>实现 description 方法返回一个有意义的字符串，用以描述该实例。</li>
+</ul>
+</blockquote>
+<p><em>如果想在description方法中输出很多互不相同的信息，那就借助NSDictionary类的description方法。 举个 🌰 ：</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">NSString</span> *)description</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span>  [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"&lt;%@: %p %@&gt;"</span>,[<span class="keyword">self</span> <span class="keyword">class</span>],<span class="keyword">self</span>,@&#123;<span class="string">@"title"</span>:_title,<span class="string">@"latitude"</span>:@(_latitude),<span class="string">@"longitude"</span>:@(_longitude)&#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>若想在调试时打印出更详尽的对象描述信息，则应实现 debugDescription 方法。</li>
+</ul>
+</blockquote>
+<p><em>debugDescription方法是开发者在调试器(debugger)中以控制台命令打印对象时才调用的。</em></p>
+<p><em>LLDB 的 <code>po</code> 命令可以完成对象打印(print-object)工作！举个 🌰 ：</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">NSString</span> *)description</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@ %@"</span>,_firstName,_lastName];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSString</span> *)debugDescription</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"&lt;%@: %p \" %@ %@ \"&gt;"</span>,[<span class="keyword">self</span> <span class="keyword">class</span>],<span class="keyword">self</span>,_firstName,_lastName];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="第18条：尽量使用不可变对象"><a href="#第18条：尽量使用不可变对象" class="headerlink" title="第18条：尽量使用不可变对象"></a>第18条：尽量使用不可变对象</h4><blockquote>
+<ul>
+<li>尽量创建不可变的对象。</li>
+</ul>
+</blockquote>
+<p><em>举个 🌰 ：</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>,<span class="keyword">readonly</span>) <span class="built_in">NSString</span> * firstName; <span class="comment">//!&lt;  名字</span></div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>若某属性仅用于对象内部修改，则在 “class-continuation分类” 中将 readonly 属性扩展为 readwrite 属性。</li>
+</ul>
+</blockquote>
+<p><em>举个 🌰 ：</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">XYJPerson</span> ()</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>,<span class="keyword">readwrite</span>) <span class="built_in">NSString</span> * firstName;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>不要把可变的 collection 作为属性公开，而应提供相应的方法，以此修改对象中的可变 collection。</li>
+</ul>
+</blockquote>
+<p><em>举个 🌰 ：</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//.h文件中的声明</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>,<span class="keyword">readonly</span>) <span class="built_in">NSSet</span> * friends;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>) addFriends:(XYJPerson *) person;</div><div class="line">- (<span class="keyword">void</span>) deleteFriends:(XYJPerson *) person;</div><div class="line"></div><div class="line"><span class="comment">//.m文件中的实现</span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSMutableSet</span> * _internalFriends;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">instancetype</span>)initWithFirstName:(<span class="built_in">NSString</span> *) first lastName:(<span class="built_in">NSString</span> *) last</div><div class="line">&#123;</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</div><div class="line">        </div><div class="line">        _firstName = [first <span class="keyword">copy</span>];</div><div class="line">        _lastName = [last <span class="keyword">copy</span>];</div><div class="line">        </div><div class="line">        _internalFriends = [<span class="built_in">NSMutableSet</span> new];  <span class="comment">//注意初始化</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)addFriends:(XYJPerson *)person</div><div class="line">&#123;</div><div class="line">    [_internalFriends addObject:person];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>) deleteFriends:(XYJPerson *)person</div><div class="line">&#123;</div><div class="line">    [_internalFriends removeObject:person];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//覆写friends的getter方法</span></div><div class="line">- (<span class="built_in">NSSet</span> *)friends   </div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> [_internalFriends <span class="keyword">copy</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>不要在返回的对象上查询类型以确定其是否可变。</em></p>
+<p><em>开发者或许不宜从底层直接修改对象中的数据。</em></p>
+<h4 id="第19条：使用清晰而协调的命名方式"><a href="#第19条：使用清晰而协调的命名方式" class="headerlink" title="第19条：使用清晰而协调的命名方式"></a>第19条：使用清晰而协调的命名方式</h4><blockquote>
+<ul>
+<li>起名时应遵从标准的 Objective-C 命名规范，这样创建出来的接口更容易为开发者所理解。</li>
+<li>方法名要言简意赅，从左至右读起来要像个日常用语中的句子才好。</li>
+<li>方法名里不要使用缩略后的类型名称</li>
+<li>给方法起名时的第一个要务就是确保风格与你自己的代码或所集成的框架相符。</li>
+</ul>
+</blockquote>
+<p><em>变量与方法名使用 <code>驼峰式大小命名法</code> — 以小写字母开头，其后每个单词首字母大写。类名也用驼峰命名法，不过其首字母要大写，前面通常还有三个前缀字母。</em></p>
+<p><strong>方法命名的注意事项：</strong></p>
+<ul>
+<li><em>如果方法的返回值是新创建的，那么方法名的首个词应该是返回值的类型，除非前面还有修饰语。属性的存取方法不遵循这种命名方式，因为一般认为这些方法不会创建新对象，即便有时返回内部对象的一份拷贝，我们也认为那相当于原有的对象。这些存取方法应该按照其所对应的属性来命名。</em></li>
+<li><em>应该把表示参数类型的名词放在参数前面。 如：mutableString</em></li>
+<li><em>如果方法要在当前对象上执行操作，那么就应该包含动词；若执行操作时还需要参数，则应该在动词后面加上一个或多个名词。</em></li>
+<li><em>不要使用 str 这种简称，应该使用 string 这样的全称。</em></li>
+<li><em>Boolean 属性应加 is 前缀。如果某方法返回非属性的 Boolean 值，那么应该根据其功能，选用 has 或 is 当前缀。</em></li>
+<li><em>将 get 这个前缀留给那些借由“输出参数”来保存返回值的方法。</em></li>
+</ul>
+<h4 id="第20条：为私有方法名加前缀"><a href="#第20条：为私有方法名加前缀" class="headerlink" title="第20条：为私有方法名加前缀"></a>第20条：为私有方法名加前缀</h4><blockquote>
+<ul>
+<li>给私有方法的名称加上前缀，这样可以很容易地将其同公共方法区别开。</li>
+<li>不要单用一个下划线做私有方法的前缀，因为这种做法是预留给苹果公司用的。</li>
+</ul>
+</blockquote>
+<h4 id="第21条：理解Objective-C错误类型"><a href="#第21条：理解Objective-C错误类型" class="headerlink" title="第21条：理解Objective-C错误类型"></a>第21条：理解Objective-C错误类型</h4><blockquote>
+<ul>
+<li>只有发生了可使整个应用程序崩溃的严重错误时，才应使用<code>异常</code>。</li>
+<li>在错误不那么严重的情况下，可以指派<code>委托方法</code> (delegate method) 来处理错误，也可以把错误对象放到 <code>NSError</code> 对象里，经由<code>输出参数</code>返回给调用者。</li>
+</ul>
+</blockquote>
+<h4 id="第22条：理解-NSCopying协议"><a href="#第22条：理解-NSCopying协议" class="headerlink" title="第22条：理解 NSCopying协议"></a>第22条：理解 <code>NSCopying协议</code></h4><blockquote>
+<ul>
+<li>若想令自己所写的对象具有拷贝功能，则需实现 NSCopying 协议。</li>
+<li>如果自定义的对象分为可变版本和不可变版本，那么需要同时实现 <code>NSCopying</code> 和 <code>NSMutableCopying</code> 协议。</li>
+<li>复制对象时需决定采用深拷贝还是浅拷贝，一般情况下应该尽量执行浅拷贝。</li>
+<li>如果你写的对象需要深拷贝，那么可考虑新增一个专门执行深拷贝的方法。</li>
+</ul>
+</blockquote>
+<p><em>若想某个类支持拷贝功能，只需声明该类遵循NSCopying协议，并实现其中的 <code>copyWithZone</code> 这个方法。</em></p>
+<p><em>举个 🌰 ：</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">id</span>) copyWithZone:(<span class="built_in">NSZone</span> *) zone</div><div class="line">&#123;</div><div class="line">    XYJPerson * <span class="keyword">copy</span> = [[[<span class="keyword">self</span> <span class="keyword">class</span>] allocWithZone:zone] initWithFirstName:_firstName andLastName:_lastName];</div><div class="line">    <span class="keyword">return</span> <span class="keyword">copy</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>在可变对象上调用 copy 方法会返回另外一个不可变类的实例。</em></p>
+<p><em><code>深拷贝</code>：在拷贝对象自身时，将其底层数据也一并复制过去。</em></p>
+<p><em><code>浅拷贝</code>：只拷贝容器对象本身，而不复制其中数据，浅拷贝之后的内容与原始内容均指向相同对象。</em></p>
+<h4 id="第23条：通过委托与数据源协议进行对象间通信"><a href="#第23条：通过委托与数据源协议进行对象间通信" class="headerlink" title="第23条：通过委托与数据源协议进行对象间通信"></a>第23条：通过委托与数据源协议进行对象间通信</h4><blockquote>
+<ul>
+<li>委托模式为对象提供了一套接口，使其可由此将相关事件告知其他对象。</li>
+<li>将委托对象应该支持的接口定义成协议，在协议中把可能需要处理的事件定义成方法。</li>
+<li>当某对象需要从另外一个对象中获取数据时，可以使用委托模式。这种情境下，该模式亦称“数据源协议（data source protocol）”。</li>
+<li>若有必要，可实现含有位段的结构体，将委托对象是否能相应相关协议方法这一信息缓存至其中。</li>
+</ul>
+</blockquote>
+<p><em>Objective-C不支持多重继承，因而我们把某个类应该实现的一系列方法定义在协议里面。协议最为常见的用途是实现委托模式。</em></p>
+<p><em><code>类别（Category）</code>使得我们无需继承子类即可直接为当前类添加方法。</em></p>
+<p><code>委托模式（Delegate pattern）</code>的主旨是：</p>
+<blockquote>
+<p>定义一套接口，某对象若想接受另一个对象的委托，则需遵从此接口，以便成为其委托对象 （Delegate）。而另一个对象则可以给其委托对象回传一些信息，也可以在发生相关事件时通知委托对象。</p>
+</blockquote>
+<p><strong>被委托的对象的操作步骤：</strong></p>
+<ul>
+<li>1、定义一套协议，协议名通常是在相关类名后面加上 Delegate 一词，然后声明协议要实现的方法，一般是可选的，用 <code>@optional</code> 关键字标注。</li>
+<li>2、在类中声明一个委托对象的属性，需用 weak 来修饰。</li>
+<li>3、事件触发的时候调用声明的协议方法。</li>
+</ul>
+<p><strong>委托对象的操作步骤：</strong></p>
+<ul>
+<li>1、一般在 <code>class-continuation</code> 分类中声明遵守该委托协议。</li>
+<li>2、设置被委托对象的 Delegate 为 self。</li>
+<li>3、实现委托协议中的代理方法。</li>
+</ul>
+<h4 id="第24条：将类的实现代码分散到便于管理的数个分类（category）之中"><a href="#第24条：将类的实现代码分散到便于管理的数个分类（category）之中" class="headerlink" title="第24条：将类的实现代码分散到便于管理的数个分类（category）之中"></a>第24条：将类的实现代码分散到便于管理的数个分类（category）之中</h4><blockquote>
+<ul>
+<li>使用分类机制把类的实现代码划分成易于管理的小块。</li>
+<li>将应该视为“私有”的方法归入名为 Private 的分类中，以隐藏实现细节。</li>
+</ul>
+</blockquote>
+<h4 id="第25条：总是为第三方类的分类名称加前缀"><a href="#第25条：总是为第三方类的分类名称加前缀" class="headerlink" title="第25条：总是为第三方类的分类名称加前缀"></a>第25条：总是为第三方类的分类名称加前缀</h4><blockquote>
+<ul>
+<li>向第三方类中添加分类时，总应给其名称加上你专用的前缀。</li>
+<li>向第三方类中添加分类时，总应给其中的方法加上你专用的前缀。</li>
+</ul>
+</blockquote>
+<h4 id="第26条：勿在分类中声明属性"><a href="#第26条：勿在分类中声明属性" class="headerlink" title="第26条：勿在分类中声明属性"></a>第26条：勿在分类中声明属性</h4><blockquote>
+<ul>
+<li>把封装数据所用的全部属性都定义在主接口里。</li>
+<li>在“ class-continuation 分类”之外的其他分类中，可以定义存取方法，但尽量不要定义属性。</li>
+</ul>
+</blockquote>
+<h4 id="第27条：使用“class-continuation分类”隐藏实现细节"><a href="#第27条：使用“class-continuation分类”隐藏实现细节" class="headerlink" title="第27条：使用“class-continuation分类”隐藏实现细节"></a>第27条：使用“class-continuation分类”隐藏实现细节</h4><blockquote>
+<ul>
+<li>通过 <code>class-continuation 分类</code>向类中新增实例变量。</li>
+<li>如果某属性在主接口中声明为 <code>readonly</code> ，而类的内部又要用设置方法修改此属性，那么就在 <code>class-continuation分类</code> 中将其扩展为 <code>readwrite</code>。</li>
+<li>把私有方法的原型声明在 <code>class-continuation 分类</code>里面。</li>
+<li>若想使类所遵循的协议不为人所知，则可于<code>class-continuation 分类</code>中声明。</li>
+</ul>
+</blockquote>
+<h4 id="第28条：通过协议提供匿名对象"><a href="#第28条：通过协议提供匿名对象" class="headerlink" title="第28条：通过协议提供匿名对象"></a>第28条：通过协议提供匿名对象</h4><blockquote>
+<ul>
+<li>协议可在某种程度上提供匿名类型。具体的对象类型可以淡化成遵从某协议的 id 类型，协议里规定了对象所应实现的方法。</li>
+<li>使用匿名对象来隐藏类型名称（或类名）。</li>
+<li>如果具体类型不重要，重要的是对象能够响应（定义在协议里的）特定方法，那么可以使用匿名对象来表示。</li>
+</ul>
+</blockquote>
+<h4 id="第29条：理解引用计数"><a href="#第29条：理解引用计数" class="headerlink" title="第29条：理解引用计数"></a>第29条：理解引用计数</h4><blockquote>
+<ul>
+<li>引用计数机制通过可以递增递减的计数器来管理内存。对象创建好之后，其保留计数至少为 1。若保留计数为正，则对象继续存活。当保留计数降为 0 时，对象就销毁了。</li>
+<li>在对象生命周期中，其余对象通过引用来保留或释放此对象。保留和释放操作分别会递增及递减保留计数。</li>
+</ul>
+</blockquote>
+<p><em>autorelease 能延长对象生命周期，使其在跨越方法调用边界后依然可以存活一段时间。</em></p>
+<h4 id="第30条：以ARC简化引用计数"><a href="#第30条：以ARC简化引用计数" class="headerlink" title="第30条：以ARC简化引用计数"></a>第30条：以ARC简化引用计数</h4><blockquote>
+<ul>
+<li>有 ARC 之后，程序员就无需担心内存管理问题了。使用 ARC 来编程，可省去类中的许多“样板代码”。</li>
+<li>ARC 管理对象生命期的办法基本上就是：在合适的地方插入“保留”及“释放”操作，在ARC环境下，变量的内存语义可以通过修饰符指明，而原来则需要手工执行“保留”及“释放”操作。</li>
+<li>由方法所返回的对象，其内存管理语义总是通过方法名来体现。ARC 将此确定为开发者必须遵守的原则。</li>
+<li>ARC 只负责管理 Objective-C 对象的内存。尤其要注意：CoreFoundation 对象不归 ARC 管理，开发者必须适时调用 <code>CFRetain</code> / <code>CFRelease</code>。</li>
+</ul>
+</blockquote>
+<h4 id="第31条：在-dealloc-方法中只释放引用并解除监听"><a href="#第31条：在-dealloc-方法中只释放引用并解除监听" class="headerlink" title="第31条：在 dealloc 方法中只释放引用并解除监听"></a>第31条：在 dealloc 方法中只释放引用并解除监听</h4><blockquote>
+<ul>
+<li>在 dealloc 方法里，应该做的事情就是释放指向其他对象的引用，并取消原来订阅的键值观测（KVO）或 NSNotificationCenter 等通知，不要做其他事情。</li>
+<li>如果对象持有文件描述符等系统资源，那么应该专门编写一个方法来释放此种资源。这样的类要和其使用者约定：用完资源后必须调用 close 方法。</li>
+<li>执行异步任务的方法不应在 dealloc 方法里调用；只能在正常状态下执行的那些方法也不应在 dealloc 里调用，因为此时对象已处于正在回收的状态了。</li>
+</ul>
+</blockquote>
+<h4 id="第32条：编写“异常安全代码”时留意内存管理问题"><a href="#第32条：编写“异常安全代码”时留意内存管理问题" class="headerlink" title="第32条：编写“异常安全代码”时留意内存管理问题"></a>第32条：编写“异常安全代码”时留意内存管理问题</h4><blockquote>
+<ul>
+<li>捕获异常时，一定要注意将 try 块内所创立的对象清理干净。</li>
+<li>在默认情况下，ARC 不生成安全处理异常所需的清理代码。开启编译器标志后，可以生成这种代码，不过会导致应用程序变大，而且降低运行效率。</li>
+</ul>
+</blockquote>
+<p><em>若使用ARC且必须捕获异常，则需打开编译器的 <code>-fobjc-arc-exceptions</code> 标志。</em></p>
+<h4 id="第33条：以若引用避免保留环"><a href="#第33条：以若引用避免保留环" class="headerlink" title="第33条：以若引用避免保留环"></a>第33条：以若引用避免保留环</h4><blockquote>
+<ul>
+<li>将某些应用设为 weak，可避免出现“保留环”。</li>
+<li>weak 引用可以自动清空，也可以不自动清空。自动清空（ autoniling） 是随着 ARC 而引入的新特性，由运行期系统来实现。在具备自动清空功能的弱引用上，可以随意读取其数据，因为这种引用不会指向已经回收过的对象。</li>
+</ul>
+</blockquote>
+<p><em><code>unsafe_unretained</code> 一词表明，属性值可能不安全，而且不归此实例所拥有。</em><br><em><code>weak</code> 和 <code>unsafe_unretained</code>  的作用一样，唯一的不同是，只要系统把属性回收，属性值就会自动设置为 nil。但是 <code>unsafe_unretained</code> 属性仍然指向那个已经回收的实例。</em></p>
+<h4 id="第34条：以“自动释放池”降低内存峰值"><a href="#第34条：以“自动释放池”降低内存峰值" class="headerlink" title="第34条：以“自动释放池”降低内存峰值"></a>第34条：以“自动释放池”降低内存峰值</h4><blockquote>
+<ul>
+<li>自动释放池排布在栈中，对象收到 autorelease 消息后，系统将其放入最顶端的池里。</li>
+<li>合理运用释放池，可降低应用程序的内存峰值。</li>
+<li>@autoreleasepool 这种新式写法能创建出更为轻便的自动释放池。</li>
+</ul>
+</blockquote>
+<p><em>自动释放池用于存放那些需要在稍后某个时刻释放的对象。清空自动释放池时，系统会向其中的对象发送release 消息。</em></p>
+<p><em>内存峰值 （high-memory waterline） 是指应用程序在某个特定时间段内的最大内存用量 （highest memory footprint）。</em></p>
+<h4 id="第35条：用“僵尸对象”调试内存管理问题"><a href="#第35条：用“僵尸对象”调试内存管理问题" class="headerlink" title="第35条：用“僵尸对象”调试内存管理问题"></a>第35条：用“僵尸对象”调试内存管理问题</h4><blockquote>
+<ul>
+<li>系统在回收对象时，可以不将其真的回收，而是把它转化为僵尸对象。通过环境变量 NSZombieEnabled 可开启此功能。</li>
+<li>系统会修改对象的 isa 指针，令其指向特殊的僵尸类，从而使该对象变为僵尸对象。僵尸类能够响应所有的选择子，响应方式为：打印一条包含消息内容及其接收者的消息，然后终止应用程序。</li>
+</ul>
+</blockquote>
+<h4 id="第36条：不要使用retainCount"><a href="#第36条：不要使用retainCount" class="headerlink" title="第36条：不要使用retainCount"></a>第36条：不要使用retainCount</h4><blockquote>
+<ul>
+<li>对象的保留计数看似有用，实则不然，因为任何给定时间点上的”绝对保留计数”（absolute retain count）都无法反应对象生命期的全貌。</li>
+<li>引入 ARC 之后，retainCount 方法就正式废止了，在 ARC 下调用该方法会导致编译器报错。</li>
+</ul>
+</blockquote>
+<h4 id="第37条：理解Block这一概念"><a href="#第37条：理解Block这一概念" class="headerlink" title="第37条：理解Block这一概念"></a>第37条：理解Block这一概念</h4><blockquote>
+<ul>
+<li>块是 C、C++、Objective-C 中的词法闭包。</li>
+<li>块可接收参数，也可返回值。</li>
+<li>块可以分配在栈或堆上，也可以是全局的。分配在栈上的块可拷贝在堆里。这样的话，就和标准的Objective-C 对象一样，具备引用计数了。</li>
+</ul>
+</blockquote>
+<p><em>块的语法结构如下：</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">return_type (^block_name)(parameters)</div></pre></td></tr></table></figure>
+<p>举个 🌰 ：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> (^addBlock) (<span class="keyword">int</span> a, <span class="keyword">int</span> b) = ^(<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</div><div class="line">	<span class="keyword">return</span> a+b;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>块的强大之处：在声明它的范围内，所有变量都可以为其捕获。如果要修改捕获的变量，那么，声明变量的时候需要加上 <code>__block</code> 关键词。</em></p>
+<h4 id="第38条：为常用的Block类型创建typedef"><a href="#第38条：为常用的Block类型创建typedef" class="headerlink" title="第38条：为常用的Block类型创建typedef"></a>第38条：为常用的Block类型创建typedef</h4><blockquote>
+<ul>
+<li>以 typedef 重新定义块类型，可令块变量用起来更加简单。</li>
+<li>定义新类型时应遵守现有的命名习惯，勿使其名称与别的类型相冲突。</li>
+<li>不妨为同一个块签名定义多个类型别名。如果要重构的代码使用了块类型的某个别名，那么只需修改相应的typedef 中的块签名即可，无需改动其他 typedef。</li>
+</ul>
+</blockquote>
+<ul>
+<li><code>typedef</code> 关键字用于给类型起个易读的别名。*</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> <span class="built_in">NSTimeInterval</span>;</div></pre></td></tr></table></figure>
+<p><em>Block 的 typedef:</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> (^XYJSomeBlock) (<span class="built_in">BOOL</span> flag, <span class="keyword">int</span> value);</div></pre></td></tr></table></figure>
+<h4 id="第39条：用handle块降低代码分散程度"><a href="#第39条：用handle块降低代码分散程度" class="headerlink" title="第39条：用handle块降低代码分散程度"></a>第39条：用handle块降低代码分散程度</h4><blockquote>
+<ul>
+<li>在创建对象时，可以使用内联的 handle 块将相关逻辑一并声明。</li>
+<li>在有多个实例需要监控时，如果采用委托模式，那么经常需要根据传入的对象来切换，而若改用 handle 块来实现，则可直接将块与相关对象放在一起。</li>
+<li>设计 API 时如果用到了 handle 块，那么可以增加一个参数，使调用者可通过此参数来决定应该把块安排在哪个队列上。</li>
+</ul>
+</blockquote>
+<h4 id="第40条：用块引用其所属对象时不要出现保留环"><a href="#第40条：用块引用其所属对象时不要出现保留环" class="headerlink" title="第40条：用块引用其所属对象时不要出现保留环"></a>第40条：用块引用其所属对象时不要出现保留环</h4><blockquote>
+<ul>
+<li>如果块所捕获的对象直接或间接地保留了块本身，那么就得当心保留环问题。</li>
+<li>一定要找个适当的时机解除保留环，而不能把责任推给 API 的调用者。</li>
+</ul>
+</blockquote>
+<h4 id="第41条：多用派发队列，少用同步锁"><a href="#第41条：多用派发队列，少用同步锁" class="headerlink" title="第41条：多用派发队列，少用同步锁"></a>第41条：多用派发队列，少用同步锁</h4><blockquote>
+<ul>
+<li>派发队列可用来表述同步语义（synchronize semantic），这种做法要比使用 @synchronized 块或NSLock 对象更简单。</li>
+<li>将同步和异步派发结合起来，可以实现与普通加锁机制一样的同步行为，而这么做却不会阻塞执行异步派发的线程。</li>
+<li>使用同步队列及栅栏块，可以令同步更加高效。</li>
+</ul>
+</blockquote>
+<h4 id="第42条：多用-GCD，少用-performSelector-系列方法"><a href="#第42条：多用-GCD，少用-performSelector-系列方法" class="headerlink" title="第42条：多用 GCD，少用 performSelector 系列方法"></a>第42条：多用 GCD，少用 performSelector 系列方法</h4><blockquote>
+<ul>
+<li>performSelector 系列方法在内存管理方面容易有疏失。它无法确定将要执行的选择子具体是什么，因而 ARC 编译器也就无法插入适当的内存管理方法。</li>
+<li>performSelector 系列方法所能处理的选择子太过局限了，选择子的返回值类型及发送给方法的参数个数都受到限制。</li>
+<li>如果想把任务放到另一个线程上执行，那么最好不要用 performSelector 方法，而是应该把任务封装在块里，然后调用 GCD 的相关方法来实现。</li>
+</ul>
+</blockquote>
+<h4 id="第43条：掌握-GCD-及操作队列的使用时机"><a href="#第43条：掌握-GCD-及操作队列的使用时机" class="headerlink" title="第43条：掌握 GCD 及操作队列的使用时机"></a>第43条：掌握 GCD 及操作队列的使用时机</h4><blockquote>
+<ul>
+<li>在解决多线程与任务管理问题时，派发队列并非唯一方案。</li>
+<li>操作队列提供了一套高层的 Objective-C API ,能实现纯 GCD 所具备的绝大部分功能，而且还能完成一些更为复杂的操作，那些操作若改用 GCD 来实现，则需另外编写代码。</li>
+</ul>
+</blockquote>
+<p><em>GCD是纯C的API，而操作队列则是 Objective-C 的对象。</em></p>
+<p>使用<code>NSOperation</code>和<code>NSOperationQueue</code>的好处：</p>
+<ul>
+<li>1、取消某个操作。</li>
+<li>2、指定操作间的依赖关系。</li>
+<li>3、通过键值观察机制监控 NSOperation 对象的属性。</li>
+<li>4、指定操作的优先级。</li>
+<li>5、重用 NSOperation 对象。</li>
+</ul>
+<h4 id="第44条：通过-Dispatch-Group-机制，根据系统资源状况来执行任务"><a href="#第44条：通过-Dispatch-Group-机制，根据系统资源状况来执行任务" class="headerlink" title="第44条：通过 Dispatch Group 机制，根据系统资源状况来执行任务"></a>第44条：通过 Dispatch Group 机制，根据系统资源状况来执行任务</h4><blockquote>
+<ul>
+<li>1、一系列任务可归入一个 dispatch group 之中。开发者可以在这组任务执行完毕时获得通知。</li>
+<li>2、通过 dispatch group，可以在并发式派发队列里同时执行多项任务。此时GCD会根据系统资源状况来调度这些并发执行的任务。开发者若自己来实现此功能，则需编写大量代码。</li>
+</ul>
+</blockquote>
+<h4 id="第45条：使用dispatch-once来执行只需运行一次的线程安全代码"><a href="#第45条：使用dispatch-once来执行只需运行一次的线程安全代码" class="headerlink" title="第45条：使用dispatch_once来执行只需运行一次的线程安全代码"></a>第45条：使用dispatch_once来执行只需运行一次的线程安全代码</h4><blockquote>
+<ul>
+<li>1、经常需要编写“只需执行一次的线程安全的代码”（thread-safe single-code execution）。通过GCD 所提供的 <code>dispatch_once</code> 函数，很容易就能实现此功能。</li>
+<li>2、标记应该声明在 static 或 global 作用域中，这样的话，在把只需执行一次的块传给<code>dispatch_once</code> 函数时，传进去的标记也是相同的。</li>
+</ul>
+</blockquote>
+<p>单例的使用：举个 🌰</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">+ (FFHttpRequestManager *)shareManager</div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> FFHttpRequestManager *shareInstance = <span class="literal">nil</span>;</div><div class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</div><div class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</div><div class="line">        shareInstance = [[FFHttpRequestManager alloc]init];</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> shareInstance;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="第46条：不要使用dispatch-get-current-queue"><a href="#第46条：不要使用dispatch-get-current-queue" class="headerlink" title="第46条：不要使用dispatch_get_current_queue"></a>第46条：不要使用dispatch_get_current_queue</h4><blockquote>
+<ul>
+<li><code>dispatch_get_current_queue</code> 函数的行为常常与开发者所预期的不同。此函数已经废弃，只应做调试只用。</li>
+<li>由于派发队列是按层级来组织的，所以无法单用某个队列对象来描述“当前队列这一概念”。<br><code>dispatch_get_current_queue</code> 函数用于解决由不可重入的代码所引发的死锁，然而能用此函数解决的问题，通常也能改用“队列特定数据”来解决。</li>
+</ul>
+</blockquote>
+<h4 id="第47条：熟悉系统框架"><a href="#第47条：熟悉系统框架" class="headerlink" title="第47条：熟悉系统框架"></a>第47条：熟悉系统框架</h4><blockquote>
+<ul>
+<li>许多系统框架都可以直接使用。其中最重要的是 Foundation 与 CoreFoundation，这两个框架提供了构建应用程序所需的许多核心功能。</li>
+<li>很多常见任务都能用框架来做，例如音频与视频处理、网络通信、数据管理等。</li>
+<li>请记住：用纯C写成的框架与用 Objective-C 写成的一样重要，若想成为优秀的 Objective-C 开发者，应该掌握 C 语言的核心概念。</li>
+</ul>
+</blockquote>
+<h4 id="第48条：多用块枚举，少用for循环"><a href="#第48条：多用块枚举，少用for循环" class="headerlink" title="第48条：多用块枚举，少用for循环"></a>第48条：多用块枚举，少用for循环</h4><blockquote>
+<ul>
+<li>遍历 collection 有四种方式。最基本的是 for 循环，其次是 NSEnumerator 遍历法及快速遍历法，最新最先进的方式则是“块枚举法”。</li>
+<li>“块枚举法”本身就能通过 GCD 来并发执行遍历操作，无须另行编写代码。而采用其他遍历方式则无法轻易实现这一点。</li>
+<li>若提前知道待遍历的 collection 含有何种对象，则应修改块签名，指出对象的具体类型。</li>
+</ul>
+</blockquote>
+<h5 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h5><p><em>数组的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> * anArray = @[<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; anArray.count; i++) &#123;</div><div class="line">        </div><div class="line">    <span class="keyword">id</span> object = anArray[i];</div><div class="line">    <span class="comment">// Do something with 'object'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>字典的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSDictionary</span> * aDictionary = @&#123;<span class="string">@"one"</span>:<span class="string">@"1"</span>,<span class="string">@"two"</span>:<span class="string">@"2"</span>,<span class="string">@"three"</span>:<span class="string">@"3"</span>&#125;;</div><div class="line"><span class="built_in">NSArray</span> * keys = [aDictionary allKeys];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; keys.count; i++) &#123;</div><div class="line">        </div><div class="line">     <span class="keyword">id</span> key = keys[i];</div><div class="line">     <span class="keyword">id</span> value = aDictionary[key];</div><div class="line">     <span class="comment">// Do something with 'key' and 'value'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>Set 的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSSet</span> * aSet = <span class="comment">/* ... */</span>;</div><div class="line"><span class="built_in">NSArray</span> * objects = [aSet allObjects];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; objects.count; i++) &#123;</div><div class="line">    <span class="keyword">id</span> object = objects[i];</div><div class="line">    <span class="comment">// Do something with 'Object'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="NSEnumerator-来遍历"><a href="#NSEnumerator-来遍历" class="headerlink" title="NSEnumerator 来遍历"></a>NSEnumerator 来遍历</h5><p><em>数组的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"apple"</span>,<span class="string">@"banana"</span>,<span class="string">@"orange"</span>];</div><div class="line"><span class="built_in">NSEnumerator</span> * enumerator = [array objectEnumerator];</div><div class="line"><span class="keyword">id</span> object;</div><div class="line"><span class="keyword">while</span> ((object = [enumerator nextObject]) != <span class="literal">nil</span>) &#123;</div><div class="line">     <span class="comment">//Do something with 'object'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>数组的反向遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"apple"</span>,<span class="string">@"banana"</span>,<span class="string">@"orange"</span>];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">id</span> object <span class="keyword">in</span> [array reverseObjectEnumerator]) &#123;</div><div class="line">        <span class="comment">// Do something with 'object'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>字典的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSDictionary</span> * aDictionary = @&#123;<span class="string">@"one"</span>:<span class="string">@"1"</span>,<span class="string">@"two"</span>:<span class="string">@"2"</span>,<span class="string">@"three"</span>:<span class="string">@"3"</span>&#125;;</div><div class="line"><span class="built_in">NSEnumerator</span> * enumerator = [aDictionary keyEnumerator];</div><div class="line"><span class="keyword">id</span> key;</div><div class="line"><span class="keyword">while</span> ((key = [enumerator nextObject]) != <span class="literal">nil</span>) &#123;</div><div class="line">        </div><div class="line">    <span class="keyword">id</span> value = aDictionary[key];</div><div class="line">    <span class="comment">// Do something with 'key' and 'value'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>Set 的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSSet</span> * aSet = <span class="comment">/* ... */</span>;</div><div class="line"><span class="built_in">NSEnumerator</span> * enumerator = [aSet objectEnumerator];</div><div class="line"><span class="keyword">id</span> object;</div><div class="line"><span class="keyword">while</span> ((object = [enumerator nextObject]) != <span class="literal">nil</span>) &#123;</div><div class="line">        </div><div class="line">    <span class="comment">// Do something with 'object'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="for-in-快速遍历"><a href="#for-in-快速遍历" class="headerlink" title="for-in 快速遍历"></a>for-in 快速遍历</h5><p><em>数组的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> * anArray = @[<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">id</span> object <span class="keyword">in</span> anArray) &#123;</div><div class="line">        </div><div class="line">     <span class="comment">// Do something with 'object'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>字典的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSDictionary</span> * aDictionary = @&#123;<span class="string">@"one"</span>:<span class="string">@"1"</span>,<span class="string">@"two"</span>:<span class="string">@"2"</span>,<span class="string">@"three"</span>:<span class="string">@"3"</span>&#125;;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">id</span> key <span class="keyword">in</span> aDictionary) &#123;</div><div class="line">        </div><div class="line">     <span class="keyword">id</span> value = aDictionary[key];</div><div class="line">     <span class="comment">// Do something with 'key' and 'value'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>Set 的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSSet</span> * aSet = <span class="comment">/* ... */</span>;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">id</span> object <span class="keyword">in</span> aSet) &#123;</div><div class="line">        </div><div class="line">    <span class="comment">// Do something with 'object'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="基于块的遍历方式"><a href="#基于块的遍历方式" class="headerlink" title="基于块的遍历方式"></a>基于块的遍历方式</h5><p><em>数组的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"apple"</span>,<span class="string">@"banana"</span>,<span class="string">@"orange"</span>];</div><div class="line">    [array enumerateObjectsUsingBlock:^(<span class="keyword">id</span>  _Nonnull obj, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> * _Nonnull stop) &#123;</div><div class="line">     </div><div class="line">    <span class="comment">//Do something with 'obj'</span></div><div class="line">        </div><div class="line">    <span class="comment">//if stop</span></div><div class="line">    *stop = <span class="literal">YES</span>;</div><div class="line">        </div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p><em>字典的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSDictionary</span> * aDictionary = @&#123;<span class="string">@"one"</span>:<span class="string">@"1"</span>,<span class="string">@"two"</span>:<span class="string">@"2"</span>,<span class="string">@"three"</span>:<span class="string">@"3"</span>&#125;;</div><div class="line">    [aDictionary enumerateKeysAndObjectsUsingBlock:^(<span class="keyword">id</span>  _Nonnull key, <span class="keyword">id</span>  _Nonnull obj, <span class="built_in">BOOL</span> * _Nonnull stop) &#123;</div><div class="line">        </div><div class="line">    <span class="comment">//Do something with 'key' and 'obj'</span></div><div class="line">        </div><div class="line">    <span class="comment">//if stop</span></div><div class="line">    *stop = <span class="literal">YES</span>;</div><div class="line">        </div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p><em>Set 的遍历</em></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSSet</span> * aSet = <span class="comment">/* ... */</span>;</div><div class="line">    [aSet enumerateObjectsUsingBlock:^(<span class="keyword">id</span>  _Nonnull obj, <span class="built_in">BOOL</span> * _Nonnull stop) &#123;</div><div class="line">        </div><div class="line">    <span class="comment">//Do something with 'obj'</span></div><div class="line">        </div><div class="line">    <span class="comment">//if stop</span></div><div class="line">    *stop = <span class="literal">YES</span>;</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<h4 id="第49条：对自定义其内存管理语义的collection使用无缝桥接（toll-free-bridging）"><a href="#第49条：对自定义其内存管理语义的collection使用无缝桥接（toll-free-bridging）" class="headerlink" title="第49条：对自定义其内存管理语义的collection使用无缝桥接（toll-free bridging）"></a>第49条：对自定义其内存管理语义的collection使用无缝桥接（toll-free bridging）</h4><blockquote>
+<ul>
+<li>通过无缝桥接技术，可以在 Foundation 框架中的 Objective-C 对象与 CoreFoundation 框架中的 C 语言结构之间来回转换。</li>
+<li>在 CoreFoundation 层面创建 collection 时，可以指定许多回调函数，这些函数表示此 collection 应如何处理其元素。然后，可运用无缝桥接技术，将其转换成具备特殊内容管理语义的 Objective-C collection。</li>
+</ul>
+</blockquote>
+<p><em>__bridge ARC 仍然具备这个 Objective-C 对象的所有权。</em><br><em>__bridge_retained ARC 将交出对象的所有权。</em><br><em>__bridge_transfer 类似于想把 CFArrayRef 转换为 NSArray ，并且想让 ARC 获得对象所有权。</em></p>
+<h4 id="第50条：构建缓存时选用-NSCache-而非-NSDictionary"><a href="#第50条：构建缓存时选用-NSCache-而非-NSDictionary" class="headerlink" title="第50条：构建缓存时选用 NSCache 而非 NSDictionary"></a>第50条：构建缓存时选用 NSCache 而非 NSDictionary</h4><blockquote>
+<ul>
+<li>实现缓存时应选用 NSCache 而非 NSDictionary 对象。因为 NSCache 可以优雅的自动删减功能，而且是线程安全的，此外，它与字典不同，并不会拷贝键。</li>
+<li>可以给 NSCache 对象设置上限，用以限制缓存中的对象总个数及总成本，而这些尺寸则定义了缓存删减其中对象的时机。但是绝对不要把这些尺度当成可靠的“硬限制”，他们仅对 NSCache 起指导作用。</li>
+<li>将 NSPurgeableData 与 NSCache 搭配使用，可实现自动清除数据的功能，也就是说，当NSPurgeableData 对象所占内存为系统所丢弃时，该对象自身也会从缓存中移除。</li>
+<li>如果缓存使用得当，那么应用程序的响应速度就能提高。只有那种“重新计算起来很费事”的数据，才值得放入缓存，比如那些需要从网络获取或从磁盘读取的数据。</li>
+</ul>
+</blockquote>
+<h4 id="第51条：精简-initialize-与-load-的实现代码"><a href="#第51条：精简-initialize-与-load-的实现代码" class="headerlink" title="第51条：精简 initialize 与 load 的实现代码"></a>第51条：精简 initialize 与 load 的实现代码</h4><blockquote>
+<ul>
+<li>在加载阶段，如果类实现了 load 方法，那么系统就会调用它。分类里也可以定义此方法，类的 load 方法要比分类中的先调用。与其他方法不同，load 方法不参与覆写机制。</li>
+<li>首次使用某个类之前，系统会向其发送 initialize 消息。由于此方法遵从普通的覆写规则，所以通常应该在里面判断当前要初始化的是哪个类。</li>
+<li>load 与 initialize 方法都应该精简一些，这有助于保持应用的响应能力，也能减少引入“依赖环”的几率。</li>
+<li>无法在编译期设定的全局常量，可以放在 initialize 方法里初始化。</li>
+</ul>
+</blockquote>
+<h4 id="第52条：别忘了-NSTimer-会保留其目标对象"><a href="#第52条：别忘了-NSTimer-会保留其目标对象" class="headerlink" title="第52条：别忘了 NSTimer 会保留其目标对象"></a>第52条：别忘了 NSTimer 会保留其目标对象</h4><blockquote>
+<ul>
+<li>NSTimer 会保留其目标，直到计时器本身失效为止，调用 invalidate 方法可令计时器失效，另外，一次性的计时器在触发完任务之后也会失效。</li>
+<li>反复执行任务的计时器，很容易引入保留环，如果这种计时器的目标对象又保留了计时器本身，那肯定会导致保留环。这种环状保留关系，可能是直接发生的，也可能是通过对象图里的其他对象间接发生的。</li>
+<li>可以扩充 NSTimer 的功能，用块来打破保留环。不过除非NSTimer将来在公共接口里提供此功能，否则必须创建分类，将相关的代码加入其中。</li>
+</ul>
+</blockquote>
+<p><em>感谢您的阅读，一起学习，一起成长，加油！</em></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/Alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/WeChat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">编写高质量iOS与OS X代码的52个有效方法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/学习笔记/" class="article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2015/11/10/Effective-objective-C-2-0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2015/12/01/Upload-images/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          iOS用户头像的获取与上传
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/05/zsh-and-CocoaPods/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">zsh 的配置和 CocoaPods 的安装与使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Effective-objective-C-2-0" data-title="Effective objective-C 2.0 学习笔记" data-url="http://yoursite.com/2015/11/10/Effective-objective-C-2-0/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"muhlenXi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 muhlenXi
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true,
+		showTags: false
+	}
+</script>
+
+<script>!function(t){function n(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var e={};return n.m=t,n.c=e,n.p="./",n(0)}([function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t,n){var e=/\/|index.html/g;return t.replace(e,"")===n.replace(e,"")}function i(){for(var t=document.querySelectorAll(".js-header-menu li a"),n=window.location.pathname,e=0,r=t.length;e<r;e++){var i=t[e];o(n,i.getAttribute("href"))&&(0,d.default)(i,"active")}}function u(t){for(var n=t.offsetLeft,e=t.offsetParent;null!==e;)n+=e.offsetLeft,e=e.offsetParent;return n}function f(t){for(var n=t.offsetTop,e=t.offsetParent;null!==e;)n+=e.offsetTop,e=e.offsetParent;return n}function c(t,n,e,r,o){var i=u(t),c=f(t)-n;if(c-e<=o){var a=t.$newDom;a||(a=t.cloneNode(!0),(0,h.default)(t,a),t.$newDom=a,a.style.position="fixed",a.style.top=(e||c)+"px",a.style.left=i+"px",a.style.zIndex=r||2,a.style.width="100%",a.style.color="#fff"),a.style.visibility="visible",t.style.visibility="hidden"}else{t.style.visibility="visible";var s=t.$newDom;s&&(s.style.visibility="hidden")}}function a(){var t=document.querySelector(".js-overlay"),n=document.querySelector(".js-header-menu");c(t,document.body.scrollTop,-63,2,0),c(n,document.body.scrollTop,1,3,0)}function s(){document.querySelector("#container").addEventListener("scroll",function(t){a()}),window.addEventListener("scroll",function(t){a()}),a()}function l(){x.default.versions.mobile&&window.screen.width<800&&(i(),s())}var p=e(71),d=r(p),v=e(72),y=(r(v),e(84)),h=r(y),b=e(69),x=r(b),m=e(75),g=r(m),w=e(70);l(),(0,w.addLoadEvent)(function(){g.default.init()}),t.exports={}},function(t,n){var e=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=e)},function(t,n){var e={}.hasOwnProperty;t.exports=function(t,n){return e.call(t,n)}},function(t,n,e){var r=e(49),o=e(15);t.exports=function(t){return r(o(t))}},function(t,n,e){t.exports=!e(8)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n,e){var r=e(6),o=e(12);t.exports=e(4)?function(t,n,e){return r.f(t,n,o(1,e))}:function(t,n,e){return t[n]=e,t}},function(t,n,e){var r=e(10),o=e(30),i=e(24),u=Object.defineProperty;n.f=e(4)?Object.defineProperty:function(t,n,e){if(r(t),n=i(n,!0),r(e),o)try{return u(t,n,e)}catch(t){}if("get"in e||"set"in e)throw TypeError("Accessors not supported!");return"value"in e&&(t[n]=e.value),t}},function(t,n,e){var r=e(22)("wks"),o=e(13),i=e(1).Symbol,u="function"==typeof i,f=t.exports=function(t){return r[t]||(r[t]=u&&i[t]||(u?i:o)("Symbol."+t))};f.store=r},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n,e){var r=e(35),o=e(16);t.exports=Object.keys||function(t){return r(t,o)}},function(t,n,e){var r=e(11);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n){var e=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++e+r).toString(36))}},function(t,n){var e=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=e)},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,n){t.exports={}},function(t,n){t.exports=!0},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,e){var r=e(6).f,o=e(2),i=e(7)("toStringTag");t.exports=function(t,n,e){t&&!o(t=e?t:t.prototype,i)&&r(t,i,{configurable:!0,value:n})}},function(t,n,e){var r=e(22)("keys"),o=e(13);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,n,e){var r=e(1),o="__core-js_shared__",i=r[o]||(r[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,n){var e=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:e)(t)}},function(t,n,e){var r=e(11);t.exports=function(t,n){if(!r(t))return t;var e,o;if(n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;if("function"==typeof(e=t.valueOf)&&!r(o=e.call(t)))return o;if(!n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,n,e){var r=e(1),o=e(14),i=e(18),u=e(26),f=e(6).f;t.exports=function(t){var n=o.Symbol||(o.Symbol=i?{}:r.Symbol||{});"_"==t.charAt(0)||t in n||f(n,t,{value:u.f(t)})}},function(t,n,e){n.f=e(7)},function(t,n,e){var r=e(1),o=e(14),i=e(46),u=e(5),f="prototype",c=function(t,n,e){var a,s,l,p=t&c.F,d=t&c.G,v=t&c.S,y=t&c.P,h=t&c.B,b=t&c.W,x=d?o:o[n]||(o[n]={}),m=x[f],g=d?r:v?r[n]:(r[n]||{})[f];d&&(e=n);for(a in e)s=!p&&g&&void 0!==g[a],s&&a in x||(l=s?g[a]:e[a],x[a]=d&&"function"!=typeof g[a]?e[a]:h&&s?i(l,r):b&&g[a]==l?function(t){var n=function(n,e,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(n);case 2:return new t(n,e)}return new t(n,e,r)}return t.apply(this,arguments)};return n[f]=t[f],n}(l):y&&"function"==typeof l?i(Function.call,l):l,y&&((x.virtual||(x.virtual={}))[a]=l,t&c.R&&m&&!m[a]&&u(m,a,l)))};c.F=1,c.G=2,c.S=4,c.P=8,c.B=16,c.W=32,c.U=64,c.R=128,t.exports=c},function(t,n){var e={}.toString;t.exports=function(t){return e.call(t).slice(8,-1)}},function(t,n,e){var r=e(11),o=e(1).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,n,e){t.exports=!e(4)&&!e(8)(function(){return 7!=Object.defineProperty(e(29)("div"),"a",{get:function(){return 7}}).a})},function(t,n,e){"use strict";var r=e(18),o=e(27),i=e(36),u=e(5),f=e(2),c=e(17),a=e(51),s=e(20),l=e(58),p=e(7)("iterator"),d=!([].keys&&"next"in[].keys()),v="@@iterator",y="keys",h="values",b=function(){return this};t.exports=function(t,n,e,x,m,g,w){a(e,n,x);var O,S,_,j=function(t){if(!d&&t in A)return A[t];switch(t){case y:return function(){return new e(this,t)};case h:return function(){return new e(this,t)}}return function(){return new e(this,t)}},P=n+" Iterator",E=m==h,M=!1,A=t.prototype,T=A[p]||A[v]||m&&A[m],L=T||j(m),N=m?E?j("entries"):L:void 0,C="Array"==n?A.entries||T:T;if(C&&(_=l(C.call(new t)),_!==Object.prototype&&(s(_,P,!0),r||f(_,p)||u(_,p,b))),E&&T&&T.name!==h&&(M=!0,L=function(){return T.call(this)}),r&&!w||!d&&!M&&A[p]||u(A,p,L),c[n]=L,c[P]=b,m)if(O={values:E?L:j(h),keys:g?L:j(y),entries:N},w)for(S in O)S in A||i(A,S,O[S]);else o(o.P+o.F*(d||M),n,O);return O}},function(t,n,e){var r=e(10),o=e(55),i=e(16),u=e(21)("IE_PROTO"),f=function(){},c="prototype",a=function(){var t,n=e(29)("iframe"),r=i.length,o="<",u=">";for(n.style.display="none",e(48).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write(o+"script"+u+"document.F=Object"+o+"/script"+u),t.close(),a=t.F;r--;)delete a[c][i[r]];return a()};t.exports=Object.create||function(t,n){var e;return null!==t?(f[c]=r(t),e=new f,f[c]=null,e[u]=t):e=a(),void 0===n?e:o(e,n)}},function(t,n,e){var r=e(35),o=e(16).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,n){n.f=Object.getOwnPropertySymbols},function(t,n,e){var r=e(2),o=e(3),i=e(45)(!1),u=e(21)("IE_PROTO");t.exports=function(t,n){var e,f=o(t),c=0,a=[];for(e in f)e!=u&&r(f,e)&&a.push(e);for(;n.length>c;)r(f,e=n[c++])&&(~i(a,e)||a.push(e));return a}},function(t,n,e){t.exports=e(5)},function(t,n,e){var r=e(15);t.exports=function(t){return Object(r(t))}},function(t,n,e){t.exports={default:e(41),__esModule:!0}},function(t,n,e){t.exports={default:e(42),__esModule:!0}},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}n.__esModule=!0;var o=e(39),i=r(o),u=e(38),f=r(u),c="function"==typeof f.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":typeof t};n.default="function"==typeof f.default&&"symbol"===c(i.default)?function(t){return"undefined"==typeof t?"undefined":c(t)}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":"undefined"==typeof t?"undefined":c(t)}},function(t,n,e){e(65),e(63),e(66),e(67),t.exports=e(14).Symbol},function(t,n,e){e(64),e(68),t.exports=e(26).f("iterator")},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n){t.exports=function(){}},function(t,n,e){var r=e(3),o=e(61),i=e(60);t.exports=function(t){return function(n,e,u){var f,c=r(n),a=o(c.length),s=i(u,a);if(t&&e!=e){for(;a>s;)if(f=c[s++],f!=f)return!0}else for(;a>s;s++)if((t||s in c)&&c[s]===e)return t||s||0;return!t&&-1}}},function(t,n,e){var r=e(43);t.exports=function(t,n,e){if(r(t),void 0===n)return t;switch(e){case 1:return function(e){return t.call(n,e)};case 2:return function(e,r){return t.call(n,e,r)};case 3:return function(e,r,o){return t.call(n,e,r,o)}}return function(){return t.apply(n,arguments)}}},function(t,n,e){var r=e(9),o=e(34),i=e(19);t.exports=function(t){var n=r(t),e=o.f;if(e)for(var u,f=e(t),c=i.f,a=0;f.length>a;)c.call(t,u=f[a++])&&n.push(u);return n}},function(t,n,e){t.exports=e(1).document&&document.documentElement},function(t,n,e){var r=e(28);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,n,e){var r=e(28);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,n,e){"use strict";var r=e(32),o=e(12),i=e(20),u={};e(5)(u,e(7)("iterator"),function(){return this}),t.exports=function(t,n,e){t.prototype=r(u,{next:o(1,e)}),i(t,n+" Iterator")}},function(t,n){t.exports=function(t,n){return{value:n,done:!!t}}},function(t,n,e){var r=e(9),o=e(3);t.exports=function(t,n){for(var e,i=o(t),u=r(i),f=u.length,c=0;f>c;)if(i[e=u[c++]]===n)return e}},function(t,n,e){var r=e(13)("meta"),o=e(11),i=e(2),u=e(6).f,f=0,c=Object.isExtensible||function(){return!0},a=!e(8)(function(){return c(Object.preventExtensions({}))}),s=function(t){u(t,r,{value:{i:"O"+ ++f,w:{}}})},l=function(t,n){if(!o(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,r)){if(!c(t))return"F";if(!n)return"E";s(t)}return t[r].i},p=function(t,n){if(!i(t,r)){if(!c(t))return!0;if(!n)return!1;s(t)}return t[r].w},d=function(t){return a&&v.NEED&&c(t)&&!i(t,r)&&s(t),t},v=t.exports={KEY:r,NEED:!1,fastKey:l,getWeak:p,onFreeze:d}},function(t,n,e){var r=e(6),o=e(10),i=e(9);t.exports=e(4)?Object.defineProperties:function(t,n){o(t);for(var e,u=i(n),f=u.length,c=0;f>c;)r.f(t,e=u[c++],n[e]);return t}},function(t,n,e){var r=e(19),o=e(12),i=e(3),u=e(24),f=e(2),c=e(30),a=Object.getOwnPropertyDescriptor;n.f=e(4)?a:function(t,n){if(t=i(t),n=u(n,!0),c)try{return a(t,n)}catch(t){}if(f(t,n))return o(!r.f.call(t,n),t[n])}},function(t,n,e){var r=e(3),o=e(33).f,i={}.toString,u="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],f=function(t){try{return o(t)}catch(t){return u.slice()}};t.exports.f=function(t){return u&&"[object Window]"==i.call(t)?f(t):o(r(t))}},function(t,n,e){var r=e(2),o=e(37),i=e(21)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n,e){var r=e(23),o=e(15);t.exports=function(t){return function(n,e){var i,u,f=String(o(n)),c=r(e),a=f.length;return c<0||c>=a?t?"":void 0:(i=f.charCodeAt(c),i<55296||i>56319||c+1===a||(u=f.charCodeAt(c+1))<56320||u>57343?t?f.charAt(c):i:t?f.slice(c,c+2):(i-55296<<10)+(u-56320)+65536)}}},function(t,n,e){var r=e(23),o=Math.max,i=Math.min;t.exports=function(t,n){return t=r(t),t<0?o(t+n,0):i(t,n)}},function(t,n,e){var r=e(23),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,n,e){"use strict";var r=e(44),o=e(52),i=e(17),u=e(3);t.exports=e(31)(Array,"Array",function(t,n){this._t=u(t),this._i=0,this._k=n},function(){var t=this._t,n=this._k,e=this._i++;return!t||e>=t.length?(this._t=void 0,o(1)):"keys"==n?o(0,e):"values"==n?o(0,t[e]):o(0,[e,t[e]])},"values"),i.Arguments=i.Array,r("keys"),r("values"),r("entries")},function(t,n){},function(t,n,e){"use strict";var r=e(59)(!0);e(31)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,n=this._t,e=this._i;return e>=n.length?{value:void 0,done:!0}:(t=r(n,e),this._i+=t.length,{value:t,done:!1})})},function(t,n,e){"use strict";var r=e(1),o=e(2),i=e(4),u=e(27),f=e(36),c=e(54).KEY,a=e(8),s=e(22),l=e(20),p=e(13),d=e(7),v=e(26),y=e(25),h=e(53),b=e(47),x=e(50),m=e(10),g=e(3),w=e(24),O=e(12),S=e(32),_=e(57),j=e(56),P=e(6),E=e(9),M=j.f,A=P.f,T=_.f,L=r.Symbol,N=r.JSON,C=N&&N.stringify,k="prototype",F=d("_hidden"),q=d("toPrimitive"),I={}.propertyIsEnumerable,B=s("symbol-registry"),D=s("symbols"),W=s("op-symbols"),H=Object[k],K="function"==typeof L,R=r.QObject,J=!R||!R[k]||!R[k].findChild,U=i&&a(function(){return 7!=S(A({},"a",{get:function(){return A(this,"a",{value:7}).a}})).a})?function(t,n,e){var r=M(H,n);r&&delete H[n],A(t,n,e),r&&t!==H&&A(H,n,r)}:A,G=function(t){var n=D[t]=S(L[k]);return n._k=t,n},$=K&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},z=function(t,n,e){return t===H&&z(W,n,e),m(t),n=w(n,!0),m(e),o(D,n)?(e.enumerable?(o(t,F)&&t[F][n]&&(t[F][n]=!1),e=S(e,{enumerable:O(0,!1)})):(o(t,F)||A(t,F,O(1,{})),t[F][n]=!0),U(t,n,e)):A(t,n,e)},Y=function(t,n){m(t);for(var e,r=b(n=g(n)),o=0,i=r.length;i>o;)z(t,e=r[o++],n[e]);return t},Q=function(t,n){return void 0===n?S(t):Y(S(t),n)},X=function(t){var n=I.call(this,t=w(t,!0));return!(this===H&&o(D,t)&&!o(W,t))&&(!(n||!o(this,t)||!o(D,t)||o(this,F)&&this[F][t])||n)},V=function(t,n){if(t=g(t),n=w(n,!0),t!==H||!o(D,n)||o(W,n)){var e=M(t,n);return!e||!o(D,n)||o(t,F)&&t[F][n]||(e.enumerable=!0),e}},Z=function(t){for(var n,e=T(g(t)),r=[],i=0;e.length>i;)o(D,n=e[i++])||n==F||n==c||r.push(n);return r},tt=function(t){for(var n,e=t===H,r=T(e?W:g(t)),i=[],u=0;r.length>u;)!o(D,n=r[u++])||e&&!o(H,n)||i.push(D[n]);return i};K||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),n=function(e){this===H&&n.call(W,e),o(this,F)&&o(this[F],t)&&(this[F][t]=!1),U(this,t,O(1,e))};return i&&J&&U(H,t,{configurable:!0,set:n}),G(t)},f(L[k],"toString",function(){return this._k}),j.f=V,P.f=z,e(33).f=_.f=Z,e(19).f=X,e(34).f=tt,i&&!e(18)&&f(H,"propertyIsEnumerable",X,!0),v.f=function(t){return G(d(t))}),u(u.G+u.W+u.F*!K,{Symbol:L});for(var nt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),et=0;nt.length>et;)d(nt[et++]);for(var nt=E(d.store),et=0;nt.length>et;)y(nt[et++]);u(u.S+u.F*!K,"Symbol",{for:function(t){return o(B,t+="")?B[t]:B[t]=L(t)},keyFor:function(t){if($(t))return h(B,t);throw TypeError(t+" is not a symbol!")},useSetter:function(){J=!0},useSimple:function(){J=!1}}),u(u.S+u.F*!K,"Object",{create:Q,defineProperty:z,defineProperties:Y,getOwnPropertyDescriptor:V,getOwnPropertyNames:Z,getOwnPropertySymbols:tt}),N&&u(u.S+u.F*(!K||a(function(){var t=L();return"[null]"!=C([t])||"{}"!=C({a:t})||"{}"!=C(Object(t))})),"JSON",{stringify:function(t){if(void 0!==t&&!$(t)){for(var n,e,r=[t],o=1;arguments.length>o;)r.push(arguments[o++]);return n=r[1],"function"==typeof n&&(e=n),!e&&x(n)||(n=function(t,n){if(e&&(n=e.call(this,t,n)),!$(n))return n}),r[1]=n,C.apply(N,r)}}}),L[k][q]||e(5)(L[k],q,L[k].valueOf),l(L,"Symbol"),l(Math,"Math",!0),l(r.JSON,"JSON",!0)},function(t,n,e){e(25)("asyncIterator")},function(t,n,e){e(25)("observable")},function(t,n,e){e(62);for(var r=e(1),o=e(5),i=e(17),u=e(7)("toStringTag"),f=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],c=0;c<5;c++){var a=f[c],s=r[a],l=s&&s.prototype;l&&!l[u]&&o(l,u,a),i[a]=i.Array}},function(t,n){"use strict";var e={versions:function(){var t=window.navigator.userAgent;return{trident:t.indexOf("Trident")>-1,presto:t.indexOf("Presto")>-1,webKit:t.indexOf("AppleWebKit")>-1,gecko:t.indexOf("Gecko")>-1&&t.indexOf("KHTML")==-1,mobile:!!t.match(/AppleWebKit.*Mobile.*/),ios:!!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),android:t.indexOf("Android")>-1||t.indexOf("Linux")>-1,iPhone:t.indexOf("iPhone")>-1||t.indexOf("Mac")>-1,iPad:t.indexOf("iPad")>-1,webApp:t.indexOf("Safari")==-1,weixin:t.indexOf("MicroMessenger")==-1}}()};t.exports=e},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}var o=e(40),i=r(o),u=function(){function t(t,n,e){return n||e?String.fromCharCode(n||e):o[t]||t}function n(t){return l[t]}var e=/&quot;|&lt;|&gt;|&amp;|&nbsp;|&apos;|&#(\d+);|&#(\d+)/g,r=/['<> "&]/g,o={"&quot;":'"',"&lt;":"<","&gt;":">","&amp;":"&","&nbsp;":" "},f=/\u00a0/g,c=/<br\s*\/?>/gi,a=/\r?\n/g,s=/\s/g,l={};for(var p in o)l[o[p]]=p;return o["&apos;"]="'",l["'"]="&#39;",{encode:function(t){return t?(""+t).replace(r,n).replace(a,"<br/>").replace(s,"&nbsp;"):""},decode:function(n){return n?(""+n).replace(c,"\n").replace(e,t).replace(f," "):""},encodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},encodeBase16forJSON:function(t){if(!t)return t;t=t.replace(/[\u4E00-\u9FBF]/gi,function(t){return escape(t).replace("%u","\\u")});for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},decodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e+=2)n.push(String.fromCharCode("0x"+t.slice(e,e+2)));return n.join("")},encodeObject:function(t){if(t instanceof Array)for(var n=0,e=t.length;e>n;n++)t[n]=u.encodeObject(t[n]);else if("object"==("undefined"==typeof t?"undefined":(0,i.default)(t)))for(var r in t)t[r]=u.encodeObject(t[r]);else if("string"==typeof t)return u.encode(t);return t},loadScript:function(t){var n=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(n),n.setAttribute("src",t)},addLoadEvent:function(t){var n=window.onload;"function"!=typeof window.onload?window.onload=t:window.onload=function(){n(),t()}}}}();t.exports=u},function(t,n){function e(t,n){t.classList?t.classList.add(n):t.className+=" "+n}t.exports=e},function(t,n){function e(t,n){if(t.classList)t.classList.remove(n);else{var e=new RegExp("(^|\\b)"+n.split(" ").join("|")+"(\\b|$)","gi");t.className=t.className.replace(e," ")}}t.exports=e},,,function(t,n){"use strict";function e(){var t=document.querySelector("#page-nav");if(t&&!document.querySelector("#page-nav .extend.prev")&&(t.innerHTML='<a class="extend prev disabled" rel="prev">&laquo; Prev</a>'+t.innerHTML),t&&!document.querySelector("#page-nav .extend.next")&&(t.innerHTML=t.innerHTML+'<a class="extend next disabled" rel="next">Next &raquo;</a>'),yiliaConfig&&yiliaConfig.open_in_new){var n=document.querySelectorAll(".article-entry a:not(.article-more-a)");n.forEach(function(t){t.setAttribute("target","_blank")})}var e=document.querySelector("#js-aboutme");e&&0!==e.length&&(e.innerHTML=e.innerText)}t.exports={init:e}},,,,,,,,,function(t,n){function e(t,n){if("string"==typeof n)return t.insertAdjacentHTML("afterend",n);var e=t.nextSibling;return e?t.parentNode.insertBefore(n,e):t.parentNode.appendChild(n)}t.exports=e}])</script><script src="/./main.2d7529.js"></script><script>!function(){var e=function(e){var t=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(t),t.setAttribute("src",e)};e("/slider.885efe.js")}()</script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-nav header-menu">
+    
+    
+      
+      
+      
+    
+      
+      
+      
+    
+      
+      
+      
+    
+    
+
+    <ul style="width: 70%">
+    
+    
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      
+        
+    </ul>
+  </div>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">大话设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Next</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Objective-C Notes</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Swift开发者必备Tips</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">zsh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://www.boxueio.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Boxue</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.vii-lin.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>vii-lin</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://onevcat.com/#blog" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>onevcat</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://blog.devtang.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>唐巧</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://blog.ibireme.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ibireme</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://liuyanwei.jumppo.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>刘彦玮</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://stormzhang.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>stormzhang</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://litten.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>litten</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">muhlenXi，&lt;br&gt;90后北方汉子&lt;br&gt;&lt;br&gt;热爱旅行与DIY，&lt;br/&gt;目前是一枚程序猿&lt;br/&gt;&lt;br/&gt;乐天达观、成熟稳重。&lt;br&gt;认为信仰只是个人内心的一种修行！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
