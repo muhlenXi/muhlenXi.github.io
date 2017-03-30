@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/02/06/Interview-questions/index.html">
 <meta property="og:site_name" content="muhlenXi">
 <meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/02/06/Interview-questions">
-<meta property="og:updated_time" content="2017-03-24T14:36:48.000Z">
+<meta property="og:updated_time" content="2017-03-30T13:48:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS interview questions">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/02/06/Interview-questions">
@@ -184,11 +184,22 @@
         <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2017/02/06/Interview-questions" target="_blank" rel="external">http://muhlenxi.com/2017/02/06/Interview-questions</a></em></p>
 <p><a id="more"></a>　</p>
 <h3 id="面试"><a href="#面试" class="headerlink" title="面试"></a>面试</h3><h4 id="1、什么情况使用-weak-关键字，相比-assign-有什么不同？"><a href="#1、什么情况使用-weak-关键字，相比-assign-有什么不同？" class="headerlink" title="1、什么情况使用 weak 关键字，相比 assign 有什么不同？"></a>1、什么情况使用 weak 关键字，相比 assign 有什么不同？</h4><p>什么情况使用 weak 关键字？</p>
-<p><em>1、在ARC中，在有可能循环引用的时候，往往要通过让其中一端使用weak来解决，比如Delegate属性。</em></p>
-<p><em>2、自身已经对它进行一次强应用，没有必要再强引用一次，此时也会用weak，自定义IBOutlet控件属性一般也使用weak；当然也可以使用strong。</em></p>
+<p><em>1、在 ARC 中，在有可能循环引用的时候，往往要通过让其中一端使用 weak 来解决，比如 Delegate 属性。</em></p>
+<p><em>2、自身已经对它进行一次强应用，没有必要再强引用一次，此时也会用 weak，自定义 IBOutlet 控件属性一般也使用 weak；当然也可以使用 strong。</em></p>
 <p>不同点：</p>
 <p><em>1、weak 表明该属性定义了一种“非拥有关系”。为这种属性设置新值时，设置方法既不保留新值，也不释放旧值。此特质和 assign 类似，然而当属性所指的对象遭受到摧毁时，属性值也会清空。而 assign 的设置方法只会执行针对纯量类型（如CGFloat、NSInteger）的简单赋值操作。</em></p>
 <p><em>2、assign 可以用非 OC 对象，而 weak 必须用于 OC 对象。</em></p>
+<h4 id="2、如何理解-Objective-C-的消息派发机制？"><a href="#2、如何理解-Objective-C-的消息派发机制？" class="headerlink" title="2、如何理解 Objective-C 的消息派发机制？"></a>2、如何理解 Objective-C 的消息派发机制？</h4><h4 id="3、如何理解-Swift-中的方法派发机制？"><a href="#3、如何理解-Swift-中的方法派发机制？" class="headerlink" title="3、如何理解 Swift 中的方法派发机制？"></a>3、如何理解 Swift 中的方法派发机制？</h4><p><em>Swift 的方法派发机制主要有3种，第一种是 Direct Dispatch，第二种是 Table Dispatch，第三种是 Message Dispatch。</em></p>
+<p>派发规则：</p>
+<p><em>1-值类型永远使用 Direct Dispatch。</em></p>
+<p><em>2-在 protocol 和 class 的定义中声明的方法使用 table dispatch。</em></p>
+<p><em>3-在 protocol 和 class 的 extension 中定义的方法使用 direct dispatch。</em></p>
+<p>修改方法派发规则的 modifiers:</p>
+<p><em>如果你的方法需要被 Objective-C 运行时识别，需要用 <code>dynamic</code> 将方法的派发方式改为 message dispatch，此外还必须 import Foundation，它包含了 Objective-C 运行时的核心组件。</em></p>
+<p><em><code>@objc</code>仅仅可以让一个 Swift 方法被 Objective-C 运行时识别和访问，但不会修改该方法的派发方式。</em></p>
+<p><em><code>final</code> 用于把方法的派发方式改为 direct dispatch。</em></p>
+<p><em><code>@nonobjc</code> 仅仅让一个方法对 Objective-C 运行时不可见，但不会修改方法的派发方式。</em></p>
+<p><a href="https://www.boxueio.com/series/understand-ref-types/ebook/187" target="_blank" rel="external">详情传送门</a></p>
 
       
 
@@ -451,23 +462,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">大话设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,11 +478,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,7 +494,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">大话设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,11 +526,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,11 +534,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
+                <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,7 +542,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Swift开发者必备Tips</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Objective-C Notes</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,27 +566,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Objective-C Notes</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift开发者必备Tips</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,11 +574,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
+                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,11 +594,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
+                <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
+                <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,6 +607,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
               </li>
             
             <div class="clearfix"></div>
