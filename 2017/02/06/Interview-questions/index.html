@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/02/06/Interview-questions/index.html">
 <meta property="og:site_name" content="muhlenXi">
 <meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/02/06/Interview-questions">
-<meta property="og:updated_time" content="2017-03-30T13:48:32.000Z">
+<meta property="og:updated_time" content="2017-04-05T12:16:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS interview questions">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/02/06/Interview-questions">
@@ -183,7 +183,24 @@
       
         <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2017/02/06/Interview-questions" target="_blank" rel="external">http://muhlenxi.com/2017/02/06/Interview-questions</a></em></p>
 <p><a id="more"></a>　</p>
-<h3 id="面试"><a href="#面试" class="headerlink" title="面试"></a>面试</h3><h4 id="1、什么情况使用-weak-关键字，相比-assign-有什么不同？"><a href="#1、什么情况使用-weak-关键字，相比-assign-有什么不同？" class="headerlink" title="1、什么情况使用 weak 关键字，相比 assign 有什么不同？"></a>1、什么情况使用 weak 关键字，相比 assign 有什么不同？</h4><p>什么情况使用 weak 关键字？</p>
+<h3 id="面试"><a href="#面试" class="headerlink" title="面试"></a>面试</h3><h4 id="0、如何理解-property、-synthesizer-和-dynamic？"><a href="#0、如何理解-property、-synthesizer-和-dynamic？" class="headerlink" title="0、如何理解 @property、@synthesizer 和 @dynamic？"></a>0、如何理解 @property、@synthesizer 和 @dynamic？</h4><p><em>property(属性),用于封装对象中的数据，通过 property 可以使编译器自动为我们生成变量的 setter 和 getter 方法，同时自动向类中添加 _属性名 的实例变量。</em></p>
+<p><em>@synthesizer 用来指定生成的实例变量的名字。</em></p>
+<pre><code>@synthesize age = _age; // 指定生成的变量名为 _age,自己实现变量的 setter 和 getter 方法时需要指定，只实现其中的一个存取方法时不需要指定。
+</code></pre><p><em>@dynamic 告诉编译器不要自动创建属性所用的实例变量和合成 setter 和 getter 方法。</em></p>
+<p><strong>Attribute of property：</strong></p>
+<pre><code>@property (原子性,读写权限,内存管理语义) NSString * name;
+</code></pre><p><code>atomic</code> : <em>原子性，编译器合成的方法会通过锁定机制来确保其原子性。</em></p>
+<p><code>nonatomic</code>: <em>非原子性。</em></p>
+<p><code>readwrite</code>: <em>可读可写，编译器会自动合成 setter 和 getter 方法。</em></p>
+<p><code>readonly</code>: <em>只读，编译器只会自动合成 getter 方法。</em></p>
+<p><code>assign</code>: <em>设置方法 只会执行 scalar type 的简单赋值操作。</em></p>
+<p><code>strong</code>: <em>表明一种拥有关系，设置方法设置新值时，会先保留新值，并释放旧值，然后再将新值设置上去。</em></p>
+<p><code>weak</code>: <em>表明一种非拥有关系，设置方法设置新值时，既不保留新值也不释放旧值，当属性所指的对象被摧毁时，属性值将置为 nil。</em></p>
+<p><code>unsafe_unretained</code> : <em>和 assign 相同。只不过是针对 object type 的，表明一种非拥有关系，当对象被摧毁时，属性值 不会清空。</em></p>
+<p><code>copy</code>: <em>类似 strong，不过设置方法设置新值时，不保留新值，而是将其 copy。</em></p>
+<p><code>getter=name</code>: <em>指定 getter 的方法名。</em></p>
+<p><code>setter= name</code>: <em>指定 setter 的方法名。</em></p>
+<h4 id="1、什么情况使用-weak-关键字，相比-assign-有什么不同？"><a href="#1、什么情况使用-weak-关键字，相比-assign-有什么不同？" class="headerlink" title="1、什么情况使用 weak 关键字，相比 assign 有什么不同？"></a>1、什么情况使用 weak 关键字，相比 assign 有什么不同？</h4><p>什么情况使用 weak 关键字？</p>
 <p><em>1、在 ARC 中，在有可能循环引用的时候，往往要通过让其中一端使用 weak 来解决，比如 Delegate 属性。</em></p>
 <p><em>2、自身已经对它进行一次强应用，没有必要再强引用一次，此时也会用 weak，自定义 IBOutlet 控件属性一般也使用 weak；当然也可以使用 strong。</em></p>
 <p>不同点：</p>
@@ -490,10 +507,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">大话设计模式</a>
               </li>
              
@@ -514,7 +527,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,11 +543,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,7 +551,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,19 +559,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift开发者必备Tips</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Objective-C Notes</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -566,11 +571,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Objective-C Notes</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Swift开发者必备Tips</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
+                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,11 +599,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
+                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
               </li>
              
               <li class="article-tag-list-item">
