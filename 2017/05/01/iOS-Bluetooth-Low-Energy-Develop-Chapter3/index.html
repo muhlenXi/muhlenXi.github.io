@@ -18,7 +18,7 @@
 <meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/05/01/iOS-Bluetooth-Low-Energy-Develop-Chapter3
 导语：
 在这一节，你将会学到，如何通过 CoreBluetooth 框架来实现 Local Peripheral 方面的功能和代理方法。">
-<meta property="og:updated_time" content="2017-05-03T15:21:27.000Z">
+<meta property="og:updated_time" content="2017-05-03T15:27:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS BLE 开发小记（3）">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/05/01/iOS-Bluetooth-Low-Energy-Develop-Chapter3
@@ -201,7 +201,7 @@
 <li>如何对连接的 Central 做读写请求响应</li>
 <li>如何发送更新后的值给订阅的 Central</li>
 </ul>
-<p>或许你发现实例代码过于简单和抽象，你需要在你的 App 中做些恰当的练习来掌握这些内容。更高级的技巧和最佳实践在后续的文章中将会讲解。</p>
+<p>或许你发现示例代码过于简单和抽象，你需要在你的 App 中做些恰当的练习来掌握这些内容。更高级的技巧和最佳实践在后续的文章中将会讲解。</p>
 <h3 id="Peripheral-实现详情"><a href="#Peripheral-实现详情" class="headerlink" title="Peripheral 实现详情"></a>Peripheral 实现详情</h3><h4 id="创建一个-Peripheral-Manager-对象"><a href="#创建一个-Peripheral-Manager-对象" class="headerlink" title="创建一个 Peripheral Manager 对象"></a>创建一个 Peripheral Manager 对象</h4><p>在 Local Device（当前设备）实现 Peripheral 规范的第一步是分配（allocate）和初始化（initialize）一个周边管理（Peripheral Manager），（用 CBPeripheralManager 对象表示），通过调用 CBPeripheralManager 的 <code>initWithDelegate:queue:options:</code> 方法来创建管理对象，如下所示</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">myPeripheralManager =</div><div class="line">        [[CBPeripheralManager alloc] initWithDelegate:<span class="keyword">self</span> queue:<span class="literal">nil</span> options:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
 <p>在示例代码中，设置 Delegate 为 self 是为了接收 Peripheral 的事件响应，将参数 dispatch queue 置为 nil。意味着 Peripheral Manager 将会在主队列中分发事件。</p>
@@ -525,6 +525,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
@@ -533,27 +537,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,11 +549,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,15 +581,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,15 +601,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,15 +625,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,7 +633,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,7 +649,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
+                <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,15 +657,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
+                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
               </li>
              
               <li class="article-tag-list-item">
