@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>iOS BLE 开发小记（2） | muhlenXi</title>
+  <title>iOS BLE 开发小记[2] - 如何实现一个 Local Central | muhlenXi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/04/29/iOS-Bluetooth-Low-Energy-Develop-Chapter2
 导语：
 在这一节，你将会学到，如何通过 CoreBluetooth 框架来实现 Local Central 方面的功能和代理方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS BLE 开发小记（2）">
+<meta property="og:title" content="iOS BLE 开发小记[2] - 如何实现一个 Local Central">
 <meta property="og:url" content="http://yoursite.com/2017/04/29/iOS-Bluetooth-Low-Energy-Develop-Chapter2/index.html">
 <meta property="og:site_name" content="muhlenXi">
 <meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/04/29/iOS-Bluetooth-Low-Energy-Develop-Chapter2
 导语：
 在这一节，你将会学到，如何通过 CoreBluetooth 框架来实现 Local Central 方面的功能和代理方法。">
-<meta property="og:updated_time" content="2017-05-03T15:21:27.000Z">
+<meta property="og:updated_time" content="2017-05-07T15:13:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS BLE 开发小记（2）">
+<meta name="twitter:title" content="iOS BLE 开发小记[2] - 如何实现一个 Local Central">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/04/29/iOS-Bluetooth-Low-Energy-Develop-Chapter2
 导语：
 在这一节，你将会学到，如何通过 CoreBluetooth 框架来实现 Local Central 方面的功能和代理方法。">
@@ -174,7 +174,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      iOS BLE 开发小记（2）
+      iOS BLE 开发小记[2] - 如何实现一个 Local Central
     </h1>
   
 
@@ -377,14 +377,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          iOS BLE 开发小记（3）
+          iOS BLE 开发小记[3] - 如何实现一个 Local Peripheral
         
       </div>
     </a>
   
   
     <a href="/2017/04/27/iOS-Bluetooth-Low-Energy-Develop-Chapter1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">iOS BLE 开发小记（1）</div>
+      <div class="article-nav-title">iOS BLE 开发小记[1] - CoreBluetooth 是什么</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -398,7 +398,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="iOS-Bluetooth-Low-Energy-Develop-Chapter2" data-title="iOS BLE 开发小记（2）" data-url="http://yoursite.com/2017/04/29/iOS-Bluetooth-Low-Energy-Develop-Chapter2/"></div>
+	<div class="ds-thread" data-thread-key="iOS-Bluetooth-Low-Energy-Develop-Chapter2" data-title="iOS BLE 开发小记[2] - 如何实现一个 Local Central" data-url="http://yoursite.com/2017/04/29/iOS-Bluetooth-Low-Energy-Develop-Chapter2/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -510,11 +510,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
+                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,6 +538,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
               </li>
              
@@ -546,15 +550,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,7 +574,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,11 +582,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,11 +590,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
+                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -618,15 +618,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
+                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -634,7 +634,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,10 +650,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BLE</a>
               </li>
              
@@ -663,6 +659,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
               </li>
             
             <div class="clearfix"></div>
