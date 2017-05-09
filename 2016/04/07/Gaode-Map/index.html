@@ -5,7 +5,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://muhlenxi.com">
   <title>高德 SDK 的正确打开方式 | muhlenXi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2016/04/07/Gaode-Map
@@ -13,7 +13,7 @@
 高德地图 iOS SDK 是一套基于 iOS 6.0.0 及以上版本的地图应用程序开发接口，供开发者在自己的 iOS应用中加入地图相关的功能。通过 iOS SDK，开发者可以轻松地开发出地图显示与操作、兴趣点搜索、地理编码、路线规划等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高德 SDK 的正确打开方式">
-<meta property="og:url" content="http://yoursite.com/2016/04/07/Gaode-Map/index.html">
+<meta property="og:url" content="http://muhlenxi.com/2016/04/07/Gaode-Map/index.html">
 <meta property="og:site_name" content="muhlenXi">
 <meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2016/04/07/Gaode-Map
 导语：
@@ -196,7 +196,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/04/07/Gaode-Map" target="_blank" rel="external">http://muhlenxi.com/2016/04/07/Gaode-Map</a></em></p>
+        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/04/07/Gaode-Map">http://muhlenxi.com/2016/04/07/Gaode-Map</a></em></p>
 <h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
 <p>高德地图 iOS SDK 是一套基于 iOS 6.0.0 及以上版本的地图应用程序开发接口，供开发者在自己的 iOS应用中加入地图相关的功能。通过 iOS SDK，开发者可以轻松地开发出地图显示与操作、兴趣点搜索、地理编码、路线规划等功能。</p>
 </blockquote>
@@ -207,7 +207,7 @@
 <p>点这里查看<a href="http://lbs.amap.com" target="_blank" rel="external">高德开发平台</a>,在这里注册<code>高德账号</code>并成为<code>开发者</code>。</p>
 <p><em>如果是第一次接触高德地图，可以大概看一下<a href="http://lbs.amap.com/api/ios-sdk/gettingstarted/" target="_blank" rel="external">入门指南</a></em></p>
 <h3 id="高德地图SDK的部署"><a href="#高德地图SDK的部署" class="headerlink" title="高德地图SDK的部署"></a>高德地图SDK的部署</h3><p><em>由于我喜欢简单粗暴的部署方式，所以一直选择 <code>CocoaPods</code> 来安装和配置第三方库</em>。</p>
-<p>关于 <code>CocoaPods</code>,不了解的可以看一下我的另一篇博文，<a href="http://muhlenxi.com/2015/10/05/zsh-and-CocoaPods" target="_blank" rel="external">zsh的配置和CocoaPods的安装与使用</a>。这里就不详细展开了。</p>
+<p>关于 <code>CocoaPods</code>,不了解的可以看一下我的另一篇博文，<a href="http://muhlenxi.com/2015/10/05/zsh-and-CocoaPods">zsh的配置和CocoaPods的安装与使用</a>。这里就不详细展开了。</p>
 <p>方法就是，使用 <code>终端cd</code> 到你的项目所在的路径下，<code>vim</code> 一个 <code>Podfile</code> 文件，点击 <code>字母i</code> 进入<code>编辑</code>状态，在文件中输入：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">platform:ios,'7.0'</div><div class="line">target 'gaodeMapDemo' do</div><div class="line">pod 'AMap2DMap', '~&gt; 3.3.0'</div><div class="line">pod 'AMapLocation', '~&gt; 1.2.0' #定位SDK</div><div class="line">pod 'AMapSearch'               #搜索服务SDK</div><div class="line">end</div></pre></td></tr></table></figure>
 <p>然后按下 <code>Esc</code>，<code>shift+：</code>然后输入 <code>wq</code> ，最后 <code>终端</code> 输入 <code>pod install --verbose --no-repo-update</code> 安装即可。</p>
@@ -333,7 +333,7 @@
 <h3 id="定位SDK的打开方式"><a href="#定位SDK的打开方式" class="headerlink" title="定位SDK的打开方式"></a>定位SDK的打开方式</h3><p>点这里查看 <a href="http://lbs.amap.com/api/ios-location-sdk/summary/" target="_blank" rel="external">iOS 定位 SDK</a>.</p>
 <h3 id="导航-SDK-的打开方式"><a href="#导航-SDK-的打开方式" class="headerlink" title="导航 SDK 的打开方式"></a>导航 SDK 的打开方式</h3><p>点这里查看 <a href="http://lbs.amap.com/api/ios-navi-sdk/summary/" target="_blank" rel="external">iOS 导航 SDK </a>.</p>
 <p><strong>关于导航，可以参考我的这篇博文。</strong></p>
-<p><a href="http://muhlenxi.com/2016/05/19/Map-Guide" target="_blank" rel="external">iOS实现应用外自带地图、高德地图、百度地图导航</a></p>
+<p><a href="http://muhlenxi.com/2016/05/19/Map-Guide">iOS实现应用外自带地图、高德地图、百度地图导航</a></p>
 <h3 id="室内地图SDK的打开方式"><a href="#室内地图SDK的打开方式" class="headerlink" title="室内地图SDK的打开方式"></a>室内地图SDK的打开方式</h3><p>点这里查看 <a href="http://lbs.amap.com/api/ios-indoor-sdk/summary/" target="_blank" rel="external">iOS 室内地图SDK</a></p>
 <h3 id="室内定位SDK的打开方式"><a href="#室内定位SDK的打开方式" class="headerlink" title="室内定位SDK的打开方式"></a>室内定位SDK的打开方式</h3><p>点这里查看 <a href="http://lbs.amap.com/api/ios-indoorlocation-sdk/summary/" target="_blank" rel="external">iOS 室内定位SDK</a></p>
 <h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p><em>本文会阶段性的持续更新的！欢迎大家批评和指正！</em></p>
@@ -454,7 +454,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/04/07/Gaode-Map/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://muhlenxi.com/2016/04/07/Gaode-Map/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -491,28 +491,26 @@
 
 
   
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Gaode-Map" data-title="高德 SDK 的正确打开方式" data-url="http://yoursite.com/2016/04/07/Gaode-Map/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"muhlenXi"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
+    <div class="duoshuo"></div>
   
 
 
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'muhlenXi'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
           </div>
@@ -605,15 +603,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
+                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,11 +619,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
+                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,11 +635,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -661,19 +659,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -685,11 +679,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
+                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
+                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -697,11 +691,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Objective-C Notes</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Objective-C Notes</a>
+                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -713,7 +715,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
+                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -721,19 +723,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
+                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -742,6 +736,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
               </li>
              
               <li class="article-tag-list-item">
