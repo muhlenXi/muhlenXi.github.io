@@ -18,7 +18,7 @@
 <meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2015/08/01/How-to-make-a-blog-by-Hexo/
 导语：
 在网上经常浏览技术牛人的博客来学习技术能力，突然有个念头闪现在脑海,为啥我不自己也弄个博客记录自己的学习收获和分享自己的掉坑经验，避免后来的人不像我一样掉坑，岂不更好！对于一个爱折腾的我，立马就开始">
-<meta property="og:updated_time" content="2017-03-24T14:36:48.000Z">
+<meta property="og:updated_time" content="2017-07-30T13:29:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Mac 上如何搭建 Hexo 个人博客">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2015/08/01/How-to-make-a-blog-by-Hexo/
@@ -194,8 +194,8 @@
 <p>　　更多详情请看<a href="">我为什么开始写博客</a></p>
 <a id="more"></a>
 <p>　　对于不了解Hexo是什么的？可以去Hexo官网了解一下。<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo简介</a> ,废话不扯了，开始正题!</p>
-<h3 id="安装Node-js（必须）"><a href="#安装Node-js（必须）" class="headerlink" title="安装Node.js（必须）"></a>安装Node.js（必须）</h3><p>　　选择Node.js的<a href="https://nodejs.org/en/" target="_blank" rel="external">安装</a>的程序，进入到下载页面，选择<code>Download for OSX(x64)</code>,左边的版本是建议大多数用户使用的版本，右边的则是最新版本，我选择了左边的那个版本，然后，下载，安装即可。</p>
-<h3 id="安装Git-必须"><a href="#安装Git-必须" class="headerlink" title="安装Git(必须)"></a>安装Git(必须)</h3><p>　　由于我经常使用<code>Xcode</code>软件，所以这里不用安装Git,Xcoder软件自带Git,也许有些人不知道<code>Git</code>是什么以及怎么使用，可以看<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">Git教程</a>了解一下，这是我目前见到讲解的深入浅出的文章。</p>
+<h3 id="安装Node-js（必须）"><a href="#安装Node-js（必须）" class="headerlink" title="安装Node.js（必须）"></a>安装Node.js（必须）</h3><p>　　选择 Node.js 的安装的程序，进入到下载页面，选择 <code>Download for OSX(x64)</code>,左边的版本是建议大多数用户使用的版本，右边的则是最新版本，我选择了左边的那个版本，然后，下载，安装即可。<a href="https://nodejs.org/en/" target="_blank" rel="external">传送门</a></p>
+<h3 id="安装Git-必须"><a href="#安装Git-必须" class="headerlink" title="安装Git(必须)"></a>安装Git(必须)</h3><p>　　由于我经常使用 <code>Xcode</code> 软件，所以这里不用安装 Git,Xcode 软件自带 Git,也许有些人不知道 <code>Git</code> 是什么以及怎么使用，可以看<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">Git教程</a>了解一下，这是我目前见到讲解的深入浅出的文章。</p>
 <p>　　PS：后面需要配置站点和主题文件，需要打开其他格式的文本，个人建议用Xcode会好些。</p>
 <p>　　<a href="https://itunes.apple.com/cn/app/xcode/id497799835?mt=12&amp;ign-mpt=uo%3D2" target="_blank" rel="external">Xcode for Mac 安装</a></p>
 <p>　　<a href="http://mac.softpedia.com/get/Developer-Tools/Git.shtml#download" target="_blank" rel="external">Git 安装</a></p>
@@ -206,7 +206,7 @@
 ls                 //查看当前目录下是否有MyBlog文件夹
 cd cd MyBlog/      //进入到MyBlog目录下
 
-sudo npm install-g hexo  //安装Hexo
+npm install hexo-cli -g  //安装Hexo
 hexo init                //初始化Hexo
 </code></pre><p>　　到这里为止，Hexo博客安装工作基本完成，<code>MyBlog</code>就是你博客的根目录，关于博客的所有操作均在MyBlog里面进行。</p>
 <h4 id="配置Github"><a href="#配置Github" class="headerlink" title="配置Github"></a>配置Github</h4><p>　　【1】登录你的Github账号，创建一个<code>Repository（仓库）</code>，仓库的名字必须是 <code>你的github的用户名.github.io</code>  （这是固定写法）</p>
@@ -541,15 +541,19 @@ hexo server
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BLE</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,11 +569,7 @@ hexo server
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,14 +581,6 @@ hexo server
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -597,7 +589,11 @@ hexo server
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -609,7 +605,7 @@ hexo server
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -617,11 +613,7 @@ hexo server
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
+                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,11 +625,11 @@ hexo server
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Objective-C Notes</a>
+                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
+                <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -645,11 +637,19 @@ hexo server
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+                <a href="javascript:void(0)" class="js-tag color3">Objective-C Notes</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">魔方</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
               </li>
              
               <li class="article-tag-list-item">
