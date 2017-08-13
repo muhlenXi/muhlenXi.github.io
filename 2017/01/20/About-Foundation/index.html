@@ -18,7 +18,7 @@
 <meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/01/20/About-Foundation
 导语：
 学习软件开发最好的方式就是去努力学好英语，然后去看官方的第一手资料 - 软件开发指南。本文是关于 Foundation 框架的描述。">
-<meta property="og:updated_time" content="2017-08-05T16:18:07.000Z">
+<meta property="og:updated_time" content="2017-08-05T15:47:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="App Frameworks 之 Foundation 框架">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/01/20/About-Foundation
@@ -207,37 +207,44 @@
 <p>Foundation 框架为你的 App 和其他框架的基础功能提供支持，包括数据的保存和持久化存储，文本处理、日期和时间的计算、排序和过滤，网络等。mac OS，iOS，watchOS，以及 tvOS 的 SDK（软件开发包中）都有使用到 Foundation 框架中定义的类、协议和数据类型等。</p>
 <h5 id="Foundation-基础"><a href="#Foundation-基础" class="headerlink" title="Foundation 基础"></a>Foundation 基础</h5><h6 id="Numbers-Data-和-Basic-Value"><a href="#Numbers-Data-和-Basic-Value" class="headerlink" title="Numbers,Data,和 Basic Value"></a>Numbers,Data,和 Basic Value</h6><p>这部分主要是包含 Cocoa 中使用的基础数据类型。<a href="https://developer.apple.com/documentation/foundation/numbers_data_and_basic_values" target="_blank" rel="external">详情传送门</a></p>
 <p>包括：</p>
-<p><strong>struct</strong> : <code>Int</code>,<code>Double</code>,<code>Decimal</code>,<code>Data</code>,<code>URL</code>,<code>URLComponents</code>,<code>URLQueryItem</code>,<code>UUID</code>,<code>CGFloat</code>,<code>AffineTransform</code>,<code>NSEdgeInsets</code></p>
+<p><strong>struct</strong> : <code>Int</code>,<code>Double</code>,<code>Decimal</code>,<code>Data</code>,<code>URL</code>,</p>
+<p><code>URLComponents</code>,<code>URLQueryItem</code>,<code>UUID</code>,<code>CGFloat</code>,<code>AffineTransform</code>,</p>
+<p><code>NSEdgeInsets</code></p>
 <p><strong>class</strong> :  <code>NumberFormatter</code>,</p>
 <p><strong>typealias</strong> : <code>NSPoint</code>,<code>NSSize</code>,<code>NSRect</code>,<code>NSRange</code></p>
 <h6 id="Strings-和-Text"><a href="#Strings-和-Text" class="headerlink" title="Strings 和 Text"></a>Strings 和 Text</h6><p>这部分主要包括 Unicode 字符串的创建和处理，使用正则表达式模式查找以及文本的自然语言分析。<a href="https://developer.apple.com/documentation/foundation/strings_and_text" target="_blank" rel="external">详情传送门</a></p>
 <p>包括：</p>
 <p><strong>struct</strong> : <code>String</code>,<code>CharacterSet</code>,<code>Locale</code></p>
-<p><strong>class</strong> : <code>NSAttributedString</code>,<code>NSMutableAttributedString</code>,<code>NSLinguisticTagger</code>,<code>Scanner</code>,<code>NSRegularExpression</code>,<code>NSDataDetector</code>,<code>NSTextCheckingResult</code>,<code>NSSpellServer</code>,<code>NSOrthography</code></p>
+<p><strong>class</strong> : <code>NSAttributedString</code>,<code>NSMutableAttributedString</code>,<code>NSLinguisticTagger</code>,<code>Scanner</code>,<code>NSRegularExpression</code>,</p>
+<p><code>NSDataDetector</code>,<code>NSTextCheckingResult</code>,<code>NSSpellServer</code>,<code>NSOrthography</code></p>
 <p><strong>typealias</strong> : <code>UnicodeScalar</code></p>
 <p><strong>let</strong> : <code>NSNotFound</code></p>
 <p><strong>protocol</strong> : <code>NSSpellServerDelegate</code></p>
 <h6 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h6><p>这部分主要包括 array，set，dictionary 和 专用集合来存储和遍历集合中的对象或者值。<a href="https://developer.apple.com/documentation/foundation/collections" target="_blank" rel="external">详情传送门</a></p>
 <p>包括：</p>
-<p><strong>struct</strong> : <code>Array</code>,<code>Dictionary</code>,<code>Set</code>,<code>IndexPath</code>,<code>IndexSet</code>,<code>NSFastEnumerationIterator</code>,<code>NSIndexSetIterator</code>,<code>NSEnumerationOptions</code>,<code>NSSortOptions</code></p>
-<p><strong>class</strong> : <code>NSCountedSet</code>,<code>NSOrderedSet</code>,<code>NSMutableOrderedSet</code>,<code>NSCache</code>,<code>NSPurgeableData</code>,<code>NSPointerArray</code>,<code>NSMapTable</code>,<code>NSHashTable</code>,<code>NSEnumerator</code>,<code>NSNull</code></p>
+<p><strong>struct</strong> : <code>Array</code>,<code>Dictionary</code>,<code>Set</code>,    <code>IndexPath</code>,<code>IndexSet</code>,</p>
+<p><code>NSFastEnumerationIterator</code>,<code>NSIndexSetIterator</code>,<code>NSEnumerationOptions</code>,<code>NSSortOptions</code></p>
+<p><strong>class</strong> : <code>NSCountedSet</code>,<code>NSOrderedSet</code>,<code>NSMutableOrderedSet</code>,<code>NSCache</code>,<code>NSPurgeableData</code>,</p>
+<p><code>NSPointerArray</code>,<code>NSMapTable</code>,<code>NSHashTable</code>,<code>NSEnumerator</code>,<code>NSNull</code></p>
 <p><strong>protocol</strong> : <code>NSFastEnumeration</code></p>
 <p><strong>let</strong> : <code>NSNotFound</code></p>
 <h6 id="Dates-和-Times"><a href="#Dates-和-Times" class="headerlink" title="Dates 和 Times"></a>Dates 和 Times</h6><p>这部分主要包括日期和时间的比较、日历和时间域的计算。<a href="https://developer.apple.com/documentation/foundation/dates_and_times" target="_blank" rel="external">详情传送门</a></p>
-<p>包括：</p>
 <p><strong>struct</strong> : <code>Date</code>,<code>DateInterval</code>,<code>DateComponents</code>,<code>Calendar</code>,<code>TimeZone</code>,<code>Locale</code></p>
 <p><strong>typealias</strong> : <code>TimeInterval</code></p>
 <p><strong>class</strong> : <code>DateFormatter</code>,<code>DateComponentsFormatter</code>,<code>DateIntervalFormatter</code>,<code>ISO8601DateFormatter</code></p>
 <h6 id="Units-和-Measurement"><a href="#Units-和-Measurement" class="headerlink" title="Units 和 Measurement"></a>Units 和 Measurement</h6><p>这部分主要是物理参数的测量和单位转换。<a href="https://developer.apple.com/documentation/foundation/units_and_measurement" target="_blank" rel="external">详情传送门</a></p>
-<p>包括：</p>
 <p><strong>struct</strong> : <code>Measurement</code></p>
-<p><strong>class</strong> <code>Unit</code>,<code>Dimension</code>,<code>UnitConverter</code>,<code>UnitConverterLinear</code>,<code>UnitArea</code>,<code>UnitLength</code>,<code>UnitVolume</code>,<code>UnitAngle</code>,<code>UnitMass</code>,<code>UnitPressure</code>,<br><code>UnitAcceleration</code>,<code>UnitDuration</code>,<code>UnitFrequency</code>,<code>UnitSpeed</code>,<code>UnitEnergy</code>,<code>UnitPower</code>,<code>UnitTemperature</code>,<code>UnitIlluminance</code>,<code>UnitElectricCharge</code>,<code>UnitElectricCurrent</code>,<code>UnitElectricPotentialDifference</code>,<code>UnitElectricResistance</code>,<code>UnitConcentrationMass</code>,<code>UnitDispersion</code>,<code>UnitFuelEfficiency</code></p>
+<p><strong>class</strong> <code>Unit</code>,<code>Dimension</code>,<code>UnitConverter</code>,<code>UnitConverterLinear</code>,<code>UnitArea</code>,</p>
+<p><code>UnitLength</code>,<code>UnitVolume</code>,<code>UnitAngle</code>,<code>UnitMass</code>,<code>UnitPressure</code>,</p>
+<p><code>UnitAcceleration</code>,<code>UnitDuration</code>,<code>UnitFrequency</code>,<code>UnitSpeed</code>,<code>UnitEnergy</code>,</p>
+<p><code>UnitPower</code>,<code>UnitTemperature</code>,<code>UnitIlluminance</code>,<code>UnitElectricCharge</code>,<code>UnitElectricCurrent</code>,</p>
+<p><code>UnitElectricPotentialDifference</code>,<code>UnitElectricResistance</code>,<code>UnitConcentrationMass</code>,<code>UnitDispersion</code>,<code>UnitFuelEfficiency</code></p>
 <h6 id="Data-Formatting"><a href="#Data-Formatting" class="headerlink" title="Data Formatting"></a>Data Formatting</h6><p>主要是 number, date, measurement 以及一些其他值的文本转换。<a href="https://developer.apple.com/documentation/foundation/data_formatting" target="_blank" rel="external">详情传送门</a></p>
-<p>包括：</p>
-<p><strong>class</strong> : <code>NumberFormatter</code>,<code>PersonNameComponentFormatter</code>,<code>DateFormatter</code>,<code>DateComponentsFormatter</code>,<code>DateIntervalFormatter</code>,<code>ISO8601DateFormatter</code>,<code>ByteCountFormatter</code>,<code>MeasurementFormatter</code>,<code>Formatter</code>,<code>LengthFormatter</code>,<code>MassFormatter</code>,<code>EnergyFormatter</code></p>
+<p><strong>class</strong> : <code>NumberFormatter</code>,<code>PersonNameComponentFormatter</code>,<code>DateFormatter</code>,<code>DateComponentsFormatter</code>,<code>DateIntervalFormatter</code>,</p>
+<p><code>ISO8601DateFormatter</code>,<code>ByteCountFormatter</code>,<code>MeasurementFormatter</code>,<code>Formatter</code>,<code>LengthFormatter</code>,</p>
+<p><code>MassFormatter</code>,<code>EnergyFormatter</code></p>
 <p><strong>struct</strong> :     <code>PersonNameComponents</code>,<code>Locale</code></p>
 <h6 id="Filter-和-Sorting"><a href="#Filter-和-Sorting" class="headerlink" title="Filter 和 Sorting"></a>Filter 和 Sorting</h6><p>主要包含使用 predicate（谓词），expression（表达式）和 sort descriptors（排序描述）来过滤和排序集合中的元素。<a href="https://developer.apple.com/documentation/foundation/filters_and_sorting" target="_blank" rel="external">详情传送门</a></p>
-<p>包括：</p>
 <p><strong>class</strong> : <code>NSPredicate</code>,<code>NSExpression</code>,<code>NSComparisonPredicate</code>,<code>NSCompoundPredicate</code>,<code>NSSortDescriptor</code></p>
 <p><strong>enum</strong> : <code>ComparisonResult</code></p>
 <h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p><em>欢迎在本文下面留言一起交流心得或错误指正…</em></p>
@@ -502,11 +509,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
+                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,11 +537,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,11 +545,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Swift Standard Library</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">UIKit</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,10 +565,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
               </li>
              
@@ -562,15 +573,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,15 +589,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,15 +617,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -626,19 +637,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">system setting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,11 +645,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
               </li>
              
               <li class="article-tag-list-item">

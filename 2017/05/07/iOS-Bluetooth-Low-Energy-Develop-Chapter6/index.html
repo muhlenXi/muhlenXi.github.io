@@ -18,7 +18,7 @@
 <meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/05/07/iOS-Bluetooth-Low-Energy-Develop-Chapter6
 导语：
 在这篇文章中，主要是将你的本地设备设置为一个广播数据的 Peripheral 的最佳实践，以及实际开发过程中应该注意的事项。">
-<meta property="og:updated_time" content="2017-07-30T13:23:46.000Z">
+<meta property="og:updated_time" content="2017-08-13T14:40:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS BLE 开发小记[6] - 设置本地设备为 Peripheral 的最佳实践">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/05/07/iOS-Bluetooth-Low-Energy-Develop-Chapter6
@@ -196,7 +196,7 @@
 <h3 id="留意广播的数据"><a href="#留意广播的数据" class="headerlink" title="留意广播的数据"></a>留意广播的数据</h3><p>广播 Peripheral 的数据是实现设备本地设备为 Peripheral 的重要部分。接下来的小节将会帮助你以一些合理的方式来广播数据。</p>
 <h4 id="遵守广播数据长度的限制"><a href="#遵守广播数据长度的限制" class="headerlink" title="遵守广播数据长度的限制"></a>遵守广播数据长度的限制</h4><p>广播 Peripheral 的数据是通过调用 <code>CBPeripheralManager</code> 类的 <code>startAdvertising:</code> 方法时传入广播数据的字典来完成的。当你创建一个广播数据字典时，需要注意你能广播数据的内容和长度限制。</p>
 <p>尽管通常的广播数据包可以各种各样 Peripheral 设备的信息。也许你仅仅想广播设备的 Local Name<br>和你想要广播的服务的 UUID，也就是说，当你创建广播数据字典的时候，你仅仅能够指定以下两种 Key：<code>CBAdvertisementDataLocalNameKey</code> 和 <code>CBAdvertisementDataServiceUUIDsKey</code>,如果你指定其他的 Key，你将会收到错误提醒。</p>
-<p>对广播数据的空间大小也有限制。当你的 APP 在前台运行状态时，你可以有 28 字节的空间用来初始化广播数据字典，该字典包含两个支持的 key。如果空间用尽，最为搜索响应将会额外增加 10 个字节的空间仅仅用于 Local name。任何服务的 UUID 不允许加入到这个专用的 “overflow” 空间。当用户设备显示搜索的时候才可以发现这个专用空间的内容。当你的 APP 在后台运行状态时，则不会广播 Local name，并且所有服务的 UUID 将会被放到这个特别空间里。</p>
+<p>对广播数据的空间大小也有限制。当你的 APP 在前台运行状态时，你可以有 28 字节的空间用来初始化广播数据字典，该字典包含两个支持的 key。如果空间用尽，作为搜索响应将会额外增加 10 个字节的空间仅仅用于 Local name。任何服务的 UUID 不允许加入到这个专用的 “overflow” 空间。当用户设备显式搜索的时候才可以发现这个专用空间的内容。当你的 APP 在后台运行状态时，则不会广播 Local name，并且所有服务的 UUID 将会被放到这个特别空间里。</p>
 <p>注意：<em>这些空间不包含每个新数据类型的 2 个字节的头部信息，广播数据和响应数据的正确格式在 Bluetooth 4。0 规范，第3卷，C部分，11章节有定义。</em></p>
 <p>为了在使空间大小在这些约束之内，仅允许广播主要的 Service UUID。</p>
 <h4 id="仅仅广播你需要的数据"><a href="#仅仅广播你需要的数据" class="headerlink" title="仅仅广播你需要的数据"></a>仅仅广播你需要的数据</h4><p>因为广播数据需要用到设备的 Radio ，会影响电池续航时间，因此当你想要别的设备连接你时，再广播数据。连接后，这些设备可以直接与 Peripheral 的数据进行交互，不需要其他广播数据包。因此，想要促进 BLE 的处理，应停止广播来最小化 Radio 的使用，进而增加 APP 的性能和保留设备的电量。通过调用 <code>CBPeripheralManager</code> 类的 <code>stopAdvertising</code> 方法即可。</p>
@@ -480,11 +480,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
+                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -500,11 +508,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,11 +516,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Swift Standard Library</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">UIKit</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,10 +536,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
               </li>
              
@@ -540,15 +544,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,15 +560,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,15 +588,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -604,19 +608,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">system setting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,11 +616,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
               </li>
              
               <li class="article-tag-list-item">

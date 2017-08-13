@@ -18,7 +18,7 @@
 <meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/05/01/iOS-Bluetooth-Low-Energy-Develop-Chapter3
 导语：
 在这一节，你将会学到，如何通过 CoreBluetooth 框架来实现 Local Peripheral 方面的功能和代理方法。">
-<meta property="og:updated_time" content="2017-07-30T13:23:46.000Z">
+<meta property="og:updated_time" content="2017-08-13T12:42:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS BLE 开发小记[3] - 如何实现一个 Local Peripheral">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/05/01/iOS-Bluetooth-Low-Energy-Develop-Chapter3
@@ -239,7 +239,7 @@
 <p><em>当你的 APP 在后台运行时也会影响广播的行为，这一内容将会在下一篇中进行讨论。</em> </p>
 <h4 id="响应-Central-的读写请求"><a href="#响应-Central-的读写请求" class="headerlink" title="响应 Central 的读写请求"></a>响应 Central 的读写请求</h4><p>当你连接一个或多个 Central 后，你可能会收到读或者写的请求，对这些请求作出响应需要采取恰当的方式，下面的示例代码将会描述如何处理这些请求。</p>
 <p>当一个连接的 Central 发送读取某个 Characteristic 数据的请求时，Peripheral Manager 会调用 <code>peripheralManager:didReceiveReadRequest:</code> 方法进行代理回调。代理方法以 <code>CBATTRequest</code> 对象的方式来传递请求，它包含一些请求的属性。</p>
-<p>比如，当你收到一个读取 Characteristic 值的简单请求时，可以通过代理方法回调的 <code>CBATTRequest</code> 对像来判断 Central 指定要读取的 Characteristic 是否和设备服务库中的 Characteristic 是否相匹配。你可以开始实现这个代理方法，示例代码如下：</p>
+<p>比如，当你收到一个读取 Characteristic 值的简单请求时，可以通过代理方法回调的 <code>CBATTRequest</code> 对象来判断 Central 指定要读取的 Characteristic 是否和设备服务库中的 Characteristic 是否相匹配。你可以开始实现这个代理方法，示例代码如下：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)peripheralManager:(CBPeripheralManager *)peripheral</div><div class="line">    didReceiveReadRequest:(CBATTRequest *)request &#123;</div><div class="line"> </div><div class="line">    <span class="keyword">if</span> ([request.characteristic.UUID isEqual:myCharacteristic.UUID]) &#123;</div><div class="line">        <span class="comment">// ...</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>如果 Characteristic 的 UUID 能够匹配，下一步就是确保读取请求的位置没有超出 Characteristic 的值的边界。如下面代码所示，你可以通过使用 <code>CBATTRequest</code> 对象的 <code>offset</code> 属性来确保读取请求没有尝试读取范围之外的数据。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (request.offset &gt; myCharacteristic.value.length) &#123;</div><div class="line">    [myPeripheralManager respondToRequest:request</div><div class="line">        withResult:CBATTErrorInvalidOffset];</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -263,7 +263,7 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSData</span> *updatedValue = <span class="comment">// fetch the characteristic's new value</span></div><div class="line"><span class="built_in">BOOL</span> didSendValue = [myPeripheralManager updateValue:updatedValue</div><div class="line">    forCharacteristic:characteristic onSubscribedCentrals:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
 <p>当你调用这个方法给订阅的 Central 发送通知时，你可以通过最后的那个参数来指定要发送的 Central，示例代码中的参数为 nil，表明将会发送通知给所有连接且订阅的 Central，没有订阅的 Central 则会被忽略。</p>
 <p><code>updateValue:forCharacteristic:onSubscribedCentrals:</code> 方法会返回一个 Boolean 类型的值来表示通知是否成功的发送给订阅的 Central 了，如果 base queue （基础队列）满载，该方法会返回 NO，当传输队列存在更多空间时，Peripheral Manager 则会调用 <code>peripheralManagerIsReadyToUpdateSubscribers:</code> 代理方法进行回调。你可以实现这个代理方法，在方法中再次调用 <code>updateValue:forCharacteristic:onSubscribedCentrals:</code> 方法发送通知给订阅的 Central。</p>
-<p>提示：<em>用通知发送单个数据包给订阅的 Central，就是说，一旦订阅的 Central 发行更新时，你就应该调用 <code>updateValue:forCharacteristic:onSubscribedCentrals:</code> 方法用单一通知发送全部的更新值。</em></p>
+<p>提示：<em>用通知发送单个数据包给订阅的 Central，就是说，一旦订阅的 Central 发生更新时，你就应该调用 <code>updateValue:forCharacteristic:onSubscribedCentrals:</code> 方法用单一通知发送全部的更新值。</em></p>
 <p><em>并不是所有的数据都是通过通知来传输的，这主要取决于你的 Characteristic 的值的大小，只有当 Central 调用<br><code>CBPeripheral</code>类的 <code>readValueForCharacteristic:</code> 方法时，你可以检索全部的值。</em></p>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>1、<a href="https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/PerformingCommonPeripheralRoleTasks/PerformingCommonPeripheralRoleTasks.html#//apple_ref/doc/uid/TP40013257-CH4-SW1" target="_blank" rel="external">Performing Common Peripheral Role Tasks</a></p>
 <h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p><em>欢迎在本文下面留言一起交流心得…</em></p>
@@ -528,11 +528,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
+                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,11 +556,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,11 +564,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Swift Standard Library</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">UIKit</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,10 +584,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
               </li>
              
@@ -588,15 +592,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,15 +608,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,15 +636,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -652,19 +656,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">system setting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,11 +664,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
               </li>
              
               <li class="article-tag-list-item">

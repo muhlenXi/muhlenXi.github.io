@@ -18,7 +18,7 @@
 <meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/04/29/iOS-Bluetooth-Low-Energy-Develop-Chapter2
 导语：
 在这一节，你将会学到，如何通过 CoreBluetooth 框架来实现 Local Central 方面的功能和代理方法。">
-<meta property="og:updated_time" content="2017-07-30T13:23:46.000Z">
+<meta property="og:updated_time" content="2017-08-13T10:03:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS BLE 开发小记[2] - 如何实现一个 Local Central">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/04/29/iOS-Bluetooth-Low-Energy-Develop-Chapter2
@@ -193,19 +193,20 @@
 </blockquote>
 <a id="more"></a>
 <p>在 BLE 通信中，实现了 Central 规范的设备，能够调用许多常用的方法，比如搜索和连接可用的 Peripheral，然后与 Peripheral 提供的数据进行交互。但是实现了 Peripheral 规范的设备同样能够调用许多常见的方法，但是也有一些不同。比如，发布和广播 Service，对 Central 的读写请求进行响应以及 响应Central 的订阅请求。</p>
-<p>本文的示例代码将会引导你在当前设备的 APP 中如何实现 Central 的规范。除此之外，你还会学到：</p>
+<p>在这个章节中，你将会学习在 Central 端如何使用 Core Bluetooth 框架来执行通用的 BLE 方法。基于代码的示例将会引导和协助你在你的本地设备上实现 Central 的角色。尤其，你将会学到：</p>
 <ul>
 <li>如何创建一个 Central Manager 对象</li>
 <li>如何搜索和连接一个正在广播信息的 Peripheral</li>
-<li>成功连接后如何与 Peripheral 的数据进行交互</li>
-<li>如何一个发送或写入请求给 Peripheral Service 的 Characteristic</li>
-<li>如何订阅一个每当更新数据时就会发出通知的 Characteristic</li>
+<li>连接成功后如何与 Peripheral 的数据进行交互</li>
+<li>如何发送读取或写入请求给 Peripheral Service 的 Characteristic</li>
+<li>如何订阅一个当数据更新时就会发出通知的 Characteristic</li>
 </ul>
-<p><em>也许你会发现本文的示例代码比较简单和抽象，但是不用担心，后续章节会有一个实战 APP 来演示如何在 APP 中实现 Central 功能。</em></p>
+<p>在下个章节，你将会学习如何在你的本地设备上实现 Peripheral 的角色。</p>
+<p>你也许会发现本章节中的代码有点简单和抽象，在你的真实 App 中，你需要做些恰当的改变。更高级的开发技能可以参考后续的章节。</p>
 <h3 id="Central-实现详情"><a href="#Central-实现详情" class="headerlink" title="Central 实现详情"></a>Central 实现详情</h3><p><strong>在本文中，你的 ViewController 需要遵循 <code>CBCentralManagerDelegate</code> 和 <code>CBPeripheralDelegate</code> 代理协议。</strong></p>
 <h4 id="创建-Central-Manager"><a href="#创建-Central-Manager" class="headerlink" title="创建 Central Manager"></a>创建 Central Manager</h4><p>因为在 CoreBluetooth 中是通过面向对象的思想用一个 CBCentralManager（中心管理） 对象来表示一个 Local Central 设备，所以在调用该对象的方法之前需要先 allocate（分配）和 initialize（初始化）一个 Central Manager 实例。可以通过 <code>initWithDelegate:queue:options:</code> 方法来初始化一个 Central Manager 对象。 </p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">myCentralManager =</div><div class="line">        [[CBCentralManager alloc] initWithDelegate:<span class="keyword">self</span> queue:<span class="literal">nil</span> options:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
-<p>在示例代码中，设置 Central Manager 的 Delegate 为 Self，是为了接收 Central 的事件响应。 参数 dispatch queue（调度队列）设置为 nil，表示 Central Manager 是在 main queue（主队列）中分发响应事件。 </p>
+<p>在示例代码中，设置 Central Manager 的 Delegate 为 self，是为了接收 Central 的事件响应。 参数 dispatch queue（调度队列）设置为 nil，表示 Central Manager 是在 main queue（主队列）中分发响应事件。 </p>
 <p>当你创建一个 Central Manager 对象时，Central Manager 会调用 <code>centralManagerDidUpdateState:</code> 方法来代理回调。因此你必须实现这个代理方法来确保 Central 设备能够使用 BLE 技术,代理方法的详情见 <a href="https://developer.apple.com/reference/corebluetooth/cbcentralmanagerdelegate" target="_blank" rel="external">CBCentralManagerDelegate Protocol Reference</a>。</p>
 <h4 id="搜索正在广播数据的-Peripheral-设备"><a href="#搜索正在广播数据的-Peripheral-设备" class="headerlink" title="搜索正在广播数据的 Peripheral 设备"></a>搜索正在广播数据的 Peripheral 设备</h4><p>初始化 Central Manger 对象后，第一个任务就是搜索周围的 Peripheral，上一篇曾提到过， Peripheral 通过广播数据的方式来显示它们的存在，你可以通过 <code>scanForPeripheralsWithServices:options:</code> 方法来搜索周围正在广播数据的 Peripheral 设备。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[myCentralManager scanForPeripheralsWithServices:<span class="literal">nil</span> options:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
@@ -226,7 +227,7 @@
 <h4 id="搜索-Service-的-Characteristic"><a href="#搜索-Service-的-Characteristic" class="headerlink" title="搜索 Service 的 Characteristic"></a>搜索 Service 的 Characteristic</h4><p>当你找到指定的 Service 之后，你下一步要做的就是搜索这个 Service 中提供的所有的 Characteristic，通过调用 <code>discoverCharacteristics:forService:</code> 方法来搜索指定的 Service 的 Characteristic。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[peripheral discoverCharacteristics:<span class="literal">nil</span> forService:interestingService];</div></pre></td></tr></table></figure>
 <p>提示：<em>在实际开发中，第一个参数一般不传入 nil，因为你需要的 Characteristic 也许是所有 Characteristic 的一部分，为了节省电量以及一些不必要的时间浪费，通常指定一个 Characteristic Array（包含 UUID 对象）为参数，来获取你想要了解的 Characteristic 的信息。</em></p>
-<p>当搜索到指定的 Characteristic 后， Peripheral 会通过 <code>peripheral:didDiscoverCharacteristicsForService:error:</code> 方法进行代理回调，CoreBluetooth 会创建一个包含 CBCharacteristic 对象的数组用来保存指定的 Characteristic，通过实现下面这个代理方法来打印指定的 Characteristic。</p>
+<p>当搜索到指定的 Characteristic 后， Peripheral 会通过 <code>peripheral:didDiscoverCharacteristicsForService:error:</code> 方法进行代理回调，CoreBluetooth 会创建一个包含 CBCharacteristic 对象的数组用来保存指定的 Characteristic，如下是遍历数组中的 Characteristic。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)peripheral:(CBPeripheral *)peripheral</div><div class="line">didDiscoverCharacteristicsForService:(CBService *)service</div><div class="line">             error:(<span class="built_in">NSError</span> *)error &#123;</div><div class="line"> </div><div class="line">    <span class="keyword">for</span> (CBCharacteristic *characteristic <span class="keyword">in</span> service.characteristics) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Discovered characteristic %@"</span>, characteristic);</div><div class="line">        <span class="comment">// ...</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="检索-Characteristic-的值"><a href="#检索-Characteristic-的值" class="headerlink" title="检索 Characteristic 的值"></a>检索 Characteristic 的值</h4><h5 id="读取某个-Characteristic-的值"><a href="#读取某个-Characteristic-的值" class="headerlink" title="读取某个 Characteristic 的值"></a>读取某个 Characteristic 的值</h5><p>当你找到 Service 指定的 Characteristic，可以通过 <code>readValueForCharacteristic:</code> 方法来读取这个 Characteristic 的值。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"Reading value for characteristic %@"</span>, interestingCharacteristic);</div><div class="line">[peripheral readValueForCharacteristic:interestingCharacteristic];</div></pre></td></tr></table></figure>
@@ -238,13 +239,13 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[peripheral setNotifyValue:<span class="literal">YES</span> forCharacteristic:interestingCharacteristic];</div></pre></td></tr></table></figure>
 <p>当你订阅或取消订阅一个 Characteristic 的值时，Peripheral 会通过调用 <code>peripheral:didUpdateNotificationStateForCharacteristic:error:</code> 方法进行代理回调，如果订阅失败了，你可以通过这个方法获取到发生错误的原因。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)peripheral:(CBPeripheral *)peripheral</div><div class="line">didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic</div><div class="line">             error:(<span class="built_in">NSError</span> *)error &#123;</div><div class="line"> </div><div class="line">    <span class="keyword">if</span> (error) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Error changing notification state: %@"</span>,</div><div class="line">           [error localizedDescription]);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>提示：<em>并不是所有的 Characteristic 都提供订阅功能，决定一个 Characteristic 是否能订阅是通过检查 Characteristic 的 properties 属性是否包含CBCharacteristicPropertyNotify 或者 CBCharacteristicPropertyIndicate  常量来判断的。</em></p>
+<p>提示：<em>并不是所有的 Characteristic 都提供订阅功能，决定一个 Characteristic 是否能订阅是通过检查 Characteristic 的 properties 属性是否包含 CBCharacteristicPropertyNotify 或者 CBCharacteristicPropertyIndicate  常量来判断的。</em></p>
 <h5 id="写数据到-Characteristic-中"><a href="#写数据到-Characteristic-中" class="headerlink" title="写数据到 Characteristic 中"></a>写数据到 Characteristic 中</h5><p>有时需要写入一个数据到 Characteristic 中，比如，如果你的 APP 与数字恒温器进行交互。你或许想要给数字恒温器提供一个值，使得房间的室温能保持在这个温度左右。如果一个 Characteristic 的值是可写的，你可以通过调用 <code>writeValue:forCharacteristic:type:</code> 方法将一个 data 类型（NSData 对象）的值写入到 Characteristic 中。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"Writing value for characteristic %@"</span>, interestingCharacteristic);</div><div class="line">[peripheral writeValue:dataToWrite forCharacteristic:interestingCharacteristic</div><div class="line">        type:CBCharacteristicWriteWithResponse];</div></pre></td></tr></table></figure>
 <p>当你写一个数据到 Characteristic 中时，你可以指定写入类型，上面代码中的写入类型是 <code>CBCharacteristicWriteWithResponse</code> ，此类型时，Peripheral 会通过 <code>peripheral:didWriteValueForCharacteristic:error:</code> 方法来代理回调告知你是否写入数据成功，可以实现下面这个代理方法进行错误处理。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)peripheral:(CBPeripheral *)peripheral</div><div class="line">didWriteValueForCharacteristic:(CBCharacteristic *)characteristic</div><div class="line">             error:(<span class="built_in">NSError</span> *)error &#123;</div><div class="line"> </div><div class="line">    <span class="keyword">if</span> (error) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Error writing characteristic value: %@"</span>,</div><div class="line">            [error localizedDescription]);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>如果你指定写入类型为 <code>CBCharacteristicWriteWithoutResponse</code> 时，不能保证写入操作是否有效的执行了。这时 Peripheral 不会调用任何代理方法，如果想了解 CoreBluetooth 提供的写入类型详情，可以查阅 <a href="https://developer.apple.com/reference/corebluetooth/cbcharacteristicwritetype" target="_blank" rel="external">CBCharacteristicWriteType</a>.</p>
-<p>提示：<em>有的 Characteristic 的值可能仅仅是可写的，或者不是可写的。决定 Characteristic 的值是否可写，需要通过查看 Characteristic 的 properties 属性是否包含 CBCharacteristicPropertyWriteWithoutResponse 或者CBCharacteristicPropertyWrite 常量来判断的。</em></p>
+<p>提示：<em>有的 Characteristic 的值可能仅仅是可写的，或者不是可写的。决定 Characteristic 的值是否可写，需要通过查看 Characteristic 的 properties 属性是否包含 CBCharacteristicPropertyWriteWithoutResponse 或者 CBCharacteristicPropertyWrite 常量来判断的。</em></p>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>1、<a href="https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/PerformingCommonCentralRoleTasks/PerformingCommonCentralRoleTasks.html#//apple_ref/doc/uid/TP40013257-CH3-SW1" target="_blank" rel="external">Performing Common Central Role Tasks</a></p>
 <h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p><em>欢迎在本文下面留言一起交流心得…</em></p>
 <p><em>如果本文能给你带来一定的帮助，在自己有能力的情况下，不妨赞助一下，表示对博主辛勤耕作的支持！</em></p>
@@ -508,11 +509,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
+                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,11 +537,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,11 +545,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Swift Standard Library</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">UIKit</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,10 +565,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
               </li>
              
@@ -568,15 +573,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,15 +589,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -612,15 +617,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,19 +637,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">system setting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -652,11 +645,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -19,7 +19,7 @@
 导语：
 在这一节，主要是与 Remote Peripheral 交互的最佳实践，以及实际开发过程中应该注意的事项。">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/ReconnectingToAPeripheral_2x.png">
-<meta property="og:updated_time" content="2017-07-30T13:23:46.000Z">
+<meta property="og:updated_time" content="2017-08-13T14:35:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS BLE 开发小记[5] - 与 Remote Peripheral 交互的最佳实践">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/05/05/iOS-Bluetooth-Low-Energy-Develop-Chapter5
@@ -241,7 +241,7 @@
 <p>关于设备随机地址的详细信息，请查阅 Bluetooth 4.0 规范，第3卷，C部分，10.8 章节和 <a href="https://developer.apple.com/hardwaredrivers/BluetoothDesignGuidelines.pdf" target="_blank" rel="external">Bluetooth Accessory Design Guidelines for Apple Products</a>.</p>
 <h4 id="恢复当前已连接的-Peripheral-列表"><a href="#恢复当前已连接的-Peripheral-列表" class="headerlink" title="恢复当前已连接的 Peripheral 列表"></a>恢复当前已连接的 Peripheral 列表</h4><p>另一种重连 Peripheral 的方式就是检查你要连接的 Peripheral 是否一直被系统连接（举例，被另一个 APP 连接），你可以调用 <code>CBCentralManager</code> 类的 <code>retrieveConnectedPeripheralsWithServices:</code> 方法，它返回一个 CBPeripheral 对象的数组，数组中包含当前系统已经连接的 Peripheral。</p>
 <p>因为系统当前可能连接超过一个以上的 Peripheral，你可以传入一个 CBUUID 对象的数组来恢复你指定 Service的 Peripheral，如果当前连接的 Peripheral 中没有你指定的 Peripheral，数组将是空的，你应该尝试其余两种方式中的一种。如果数组不为空，在界面中让用户去选择要重连哪一个。</p>
-<p>假设用户选择了渴望的 Peripheral，通过调用 <code>CBCentralManager</code> 类的 <code>connectPeripheral:options:</code> 方法来本地化连接。即使系统一直连接着设备，你必须本地化连接后再进行交互。当建立了本地连接后，Central Manager 会调用 <code>centralManager:didConnectPeripheral:</code> 代理方法，此时设备重连成功。</p>
+<p>假设用户选择了期望的 Peripheral，通过调用 <code>CBCentralManager</code> 类的 <code>connectPeripheral:options:</code> 方法来本地化连接。即使系统一直连接着设备，你必须本地化连接后再进行交互。当建立了本地连接后，Central Manager 会调用 <code>centralManager:didConnectPeripheral:</code> 代理方法，此时设备重连成功。</p>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>1、<a href="https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/BestPracticesForInteractingWithARemotePeripheralDevice/BestPracticesForInteractingWithARemotePeripheralDevice.html#//apple_ref/doc/uid/TP40013257-CH6-SW1" target="_blank" rel="external">Best Practices for Interacting with a Remote Peripheral Device</a></p>
 <h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p><em>欢迎在本文下面留言一起交流心得…</em></p>
 <p><em>如果本文能给你带来一定的帮助，在自己有能力的情况下，不妨赞助一下，表示对博主辛勤耕作的支持！</em></p>
@@ -505,11 +505,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
+                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,11 +533,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,11 +541,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Swift Standard Library</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">UIKit</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
+                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,10 +561,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
               </li>
              
@@ -565,15 +569,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,15 +585,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -609,15 +613,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -629,19 +633,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">system setting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,11 +641,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
               </li>
              
               <li class="article-tag-list-item">
