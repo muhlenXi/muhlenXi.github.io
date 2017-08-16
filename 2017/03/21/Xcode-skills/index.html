@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/Xcode.png">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/localized1.png">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/localized2.png">
-<meta property="og:updated_time" content="2017-08-02T13:51:10.000Z">
+<meta property="og:updated_time" content="2017-08-16T13:44:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode skills">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/03/21/Xcode-skills
@@ -247,6 +247,18 @@
 </li>
 <li><p><code>Command + Shift + O</code>         根据文件名快速切换文件</p>
 </li>
+<li><p><code>Command + Control + space</code> 呼出 emoji 表情输入</p>
+</li>
+<li><p><code>Control + A</code> 光标移到本行 <code>行首</code></p>
+</li>
+<li><code>Control + E</code> 光标移到本行 <code>行尾</code></li>
+<li><code>Control + N</code> 光标跳到 <code>下一行</code></li>
+<li><p><code>Control + P</code> 光标跳到 <code>上一行</code></p>
+</li>
+<li><p><code>Command + 方向左键</code>  光标移到本行代码开头</p>
+</li>
+<li><code>Command + 方向 →</code>        光标移到本行代码结尾</li>
+<li><code>Command + L</code>        快速跳到某一行</li>
 </ul>
 <h5 id="Xcode-快捷键图示"><a href="#Xcode-快捷键图示" class="headerlink" title="Xcode 快捷键图示"></a>Xcode 快捷键图示</h5><div align="center"><br><img src="http://7xvffo.com1.z0.glb.clouddn.com/Xcode%20Keys.jpg" width="736" height="1041" alt="选项列表图"><br></div>
 
@@ -266,6 +278,9 @@
 <p><em>2、填入文件名和路径，勾选要导出的语言，保存就可以了。。</em> </p>
 <div align="center"><br><img src="http://7xvffo.com1.z0.glb.clouddn.com/localized2.png" width="565" height="291" alt="选项列表图"><br></div>
 
+<h5 id="Objective-C-调用-Swift"><a href="#Objective-C-调用-Swift" class="headerlink" title="Objective-C 调用 Swift"></a>Objective-C 调用 Swift</h5><p>【1】确保将项目的<code>Target</code>的 <code>Build Setting -&gt; Packaging -&gt; Defines Module</code> 设置为 <code>YES</code>。<br>【2】修改<code>Build Setting</code> 中的 <code>Product Module Name</code> 为 <code>项目名</code>。<br>【3】在调用的地方 导入 <code>#import &lt;项目名-Swift.h&gt;</code>即可。</p>
+<h5 id="pch文件路径"><a href="#pch文件路径" class="headerlink" title="pch文件路径"></a>pch文件路径</h5><p><em>$(SRCROOT)/项目名称/pch文件名</em></p>
+<h5 id="Xcode8控制台输出信息过多解决方法"><a href="#Xcode8控制台输出信息过多解决方法" class="headerlink" title="Xcode8控制台输出信息过多解决方法"></a>Xcode8控制台输出信息过多解决方法</h5><p>Product -&gt; Scheme -&gt; Edit Scheme… -&gt; Run -&gt; Arguments, 在Environment Variables里边添加 OS_ACTIVITY_MODE ＝ disable</p>
 
       
 
@@ -519,15 +534,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BLE</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,10 +558,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
               </li>
              
@@ -559,7 +570,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优雅编程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Xcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,18 +583,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,7 +598,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,7 +614,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -611,7 +622,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -619,15 +630,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
+                <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">踩坑</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -643,14 +650,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
               </li>
              
@@ -659,7 +658,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
+                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -667,15 +666,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
+                <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
+                <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,6 +687,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
               </li>
             
             <div class="clearfix"></div>
