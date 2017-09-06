@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/zhexian.PNG">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/quanquan.PNG">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/xinquan.PNG">
-<meta property="og:updated_time" content="2017-07-30T13:23:46.000Z">
+<meta property="og:updated_time" content="2017-08-24T14:44:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高德 SDK 的正确打开方式">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2016/04/07/Gaode-Map
@@ -115,8 +115,6 @@ var _hmt = _hmt || [];
 		        
 					<a class="jianshu" target="_blank" href="http://www.jianshu.com/u/2ad16884a0cd" title="jianshu"><i class="icon-jianshu"></i></a>
 		        
-					<a class="mail" target="_blank" href="/muhlenxi@163.com" title="mail"><i class="icon-mail"></i></a>
-		        
 					<a class="twitter" target="_blank" href="https://twitter.com/muhlenXi" title="twitter"><i class="icon-twitter"></i></a>
 		        
 			</div>
@@ -161,8 +159,6 @@ var _hmt = _hmt || [];
 						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/mulenXi" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 						<a class="jianshu" target="_blank" href="http://www.jianshu.com/u/2ad16884a0cd" title="jianshu"><i class="icon-jianshu"></i></a>
-			        
-						<a class="mail" target="_blank" href="/muhlenxi@163.com" title="mail"><i class="icon-mail"></i></a>
 			        
 						<a class="twitter" target="_blank" href="https://twitter.com/muhlenXi" title="twitter"><i class="icon-twitter"></i></a>
 			        
@@ -210,7 +206,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/04/07/Gaode-Map">http://muhlenxi.com/2016/04/07/Gaode-Map</a></em></p>
+        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/04/07/Gaode-Map" target="_blank" rel="external">http://muhlenxi.com/2016/04/07/Gaode-Map</a></em></p>
 <h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
 <p>高德地图 iOS SDK 是一套基于 iOS 6.0.0 及以上版本的地图应用程序开发接口，供开发者在自己的 iOS应用中加入地图相关的功能。通过 iOS SDK，开发者可以轻松地开发出地图显示与操作、兴趣点搜索、地理编码、路线规划等功能。</p>
 </blockquote>
@@ -221,7 +217,7 @@ var _hmt = _hmt || [];
 <p>点这里查看<a href="http://lbs.amap.com" target="_blank" rel="external">高德开发平台</a>,在这里注册<code>高德账号</code>并成为<code>开发者</code>。</p>
 <p><em>如果是第一次接触高德地图，可以大概看一下<a href="http://lbs.amap.com/api/ios-sdk/gettingstarted/" target="_blank" rel="external">入门指南</a></em></p>
 <h3 id="高德地图SDK的部署"><a href="#高德地图SDK的部署" class="headerlink" title="高德地图SDK的部署"></a>高德地图SDK的部署</h3><p><em>由于我喜欢简单粗暴的部署方式，所以一直选择 <code>CocoaPods</code> 来安装和配置第三方库</em>。</p>
-<p>关于 <code>CocoaPods</code>,不了解的可以看一下我的另一篇博文，<a href="http://muhlenxi.com/2015/10/05/zsh-and-CocoaPods">zsh的配置和CocoaPods的安装与使用</a>。这里就不详细展开了。</p>
+<p>关于 <code>CocoaPods</code>,不了解的可以看一下我的另一篇博文，<a href="http://muhlenxi.com/2015/10/05/zsh-and-CocoaPods" target="_blank" rel="external">zsh的配置和CocoaPods的安装与使用</a>。这里就不详细展开了。</p>
 <p>方法就是，使用 <code>终端cd</code> 到你的项目所在的路径下，<code>vim</code> 一个 <code>Podfile</code> 文件，点击 <code>字母i</code> 进入<code>编辑</code>状态，在文件中输入：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">platform:ios,'7.0'</div><div class="line">target 'gaodeMapDemo' do</div><div class="line">pod 'AMap2DMap', '~&gt; 3.3.0'</div><div class="line">pod 'AMapLocation', '~&gt; 1.2.0' #定位SDK</div><div class="line">pod 'AMapSearch'               #搜索服务SDK</div><div class="line">end</div></pre></td></tr></table></figure>
 <p>然后按下 <code>Esc</code>，<code>shift+：</code>然后输入 <code>wq</code> ，最后 <code>终端</code> 输入 <code>pod install --verbose --no-repo-update</code> 安装即可。</p>
@@ -347,7 +343,7 @@ var _hmt = _hmt || [];
 <h3 id="定位SDK的打开方式"><a href="#定位SDK的打开方式" class="headerlink" title="定位SDK的打开方式"></a>定位SDK的打开方式</h3><p>点这里查看 <a href="http://lbs.amap.com/api/ios-location-sdk/summary/" target="_blank" rel="external">iOS 定位 SDK</a>.</p>
 <h3 id="导航-SDK-的打开方式"><a href="#导航-SDK-的打开方式" class="headerlink" title="导航 SDK 的打开方式"></a>导航 SDK 的打开方式</h3><p>点这里查看 <a href="http://lbs.amap.com/api/ios-navi-sdk/summary/" target="_blank" rel="external">iOS 导航 SDK </a>.</p>
 <p><strong>关于导航，可以参考我的这篇博文。</strong></p>
-<p><a href="http://muhlenxi.com/2016/05/19/Map-Guide">iOS实现应用外自带地图、高德地图、百度地图导航</a></p>
+<p><a href="http://muhlenxi.com/2016/05/19/Map-Guide" target="_blank" rel="external">iOS实现应用外自带地图、高德地图、百度地图导航</a></p>
 <h3 id="室内地图SDK的打开方式"><a href="#室内地图SDK的打开方式" class="headerlink" title="室内地图SDK的打开方式"></a>室内地图SDK的打开方式</h3><p>点这里查看 <a href="http://lbs.amap.com/api/ios-indoor-sdk/summary/" target="_blank" rel="external">iOS 室内地图SDK</a></p>
 <h3 id="室内定位SDK的打开方式"><a href="#室内定位SDK的打开方式" class="headerlink" title="室内定位SDK的打开方式"></a>室内定位SDK的打开方式</h3><p>点这里查看 <a href="http://lbs.amap.com/api/ios-indoorlocation-sdk/summary/" target="_blank" rel="external">iOS 室内定位SDK</a></p>
 <h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p><em>本文会阶段性的持续更新的！欢迎大家批评和指正！</em></p>
@@ -625,15 +621,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Foundation</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BLE</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Foundation</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,11 +645,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">UIKit</a>
+                <a href="javascript:void(0)" class="js-tag color3">Swift Standard Library</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Swift Standard Library</a>
+                <a href="javascript:void(0)" class="js-tag color1">UIKit</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -669,11 +665,23 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -685,14 +693,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
               </li>
              
@@ -701,11 +701,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -721,11 +717,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
+                <a href="javascript:void(0)" class="js-tag color5">Swift开发者必备Tips</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift开发者必备Tips</a>
+                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -741,11 +737,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
+                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -753,23 +749,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">zsh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -782,6 +770,14 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">NSOperation</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">zsh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
               </li>
             
             <div class="clearfix"></div>
