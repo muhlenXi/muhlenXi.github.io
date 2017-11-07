@@ -26,7 +26,7 @@ Stay Hungry, Stay Foolish.">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/nsthread.png">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/beforeLock.png">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/afterLock.png">
-<meta property="og:updated_time" content="2017-08-24T14:44:17.000Z">
+<meta property="og:updated_time" content="2017-11-07T14:58:21.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 多线程详细总结">
 <meta name="twitter:description" content="本文是 muhlenXi 原创文章，欢迎转载，转载请注明出处: http://muhlenxi.com/2017/08/22/multithreading
@@ -263,8 +263,12 @@ var _hmt = _hmt || [];
 <li>占用内存空间</li>
 <li>增大 CPU 调度开销</li>
 </ul>
-<h2 id="多线程技术方案"><a href="#多线程技术方案" class="headerlink" title="多线程技术方案"></a>多线程技术方案</h2><h3 id="pThread"><a href="#pThread" class="headerlink" title="pThread"></a>pThread</h3><p>基于 C 语言实现的框架，不是很常用。</p>
-<h3 id="NSThread"><a href="#NSThread" class="headerlink" title="NSThread"></a>NSThread</h3><p>对 C 语言框架进行了封装，完全是面向对象的。</p>
+<h2 id="多线程技术方案"><a href="#多线程技术方案" class="headerlink" title="多线程技术方案"></a>多线程技术方案</h2><h3 id="pThread"><a href="#pThread" class="headerlink" title="pThread"></a>pThread</h3><p>描述：是基于 C 语言实现的框架，是一套通用的多线程 API，适用于 Unix/Linux/Windows 等系统，可以跨平台、移植，使用难度大，一般几乎不用。</p>
+<p>使用语言：C 语言</p>
+<p>线程生命周期：由程序员进行管理。</p>
+<h3 id="NSThread"><a href="#NSThread" class="headerlink" title="NSThread"></a>NSThread</h3><p>描述：对 C 语言框架进行了封装，完全是面向对象的，可直接操作线程对象。</p>
+<p>使用语言：Objective-C</p>
+<p>线程生命周期：由程序员进行管理。</p>
 <h4 id="对象初始化"><a href="#对象初始化" class="headerlink" title="对象初始化"></a>对象初始化</h4><p>主要有 3 种方式来实现多线程：</p>
 <ul>
 <li>方式1：通过 alloc 方式创建 NSThread 对象</li>
@@ -299,7 +303,9 @@ var _hmt = _hmt || [];
 <p>加锁后的数据如图所示，这次正常了，可怜的 muhlenXi 同学没抢到红包。</p>
 <div align="center"><br><img src="http://7xvffo.com1.z0.glb.clouddn.com/afterLock.png" width="914" height="86" alt="选项列表图"><br></div>
 
-<h3 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h3><p>Grand Central Dispatch 是 Apple 公司针对多核并行运算提出的一套线程机制，GCD 会自动的管理线程的生命周期，使用起来比较方便和灵活。</p>
+<h3 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h3><p>描述：Grand Central Dispatch 是 Apple 公司针对多核并行运算提出的一套线程机制，GCD 会自动的管理线程的生命周期，使用起来比较方便和灵活。</p>
+<p>使用语言：C 语言</p>
+<p>生命周期管理：自动管理</p>
 <h4 id="进程同步-和-进程异步"><a href="#进程同步-和-进程异步" class="headerlink" title="进程同步 和 进程异步"></a>进程同步 和 进程异步</h4><ul>
 <li><code>进程同步</code>：进程中的多个任务必须一个一个来处理，前一个任务处理完毕，才会进行下一个任务。同步会阻塞当前线程。</li>
 <li><code>进程异步</code>：不用等待任务处理完毕，就可以执行下一个任务了。异步不会阻塞当前线程。</li>
@@ -337,12 +343,14 @@ var _hmt = _hmt || [];
 <li>延迟执行某个任务。</li>
 </ul>
 <h5 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h5><p>当 ViewController 被 dealloc 后，如果时间到了，block 中的代码还会执行，会引起闪退问题，我们应该加以判断。</p>
-<h3 id="NSOperation"><a href="#NSOperation" class="headerlink" title="NSOperation"></a>NSOperation</h3><p>NSOperation 是针对 GCD 封装的一个多线程抽象基类，不能直接被使用，需要使用其子类。子类主要有以下三种使用方式：</p>
+<h3 id="NSOperation"><a href="#NSOperation" class="headerlink" title="NSOperation"></a>NSOperation</h3><p>描述:</p>
+<p>NSOperation 是针对 GCD 封装的一个多线程抽象基类，不能直接被使用，需要使用其子类。子类主要有以下三种使用方式：</p>
 <ul>
 <li>使用 NSInvocationOperation ,系统封装的。</li>
 <li>使用 NSBlockOperation, 系统封装的。</li>
 <li>自定义 Operation,需继承于 NSOperation。</li>
 </ul>
+<p>使用语言：Objective-C<br>线程生命周期：自动管理</p>
 <h4 id="NSOperation-子对象"><a href="#NSOperation-子对象" class="headerlink" title="NSOperation 子对象"></a>NSOperation 子对象</h4><p>NSOperation 子对象有 5 种状态，分别是：</p>
 <p><code>ready (就绪)</code>、 <code>cancelled（取消）</code>、 <code>executing（执行)</code>、<code>finished（完成）</code> 和 <code>asynchronous（是否并发）</code>。</p>
 <p><em>实际项目中应该根据不同状态来执行不同业务逻辑。</em></p>
@@ -489,6 +497,15 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
+    <a href="/2017/11/06/Python-shared/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          如何分享 Python 代码到 PyPI 社区
+        
+      </div>
+    </a>
+  
   
     <a href="/2017/07/07/About-Ble-Auto-Connecting/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">对 BLE 外设（Peripheral）自动重连机制的逻辑梳理</div>
@@ -611,18 +628,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BLE</a>
               </li>
              
@@ -635,6 +640,22 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">XYJLaunchAdvertisingView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">UIKit</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
@@ -643,15 +664,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Swift Standard Library</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">UIKit</a>
+                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -659,19 +676,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">大话设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -683,7 +688,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">大话设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -695,11 +712,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">极光推送</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,7 +720,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">PyPI</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -727,11 +752,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -739,11 +764,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
+                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">魔方</a>
+                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
               </li>
              
               <li class="article-tag-list-item">
