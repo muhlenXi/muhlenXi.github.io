@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 大话设计模式 | muhlenXi</title>
+  <title>如何判断对象相同？ | muhlenXi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="他最大的快乐一直来自学习本身。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="muhlenXi">
-<meta property="og:url" content="http://yoursite.com/tags/大话设计模式/index.html">
+  <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2018/05/06/Equal-Object
+导语：
+在编程中，如果两个对象中的所有属性分别相等，则我们可以认为这两个对象是同一个对象。那么在 Swift 和 Objective-C 中，是怎样的情况呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何判断对象相同？">
+<meta property="og:url" content="http://yoursite.com/2018/05/06/Equal-Object/index.html">
 <meta property="og:site_name" content="muhlenXi">
-<meta property="og:description" content="他最大的快乐一直来自学习本身。">
+<meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2018/05/06/Equal-Object
+导语：
+在编程中，如果两个对象中的所有属性分别相等，则我们可以认为这两个对象是同一个对象。那么在 Swift 和 Objective-C 中，是怎样的情况呢？">
+<meta property="og:updated_time" content="2018-07-03T13:20:21.550Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="muhlenXi">
-<meta name="twitter:description" content="他最大的快乐一直来自学习本身。">
+<meta name="twitter:title" content="如何判断对象相同？">
+<meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2018/05/06/Equal-Object
+导语：
+在编程中，如果两个对象中的所有属性分别相等，则我们可以认为这两个对象是同一个对象。那么在 Swift 和 Objective-C 中，是怎样的情况呢？">
   
     <link rel="alternative" href="/atom.xml" title="muhlenXi" type="application/atom+xml">
   
@@ -170,75 +177,187 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Equal-Object" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/10/Dahua-Design-Pattern/" class="archive-article-date">
-  	<time datetime="2017-01-10T06:44:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/10/Dahua-Design-Pattern/">大话设计模式---读书笔记</a>
+    <h1 class="article-title" itemprop="name">
+      如何判断对象相同？
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/05/06/Equal-Object/" class="archive-article-date">
+  	<time datetime="2018-05-06T02:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2018/05/06/Equal-Object" target="_blank" rel="external">http://muhlenxi.com/2018/05/06/Equal-Object</a></em></p>
+<h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
+<p>在编程中，如果两个对象中的所有属性分别相等，则我们可以认为这两个对象是同一个对象。那么在 Swift 和 Objective-C 中，是怎样的情况呢？</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="在-Swift-中"><a href="#在-Swift-中" class="headerlink" title="在 Swift 中"></a>在 Swift 中</h3><p>对于一个自定义的类（如 People 类），如果要判断两个对象相同，需要 遵循  <code>Equatable</code> 协议，并实现  <code>public static func ==(lhs: People, rhs: People) -&gt; Bool</code>方法, 示例代码如下:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// 没有父类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> <span class="type">ID</span>: <span class="type">Int</span></div><div class="line">    </div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, id: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">        <span class="keyword">self</span>.<span class="type">ID</span> = id</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">People</span>: <span class="title">Equatable</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> ==<span class="params">(lhs: People, rhs: People)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        <span class="keyword">return</span> lhs.<span class="type">ID</span> == rhs.<span class="type">ID</span> &amp;&amp; lhs.name == rhs.name</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当我们需要判断两个对象的时候，只需要需要用到  <code>==</code> 操作符即可。</p>
+<p>注意：当 People 类继承自 NSObject 类时，由于 NSObject 类已经遵循 <code>Equatable</code> 协议，我们只需实现协议方法就可以了。许多人在这里就实现如上所示的协议方法了。其实这样是行不通的！（当然你也可以尝试，实践出真知。）<strong>正确的做法是覆写 <code>override func isEqual(_ object: Any?) -&gt; Bool</code> 方法。</strong>示例代码如下:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// 父类是 NSObject</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">NSObject</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> <span class="type">ID</span>: <span class="type">Int</span></div><div class="line">    </div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, id: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">        <span class="keyword">self</span>.<span class="type">ID</span> = id</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">/// 父类 NSObject 已经遵循 Equatable 协议，在这里要实现如下方法：</span></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">isEqual</span><span class="params">(<span class="number">_</span> object: Any?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        <span class="keyword">let</span> person = object <span class="keyword">as</span>! <span class="type">Person</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.name == person.name &amp;&amp; <span class="keyword">self</span>.<span class="type">ID</span> == person.<span class="type">ID</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在上述中的两种情况下，当我们判断一个班级名单中是否有这个人时，就可以用 <code>contains</code> 方法来判断了。</p>
+<p><a href="https://github.com/muhlenXi-Team/EqualObject" target="_blank" rel="external">完整 Demo</a></p>
+<p><em>哇，读到这里了，真棒！每天进步一点点！为你的专注点赞！我们下篇见。</em></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝百事<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/Alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/WeChat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">大话设计模式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">notes</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记/" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/05/06/Equal-Object/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/11/06/Python-shared/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何分享 Python 代码到 PyPI 社区</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'muhlenXi'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
           </div>
@@ -261,9 +380,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
