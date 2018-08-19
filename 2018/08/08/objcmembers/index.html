@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>muhlenXi</title>
+  <title>objc 与 objcMembers 的区别是什么？ | muhlenXi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="他最大的快乐一直来自学习本身。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="muhlenXi">
-<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+  <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2018/08/08/objcmembers
+
+在 Swift 与 Objective-C 混编的项目中一般会用到 @objc 和 @objcMembers 这两个关键字。那它们有什么不同呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="objc 与 objcMembers 的区别是什么？">
+<meta property="og:url" content="http://yoursite.com/2018/08/08/objcmembers/index.html">
 <meta property="og:site_name" content="muhlenXi">
-<meta property="og:description" content="他最大的快乐一直来自学习本身。">
+<meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2018/08/08/objcmembers
+
+在 Swift 与 Objective-C 混编的项目中一般会用到 @objc 和 @objcMembers 这两个关键字。那它们有什么不同呢？">
+<meta property="og:updated_time" content="2018-08-19T10:15:16.774Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="muhlenXi">
-<meta name="twitter:description" content="他最大的快乐一直来自学习本身。">
+<meta name="twitter:title" content="objc 与 objcMembers 的区别是什么？">
+<meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2018/08/08/objcmembers
+
+在 Swift 与 Objective-C 混编的项目中一般会用到 @objc 和 @objcMembers 这两个关键字。那它们有什么不同呢？">
   
     <link rel="alternative" href="/atom.xml" title="muhlenXi" type="application/atom+xml">
   
@@ -170,84 +177,172 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-UITabBarController" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-objcmembers" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/05/UITabBarController/">UITabBarController 的详细运用</a>
+    <h1 class="article-title" itemprop="name">
+      objc 与 objcMembers 的区别是什么？
     </h1>
   
 
         
-        <a href="/2016/09/05/UITabBarController/" class="archive-article-date">
-  	<time datetime="2016-09-05T06:42:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-05</time>
+        <a href="/2018/08/08/objcmembers/" class="archive-article-date">
+  	<time datetime="2018-08-08T10:08:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2017/09/05/UITabbarController">http://muhlenxi.com/2017/09/05/UITabbarController</a></em></p>
-<h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
-<p>iPhone 和 iPod touch 都可以使用 UITabBarController 类，令用户能够在多个视图控制器之间切换，并且能够定制屏幕底部的标签栏。用户只需点击一下屏幕，就能切换到其他视图，而且还可以通过 More 按钮来选择并编辑需要显示在屏幕底部标签栏里的标签（Tab）。</p>
+        <p><em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2018/08/08/objcmembers" target="_blank" rel="external">http://muhlenxi.com/2018/08/08/objcmembers</a></em></p>
+<blockquote>
+<p>在 Swift 与 Objective-C 混编的项目中一般会用到 @objc 和 @objcMembers 这两个关键字。那它们有什么不同呢？</p>
 </blockquote>
-<p>  写个 demo 玩一下，实践是检验真理的唯一标准。</p>
-        
-          <a class="article-more-a" href="/2016/09/05/UITabBarController/#more">more >></a>
-        
+<a id="more"></a>
+<h3 id="1-Objective-C-访问-Swift"><a href="#1-Objective-C-访问-Swift" class="headerlink" title="1 - Objective-C 访问 Swift"></a>1 - Objective-C 访问 Swift</h3><p>在 Swift4 中，如果我们想要在 Objective-C 中访问 Swift 文件中声明的属性和方法，我们声明的类只需要继承 NSObject 基类 即可。这种情况下，在 Objective-C 中无法访问该类的属性和调用该类的方法，也就是说在编译成生成的 <strong>项目名-Swift.h </strong> 文件中找不到该类的桥接属性和方法，自然你也无法使用。</p>
+<ul>
+<li>如果你只想暴露<strong>个别的</strong>属性和方法给 Objective-C 访问和调用，你只需要在要暴露的属性和方法前添加 <strong>@objc</strong> 关键字即可。</li>
+</ul>
+<p>举例如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">NSObject</span></span>&#123;</div><div class="line">    <span class="comment">/// 只暴露性别属性</span></div><div class="line">    <span class="meta">@objc</span> <span class="keyword">var</span> sex: <span class="type">Int</span> = <span class="number">0</span></div><div class="line">    <span class="keyword">var</span> name = <span class="string">"anoymous"</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayhello</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"I like <span class="subst">\(sex)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@objc</span> <span class="function"><span class="keyword">func</span> <span class="title">sayByebye</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Good bye"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们看一下生成的 Objective-C 桥接文件：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SWIFT_CLASS(<span class="string">"_TtC11ExAttribute6Person"</span>)</div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span></span></div><div class="line"><span class="comment">/// 只暴露性别属性</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>) <span class="built_in">NSInteger</span> sex;</div><div class="line">- (<span class="keyword">void</span>)sayByebye;</div><div class="line">- (<span class="keyword">nonnull</span> <span class="keyword">instancetype</span>)init OBJC_DESIGNATED_INITIALIZER;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>如果你想暴露该类的<strong>全部</strong>方法和属性给 Objective-C 访问和调用，你则需要在声明类的时候添加 <strong>@objcMembers</strong> 关键字即可。</li>
+</ul>
+<p>举例如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@objc</span>Members <span class="class"><span class="keyword">class</span> <span class="title">Boy</span>: <span class="title">NSObject</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">""</span></div><div class="line">    <span class="keyword">var</span> age = <span class="number">0</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Hello, I am <span class="subst">\(name)</span>. I am <span class="subst">\(age)</span> yearsold."</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同样我们也看一下生成的 Objective-C 桥接文件：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SWIFT_CLASS(<span class="string">"_TtC11ExAttribute3Boy"</span>)</div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Boy</span> : <span class="title">NSObject</span></span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> * _Nonnull name;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>) <span class="built_in">NSInteger</span> age;</div><div class="line">- (<span class="keyword">void</span>)sayHello;</div><div class="line">- (<span class="keyword">nonnull</span> <span class="keyword">instancetype</span>)init OBJC_DESIGNATED_INITIALIZER;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>通过以上示例，我们可以得出结论，@objc 与 @objcMembers 的<strong>关键区别</strong>在于暴露给 Objective-C 的属性、方法的范围。如果我们想要保护业务实现的细节，就需要合理的使用 @objc 与 @objcMembers 关键字。</p>
+<h3 id="2-Swift-访问-Objective-C"><a href="#2-Swift-访问-Objective-C" class="headerlink" title="2 - Swift 访问 Objective-C"></a>2 - Swift 访问 Objective-C</h3><p>如果我们想要访问 Objective-C 文件中声明的类、属性和方法，我们只需要在 <strong>项目名-Bridging-Header.h</strong> 桥接头文件中导入我们想访问的类即可。</p>
+<p>举例如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"OCViewController.h"</span></span></div></pre></td></tr></table></figure>
+<p>如需要本文完整示例 demo，请访问 <a href="https://github.com/muhlenXi-Team/ExploreAttribute" target="_blank" rel="external">ExploreAttribute</a>。</p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>写代码和做学问类似，要时刻保持严谨的态度。对于关键的知识点一定要理解透彻，不能懵懵懂懂，这样写出的代码才会可靠。</p>
+<p>编码寄语：编程是一种技艺，一种需要用心学习的技艺！</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝百事<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/Alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/WeChat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UITabBarController</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/blog/" class="article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/09/05/UITabBarController/">展开全文 >></a>
-        </p>
       
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/08/08/objcmembers/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+    <a href="/2018/08/14/vim/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Vim 使用小记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/23/Swift-Array/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Swift-Array</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -255,584 +350,26 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Use-your-English" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/26/Use-your-English/">把你的英语用起来---读书笔记</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2016/08/26/Use-your-English/" class="archive-article-date">
-  	<time datetime="2016-08-26T03:00:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/08/26/Use-your-English">http://muhlenxi.com/2016/08/26/Use-your-English</a></em></p>
-<h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><blockquote>
-<p>这是一本英语学习书。本书适合特别想提高自己的英语能力而不得的人。很多学了 6~10 年的英语的人还是不能阅读英文的资料。想找培训机构，发现针对考试的比较多，费用也很高。在网上跟着大家一起背单词，又枯燥又难以坚持，效果也不是很好。不停的想学英语，但总是拿起又放下，放下又拿起，断断续续，英语水平一直没有得到提高。</p>
-</blockquote>
-<p>　　从阅读本书开始，真正的把你的英语用起来!</p>
-        
-          <a class="article-more-a" href="/2016/08/26/Use-your-English/#more">more >></a>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">把你的英语用起来</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/读书笔记/" class="article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/26/Use-your-English/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Swift3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/19/Swift3/">初识 Swift3</a>
-    </h1>
-  
-
-        
-        <a href="/2016/08/19/Swift3/" class="archive-article-date">
-  	<time datetime="2016-08-19T01:37:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/08/19/Swift3">http://muhlenxi.com/2016/08/19/Swift3</a></em></p>
-<h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
-<p>Swift 是一个新的编程语言，使用它可以开发 iOS、macOS、watchOS 和 tvOS 等平台上的 APP ，它比 C 和 Objective-C 语言更好的胜任这项工作，Swift 采用安全的编程模式，它加入了一些现代的特色使得编程更加容易、更加灵活和更加有趣，Swift 基于成熟的受人喜爱的 Cocoa 和 CocoaTouch 框架，这是一个重新定义软件是如何开发的机会！Just enjoy it！。</p>
-</blockquote>
-<p>点击阅读全文来了解一下详情吧。</p>
-        
-          <a class="article-more-a" href="/2016/08/19/Swift3/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Swift3初体验</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Swift/" class="article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/19/Swift3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-The-Rubik-s-Cube-Reduction" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/11/The-Rubik-s-Cube-Reduction/">魔方还原秘诀</a>
-    </h1>
-  
-
-        
-        <a href="/2016/08/11/The-Rubik-s-Cube-Reduction/" class="archive-article-date">
-  	<time datetime="2016-08-11T01:50:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/08/11/The-Rubik-s-Cube-Reduction">http://muhlenxi.com/2016/08/11/The-Rubik-s-Cube-Reduction</a></em></p>
-<h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
-<p>魔方，英文名为 Rubik’s Cube ，又叫魔术方块或鲁比克方块，是一种手部极限运动。通常泛指三阶魔方。三阶魔方魔方形状通常是正方体，由有弹性的硬塑料制成。玩法是将魔方打乱，然后在最短的时间内复原。目前三阶魔方官方世界纪录是由 Lucas Etter 保持的4.90秒。</p>
-<p>玩魔方是一种高雅的健身活动，它可以锻炼人的手脑并用能力，对培养人的动作技能都十分有效；可增强人的记忆力，丰富空间想象力；可培养人的耐力和毅力！</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2016/08/11/The-Rubik-s-Cube-Reduction/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">魔方</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活/" class="article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/11/The-Rubik-s-Cube-Reduction/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-How-to-read-a-book" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/26/How-to-read-a-book/">如何阅读一本书---读书笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2016/07/26/How-to-read-a-book/" class="archive-article-date">
-  	<time datetime="2016-07-26T03:00:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/07/26/How-to-read-a-book">http://muhlenxi.com/2016/07/26/How-to-read-a-book</a></em></p>
-<h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><blockquote>
-<p>《如何阅读一本书》是2004年在商务印书馆出版的图书，该书的作者是该书作者是[美] 莫提默·J. 艾德勒、查尔斯·范多伦。该书强调阅读是一种主动的活动。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2016/07/26/How-to-read-a-book/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">如何阅读一本书</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/读书笔记/" class="article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/07/26/How-to-read-a-book/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Localized-Language" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/07/Localized-Language/">iOS APP 多语言支持</a>
-    </h1>
-  
-
-        
-        <a href="/2016/07/07/Localized-Language/" class="archive-article-date">
-  	<time datetime="2016-07-07T08:47:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/07/07/Localized-Language">http://muhlenxi.com/2016/07/07/Localized-Language</a></em></p>
-<h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
-<p>APP 根据手机系统的语言进行显示。第二种是在 APP 内自行设置语言，也就是应用内切换语言，设置的是什么语言，就显示什么语言。</p>
-</blockquote>
-<p>  写个 Demo 玩一下，实践是检验真理的唯一标准。</p>
-        
-          <a class="article-more-a" href="/2016/07/07/Localized-Language/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/blog/" class="article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/07/07/Localized-Language/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Map-Guide" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/19/Map-Guide/">iOS实现应用外自带地图、高德地图、百度地图导航</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/19/Map-Guide/" class="archive-article-date">
-  	<time datetime="2016-05-19T02:42:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/05/19/Map-Guide">http://muhlenxi.com/2016/05/19/Map-Guide</a></em></p>
-<h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
-<p>在地图类应用开发中，我们经常有导航这个功能需求。根据导航方式可以分为应用内导航和应用外导航，其中应用内导航指的是使用第三方提供的地图 SDK（高德、百度等）将导航嵌入到我们开发的 APP 内部。应用外导航指的是以 URL Scheme 跳转的方式，跳转到对应的地图 APP 中，使用对方的导航功能。</p>
-</blockquote>
-<p>  点击阅读全文来了解一下详情吧。</p>
-        
-          <a class="article-more-a" href="/2016/05/19/Map-Guide/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">地图导航</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/blog/" class="article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/19/Map-Guide/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Gaode-Map" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/07/Gaode-Map/">高德 SDK 的正确打开方式</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/07/Gaode-Map/" class="archive-article-date">
-  	<time datetime="2016-04-07T02:02:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2016/04/07/Gaode-Map">http://muhlenxi.com/2016/04/07/Gaode-Map</a></em></p>
-<h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
-<p>高德地图 iOS SDK 是一套基于 iOS 6.0.0 及以上版本的地图应用程序开发接口，供开发者在自己的 iOS应用中加入地图相关的功能。通过 iOS SDK，开发者可以轻松地开发出地图显示与操作、兴趣点搜索、地理编码、路线规划等功能。</p>
-</blockquote>
-<p><em>点击下载<a href="https://github.com/muhlenXi/gaodeMapDemo">本文的demo</a>研究，记得给star支持博主的努力哦！</em></p>
-<p>  点击阅读全文来瞅瞅如何开发吧。</p>
-        
-          <a class="article-more-a" href="/2016/04/07/Gaode-Map/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">高德地图SDK</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/blog/" class="article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/07/Gaode-Map/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
-    </nav>
-  
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'muhlenXi'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
           </div>
@@ -854,8 +391,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
