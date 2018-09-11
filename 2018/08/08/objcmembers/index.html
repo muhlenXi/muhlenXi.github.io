@@ -207,14 +207,14 @@ var _hmt = _hmt || [];
 <li>如果你只想暴露<strong>个别的</strong>属性和方法给 Objective-C 访问和调用，你只需要在要暴露的属性和方法前添加 <strong>@objc</strong> 关键字即可。</li>
 </ul>
 <p>举例如下：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">NSObject</span></span>&#123;</div><div class="line">    <span class="comment">/// 只暴露性别属性</span></div><div class="line">    <span class="meta">@objc</span> <span class="keyword">var</span> sex: <span class="type">Int</span> = <span class="number">0</span></div><div class="line">    <span class="keyword">var</span> name = <span class="string">"anoymous"</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayhello</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"I like <span class="subst">\(sex)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@objc</span> <span class="function"><span class="keyword">func</span> <span class="title">sayByebye</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Good bye"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">NSObject</span></span>&#123;</div><div class="line">    <span class="comment">/// 只暴露性别属性</span></div><div class="line">    <span class="meta">@objc</span> <span class="keyword">var</span> sex: <span class="type">Int</span> = <span class="number">0</span></div><div class="line">    <span class="keyword">var</span> name = <span class="string">"anoymous"</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayhello</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"I like \(sex)"</span>)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@objc</span> <span class="function"><span class="keyword">func</span> <span class="title">sayByebye</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Good bye"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>我们看一下生成的 Objective-C 桥接文件：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SWIFT_CLASS(<span class="string">"_TtC11ExAttribute6Person"</span>)</div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span></span></div><div class="line"><span class="comment">/// 只暴露性别属性</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>) <span class="built_in">NSInteger</span> sex;</div><div class="line">- (<span class="keyword">void</span>)sayByebye;</div><div class="line">- (<span class="keyword">nonnull</span> <span class="keyword">instancetype</span>)init OBJC_DESIGNATED_INITIALIZER;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
 <ul>
 <li>如果你想暴露该类的<strong>全部</strong>方法和属性给 Objective-C 访问和调用，你则需要在声明类的时候添加 <strong>@objcMembers</strong> 关键字即可。</li>
 </ul>
 <p>举例如下：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@objc</span>Members <span class="class"><span class="keyword">class</span> <span class="title">Boy</span>: <span class="title">NSObject</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">""</span></div><div class="line">    <span class="keyword">var</span> age = <span class="number">0</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Hello, I am <span class="subst">\(name)</span>. I am <span class="subst">\(age)</span> yearsold."</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@objc</span>Members <span class="class"><span class="keyword">class</span> <span class="title">Boy</span>: <span class="title">NSObject</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">""</span></div><div class="line">    <span class="keyword">var</span> age = <span class="number">0</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Hello, I am \(name). I am \(age) yearsold."</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>同样我们也看一下生成的 Objective-C 桥接文件：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SWIFT_CLASS(<span class="string">"_TtC11ExAttribute3Boy"</span>)</div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Boy</span> : <span class="title">NSObject</span></span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> * _Nonnull name;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>) <span class="built_in">NSInteger</span> age;</div><div class="line">- (<span class="keyword">void</span>)sayHello;</div><div class="line">- (<span class="keyword">nonnull</span> <span class="keyword">instancetype</span>)init OBJC_DESIGNATED_INITIALIZER;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
 <p>通过以上示例，我们可以得出结论，@objc 与 @objcMembers 的<strong>关键区别</strong>在于暴露给 Objective-C 的属性、方法的范围。如果我们想要保护业务实现的细节，就需要合理的使用 @objc 与 @objcMembers 关键字。</p>
@@ -466,18 +466,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Foundation</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
@@ -486,11 +474,23 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Foundation</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Swift Standard Library</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BLE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,10 +510,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">编写高质量iOS与OS X代码的52个有效方法</a>
               </li>
              
@@ -522,19 +518,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Next</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,7 +534,23 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Next</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,14 +562,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -574,15 +570,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Swift开发者必备Tips</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -614,6 +614,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">zsh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">pThread</a>
               </li>
              
@@ -627,14 +635,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Tool</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">zsh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: UITabBarController | muhlenXi</title>
+  <title>如何准确计算 UILabel or UITextView 的高度？ | muhlenXi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="他最大的快乐一直来自学习本身。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="muhlenXi">
-<meta property="og:url" content="http://yoursite.com/tags/UITabBarController/index.html">
+  <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2018/08/18/calculate
+
+在 项目中有时会需要根据文本内容来动态改变控件的高度约束，常用的一般有 UILabel 和 UITextView，那如何准确根据文本内容计算该控件的高度呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何准确计算 UILabel or UITextView 的高度？">
+<meta property="og:url" content="http://yoursite.com/2018/08/18/calculate/index.html">
 <meta property="og:site_name" content="muhlenXi">
-<meta property="og:description" content="他最大的快乐一直来自学习本身。">
+<meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2018/08/18/calculate
+
+在 项目中有时会需要根据文本内容来动态改变控件的高度约束，常用的一般有 UILabel 和 UITextView，那如何准确根据文本内容计算该控件的高度呢？">
+<meta property="og:updated_time" content="2018-09-11T00:02:55.707Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="muhlenXi">
-<meta name="twitter:description" content="他最大的快乐一直来自学习本身。">
+<meta name="twitter:title" content="如何准确计算 UILabel or UITextView 的高度？">
+<meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2018/08/18/calculate
+
+在 项目中有时会需要根据文本内容来动态改变控件的高度约束，常用的一般有 UILabel 和 UITextView，那如何准确根据文本内容计算该控件的高度呢？">
   
     <link rel="alternative" href="/atom.xml" title="muhlenXi" type="application/atom+xml">
   
@@ -170,75 +177,177 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-calculate" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/09/05/UITabBarController/" class="archive-article-date">
-  	<time datetime="2016-09-05T06:42:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/05/UITabBarController/">UITabBarController 的详细运用</a>
+    <h1 class="article-title" itemprop="name">
+      如何准确计算 UILabel or UITextView 的高度？
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UITabBarController</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2018/08/18/calculate/" class="archive-article-date">
+  	<time datetime="2018-08-17T23:55:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2018/08/18/calculate" target="_blank" rel="external">http://muhlenxi.com/2018/08/18/calculate</a></em></p>
+<blockquote>
+<p>在 项目中有时会需要根据文本内容来动态改变控件的高度约束，常用的一般有 UILabel 和 UITextView，那如何准确根据文本内容计算该控件的高度呢？</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="如何精确计算-UITextView-的高度"><a href="#如何精确计算-UITextView-的高度" class="headerlink" title="如何精确计算 UITextView 的高度"></a>如何精确计算 UITextView 的高度</h3><p>想要根据 String 来精确的计算 UITextView 的高度的前提是准确的确认 UITextView 中文本内容实际显示的宽度。那么就要从 UITextView 的视图结构入手，通过查阅 Apple 的官方文档得知，UITextView 中的 text 是存放在一个名为 <strong>textContainer</strong> 的容器中，通过 <strong>textContainerInset</strong> 属性可以得到该容器与 UITextView 的内边距，除此之外，还有一个属性影响内容显示的宽度，那就是容器的 <strong>lineFragmentPadding</strong> 属性，该属性用来控制文字的实际显示区域与容器左右两边的边距。</p>
+<p>综上，UITextView 的文本内容实际显示区域宽度为：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> textContentWidth = textViewWidth-leadingOffset-trailingOffset-lineFragmentPading*<span class="number">2</span></div></pre></td></tr></table></figure>
+<p>所以，我们可以通过以下方法精确计算 UITextView 的宽度：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">String</span> </span>&#123;</div><div class="line">    <span class="comment">/// 根据字符串 获取 TextView 字符串的高度</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getTextViewStringHeightFrom</span><span class="params">(textViewWidth: CGFloat, font: UIFont, textView: UITextView)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">let</span> lineFragmentPading = textView.textContainer.lineFragmentPadding</div><div class="line">        <span class="keyword">let</span> textContainerInset = textView.textContainerInset</div><div class="line">        <span class="keyword">let</span> topOffset = textContainerInset.top</div><div class="line">        <span class="keyword">let</span> bottomOffset = textContainerInset.bottom</div><div class="line">        <span class="keyword">let</span> leadingOffset = textContainerInset.<span class="keyword">left</span></div><div class="line">        <span class="keyword">let</span> trailingOffset = textContainerInset.<span class="keyword">right</span></div><div class="line">        <span class="keyword">let</span> textContentWidth = textViewWidth-leadingOffset-trailingOffset-lineFragmentPading*<span class="number">2</span></div><div class="line">        <span class="keyword">let</span> normalText: <span class="type">NSString</span> = <span class="keyword">self</span> <span class="keyword">as</span> <span class="type">NSString</span></div><div class="line">        <span class="keyword">let</span> size = <span class="type">CGSize</span>(width: textContentWidth, height: <span class="number">1000</span>)</div><div class="line">        <span class="keyword">let</span> attributes = [<span class="type">NSAttributedStringKey</span>.font: font]</div><div class="line">        <span class="keyword">let</span> stringSize = normalText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context:<span class="literal">nil</span>).size</div><div class="line">        </div><div class="line">        <span class="keyword">return</span>  <span class="type">CGFloat</span>(ceilf(<span class="type">Float</span>(stringSize.height)))+topOffset+bottomOffset</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="如何精确计算-UILabel-的高度"><a href="#如何精确计算-UILabel-的高度" class="headerlink" title="如何精确计算 UILabel 的高度"></a>如何精确计算 UILabel 的高度</h3><p>由于 Label 的实际文本显示的宽度和 UILabel 控件显示的宽度是一致的。因此，我们很方便的通过下面的代码就能算出 UILabel 的高度了。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">String</span> </span>&#123;</div><div class="line">    <span class="comment">/// 根据字符串 获取 Label 控件的高度</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getLabelStringHeightFrom</span><span class="params">(labelWidth: CGFloat, font: UIFont)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">let</span> topOffset = <span class="type">CGFloat</span>(<span class="number">0</span>)</div><div class="line">        <span class="keyword">let</span> bottomOffset = <span class="type">CGFloat</span>(<span class="number">0</span>)</div><div class="line">        <span class="keyword">let</span> textContentWidth = labelWidth</div><div class="line">        <span class="keyword">let</span> normalText: <span class="type">NSString</span> = <span class="keyword">self</span> <span class="keyword">as</span> <span class="type">NSString</span></div><div class="line">        <span class="keyword">let</span> size = <span class="type">CGSize</span>(width: textContentWidth, height: <span class="number">1000</span>)</div><div class="line">        <span class="keyword">let</span> attributes = [<span class="type">NSAttributedStringKey</span>.font: font]</div><div class="line">        <span class="keyword">let</span> stringSize = normalText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context:<span class="literal">nil</span>).size</div><div class="line">        <span class="keyword">return</span>  <span class="type">CGFloat</span>(ceilf(<span class="type">Float</span>(stringSize.height)))+topOffset+bottomOffset</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>本文完整 demo <a href="https://github.com/muhlenXi-Team/ExploreUILabelUITextView" target="_blank" rel="external">ExploreUILabelUITextView</a> 在这里，有需要的可自行下载。</p>
+<p><em>如果有不对的地方欢迎指正！谢谢！</em></p>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/blog/" class="article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝百事<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/Alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/WeChat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/08/18/calculate/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/08/14/vim/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vim 使用小记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'muhlenXi'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
           </div>
@@ -261,9 +370,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
