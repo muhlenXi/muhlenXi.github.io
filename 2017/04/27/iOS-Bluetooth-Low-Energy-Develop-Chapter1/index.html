@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>iOS BLE 开发小记[1] - CoreBluetooth 是什么 | muhlenXi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/04/27/iOS-Bluetooth-Low-Energy-Develop-Chapter1
+  <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。
 导语：
-不知不觉从事 iOS 低功耗蓝牙开发也很长一段时间了，一直没时间来的及把自己关于这方面的学习和收获写下来，最近项目迭代更新上线完，有点业余时间，抓紧时间总结一下，说这是与">
+不知不觉从事 iOS 低功耗蓝牙开发也很长一段时间了，一直没时间来的及把自己关于这方面的学习和收获写下来，最近项目迭代更新上线完，有点业余时间，抓紧时间总结一下，说这是与同阶段的小伙伴们之间的交流也好，是给后来的小伙伴的掉坑经验也好。毕竟时间是挤出来的！做技术的人一般都有一个很开放的心态！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS BLE 开发小记[1] - CoreBluetooth 是什么">
 <meta property="og:url" content="http://yoursite.com/2017/04/27/iOS-Bluetooth-Low-Energy-Develop-Chapter1/index.html">
 <meta property="og:site_name" content="muhlenXi">
-<meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/04/27/iOS-Bluetooth-Low-Energy-Develop-Chapter1
+<meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。
 导语：
-不知不觉从事 iOS 低功耗蓝牙开发也很长一段时间了，一直没时间来的及把自己关于这方面的学习和收获写下来，最近项目迭代更新上线完，有点业余时间，抓紧时间总结一下，说这是与">
+不知不觉从事 iOS 低功耗蓝牙开发也很长一段时间了，一直没时间来的及把自己关于这方面的学习和收获写下来，最近项目迭代更新上线完，有点业余时间，抓紧时间总结一下，说这是与同阶段的小伙伴们之间的交流也好，是给后来的小伙伴的掉坑经验也好。毕竟时间是挤出来的！做技术的人一般都有一个很开放的心态！">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/CBTechnologyFramework.png">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/CBDevices1_2x.png">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/AdvertisingAndDiscovery_2x.png">
@@ -26,12 +26,12 @@
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/TreeOfServicesAndCharacteristics_Remote_2x.png">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/CBObjects_PeripheralSide_2x.png">
 <meta property="og:image" content="http://7xvffo.com1.z0.glb.clouddn.com/TreeOfServicesAndCharacteristics_Local_2x.png">
-<meta property="og:updated_time" content="2017-08-24T14:44:17.000Z">
+<meta property="og:updated_time" content="2019-03-06T13:48:01.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS BLE 开发小记[1] - CoreBluetooth 是什么">
-<meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: http://muhlenxi.com/2017/04/27/iOS-Bluetooth-Low-Energy-Develop-Chapter1
+<meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。
 导语：
-不知不觉从事 iOS 低功耗蓝牙开发也很长一段时间了，一直没时间来的及把自己关于这方面的学习和收获写下来，最近项目迭代更新上线完，有点业余时间，抓紧时间总结一下，说这是与">
+不知不觉从事 iOS 低功耗蓝牙开发也很长一段时间了，一直没时间来的及把自己关于这方面的学习和收获写下来，最近项目迭代更新上线完，有点业余时间，抓紧时间总结一下，说这是与同阶段的小伙伴们之间的交流也好，是给后来的小伙伴的掉坑经验也好。毕竟时间是挤出来的！做技术的人一般都有一个很开放的心态！">
 <meta name="twitter:image" content="http://7xvffo.com1.z0.glb.clouddn.com/CBTechnologyFramework.png">
   
     <link rel="alternative" href="/atom.xml" title="muhlenXi" type="application/atom+xml">
@@ -71,7 +71,7 @@ var _hmt = _hmt || [];
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://7xvffo.com1.z0.glb.clouddn.com/dabai.jpg" class="js-avatar">
+			<img src="https://avatars0.githubusercontent.com/u/17894817" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">muhlenXi</a></h1>
@@ -133,7 +133,7 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://7xvffo.com1.z0.glb.clouddn.com/dabai.jpg" class="js-avatar">
+				<img src="https://avatars0.githubusercontent.com/u/17894817" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">muhlenXi</h1>
@@ -206,7 +206,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源: <a href="http://muhlenxi.com/2017/04/27/iOS-Bluetooth-Low-Energy-Develop-Chapter1" target="_blank" rel="external">http://muhlenxi.com/2017/04/27/iOS-Bluetooth-Low-Energy-Develop-Chapter1</a></em></p>
+        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。</em></p>
 <h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
 <p>不知不觉从事 iOS 低功耗蓝牙开发也很长一段时间了，一直没时间来的及把自己关于这方面的学习和收获写下来，最近项目迭代更新上线完，有点业余时间，抓紧时间总结一下，说这是与同阶段的小伙伴们之间的交流也好，是给后来的小伙伴的掉坑经验也好。毕竟时间是挤出来的！做技术的人一般都有一个很开放的心态！ </p>
 </blockquote>
@@ -438,7 +438,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 muhlenXi
+    		&copy; 2019 muhlenXi
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -517,11 +517,11 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,23 +533,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Foundation</a>
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Swift Standard Library</a>
+                <a href="javascript:void(0)" class="js-tag color5">ASIHttpRequest</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,6 +549,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">iOS开发图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Foundation</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">大话设计模式</a>
               </li>
              
@@ -569,11 +565,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color3">Swift Standard Library</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,7 +577,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
+                <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,11 +593,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+                <a href="javascript:void(0)" class="js-tag color3">如何阅读一本书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,7 +609,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
+                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -621,7 +617,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
+                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,15 +633,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
+                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -653,7 +641,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -661,15 +653,23 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">system setting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">UITabBarController</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">头像上传</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCH File</a>
+                <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
               </li>
              
               <li class="article-tag-list-item">
