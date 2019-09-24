@@ -6,24 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>App Frameworks 之 Foundation 框架 | muhlenXi</title>
+  <title>聊聊 AVFoundation 视频编辑 | muhlenXi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。
-导语：
-学习软件开发最好的方式就是去努力学好英语，然后去看官方的第一手资料 - 软件开发指南。本文是关于 Foundation 框架的描述。">
+  <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，未经博主允许不得转载，如有问题，欢迎指正。
+ForewordAVFoundation 框架是一个用来播放和创建音视频的框架，它提供了一系列 Objective-C 接口让我们操作音视频的细节数据，比如测试、编辑、重编码视频文件和从设备中获取音视频数据等。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="App Frameworks 之 Foundation 框架">
-<meta property="og:url" content="http://yoursite.com/2017/01/20/About-Foundation/index.html">
+<meta property="og:title" content="聊聊 AVFoundation 视频编辑">
+<meta property="og:url" content="http://yoursite.com/2019/07/24/talk-about-avfoundation-md/index.html">
 <meta property="og:site_name" content="muhlenXi">
-<meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。
-导语：
-学习软件开发最好的方式就是去努力学好英语，然后去看官方的第一手资料 - 软件开发指南。本文是关于 Foundation 框架的描述。">
-<meta property="og:updated_time" content="2019-03-06T13:43:58.000Z">
+<meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，未经博主允许不得转载，如有问题，欢迎指正。
+ForewordAVFoundation 框架是一个用来播放和创建音视频的框架，它提供了一系列 Objective-C 接口让我们操作音视频的细节数据，比如测试、编辑、重编码视频文件和从设备中获取音视频数据等。">
+<meta property="og:image" content="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Art/frameworksBlockDiagram_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Art/puttingitalltogether_2x.png">
+<meta property="og:updated_time" content="2019-09-24T00:25:06.901Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="App Frameworks 之 Foundation 框架">
-<meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。
-导语：
-学习软件开发最好的方式就是去努力学好英语，然后去看官方的第一手资料 - 软件开发指南。本文是关于 Foundation 框架的描述。">
+<meta name="twitter:title" content="聊聊 AVFoundation 视频编辑">
+<meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，未经博主允许不得转载，如有问题，欢迎指正。
+ForewordAVFoundation 框架是一个用来播放和创建音视频的框架，它提供了一系列 Objective-C 接口让我们操作音视频的细节数据，比如测试、编辑、重编码视频文件和从设备中获取音视频数据等。">
+<meta name="twitter:image" content="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Art/frameworksBlockDiagram_2x.png">
   
     <link rel="alternative" href="/atom.xml" title="muhlenXi" type="application/atom+xml">
   
@@ -177,88 +177,99 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-About-Foundation" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-talk-about-avfoundation-md" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      App Frameworks 之 Foundation 框架
+      聊聊 AVFoundation 视频编辑
     </h1>
   
 
         
-        <a href="/2017/01/20/About-Foundation/" class="archive-article-date">
-  	<time datetime="2017-01-20T02:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-20</time>
+        <a href="/2019/07/24/talk-about-avfoundation-md/" class="archive-article-date">
+  	<time datetime="2019-07-24T00:21:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。</em></p>
-<h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
-<p>学习软件开发最好的方式就是去努力学好英语，然后去看官方的第一手资料 - 软件开发指南。<br>本文是关于 Foundation 框架的描述。</p>
-</blockquote>
+        <p>版权声明：本文为 <a href="http://www.muhlenxi.com" target="_blank" rel="external">muhlenXi</a> 原创文章，未经博主允许不得转载，如有问题，欢迎指正。</p>
+<h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><p>AVFoundation 框架是一个用来播放和创建音视频的框架，它提供了一系列 Objective-C 接口让我们操作音视频的细节数据，比如测试、编辑、重编码视频文件和从设备中获取音视频数据等。</p>
 <a id="more"></a>
-<p>如果你想要学 mac OS / iOS App 开发，你需要参考的第一手资料则是 <a href="https://developer.apple.com/documentation" target="_blank" rel="external">Apple Developer Documentation</a>,在这里，Apple 公司会不定期更新最新的 Kit(开发包)，包括 API reference（API 接口）、技术文章和示例代码等。</p>
-<h3 id="Apple-开发的基础框架"><a href="#Apple-开发的基础框架" class="headerlink" title="Apple 开发的基础框架"></a>Apple 开发的基础框架</h3><p>Apple App 开发涉及到的（Framework）基础框架主要有 6 大部分，分别如下：</p>
+<p>在 iOS 平台上，AVFoundation 的层级是这样的。</p>
+<p><img src="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Art/frameworksBlockDiagram_2x.png" alt=""></p>
+<p>如果你想执行一些简单的任务，没必要使用 AVFoundation 框架。</p>
 <ul>
-<li><a href="https://developer.apple.com/documentation/appkit" target="_blank" rel="external">AppKit</a></li>
-<li><a href="https://developer.apple.com/documentation/foundation" target="_blank" rel="external">Foundation</a></li>
-<li><a href="https://developer.apple.com/documentation/objectivec" target="_blank" rel="external">Objective-C</a></li>
-<li><a href="https://developer.apple.com/documentation/swift" target="_blank" rel="external">Swift Standard Library</a></li>
-<li><a href="https://developer.apple.com/documentation/uikit" target="_blank" rel="external">UIKit</a></li>
-<li><a href="https://developer.apple.com/documentation/watchkit" target="_blank" rel="external">WatchKit</a></li>
+<li>比如播放视频，使用 AVKit framework 就可以了。</li>
+<li>比如录音、获取相册中的照片、视频等，用 UIImagePickerController 类就可以了。</li>
 </ul>
-<p>博客稍后会对每个类别做一个简介，不定时更新，如果感兴趣想深入了解，可以点击链接跳转到官网学习。</p>
-<h4 id="Foundation"><a href="#Foundation" class="headerlink" title="Foundation"></a>Foundation</h4><p>Foundation 是一个基础的框架，用于支持你的 App 的基础功能定义，比如基本数据类型、数据集合和操作系统服务的访问。</p>
-<p>Foundation 框架为你的 App 和其他框架的基础功能提供支持，包括数据的保存和持久化存储，文本处理、日期和时间的计算、排序和过滤，网络等。mac OS，iOS，watchOS，以及 tvOS 的 SDK（软件开发包中）都有使用到 Foundation 框架中定义的类、协议和数据类型等。</p>
-<h5 id="Foundation-基础"><a href="#Foundation-基础" class="headerlink" title="Foundation 基础"></a>Foundation 基础</h5><h6 id="Numbers-Data-和-Basic-Value"><a href="#Numbers-Data-和-Basic-Value" class="headerlink" title="Numbers,Data,和 Basic Value"></a>Numbers,Data,和 Basic Value</h6><p>这部分主要是包含 Cocoa 中使用的基础数据类型。<a href="https://developer.apple.com/documentation/foundation/numbers_data_and_basic_values" target="_blank" rel="external">详情传送门</a></p>
-<p>包括：</p>
-<p><strong>struct</strong> : <code>Int</code>,<code>Double</code>,<code>Decimal</code>,<code>Data</code>,<code>URL</code>,</p>
-<p><code>URLComponents</code>,<code>URLQueryItem</code>,<code>UUID</code>,<code>CGFloat</code>,<code>AffineTransform</code>,</p>
-<p><code>NSEdgeInsets</code></p>
-<p><strong>class</strong> :  <code>NumberFormatter</code>,</p>
-<p><strong>typealias</strong> : <code>NSPoint</code>,<code>NSSize</code>,<code>NSRect</code>,<code>NSRange</code></p>
-<h6 id="Strings-和-Text"><a href="#Strings-和-Text" class="headerlink" title="Strings 和 Text"></a>Strings 和 Text</h6><p>这部分主要包括 Unicode 字符串的创建和处理，使用正则表达式模式查找以及文本的自然语言分析。<a href="https://developer.apple.com/documentation/foundation/strings_and_text" target="_blank" rel="external">详情传送门</a></p>
-<p>包括：</p>
-<p><strong>struct</strong> : <code>String</code>,<code>CharacterSet</code>,<code>Locale</code></p>
-<p><strong>class</strong> : <code>NSAttributedString</code>,<code>NSMutableAttributedString</code>,<code>NSLinguisticTagger</code>,<code>Scanner</code>,<code>NSRegularExpression</code>,</p>
-<p><code>NSDataDetector</code>,<code>NSTextCheckingResult</code>,<code>NSSpellServer</code>,<code>NSOrthography</code></p>
-<p><strong>typealias</strong> : <code>UnicodeScalar</code></p>
-<p><strong>let</strong> : <code>NSNotFound</code></p>
-<p><strong>protocol</strong> : <code>NSSpellServerDelegate</code></p>
-<h6 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h6><p>这部分主要包括 array，set，dictionary 和 专用集合来存储和遍历集合中的对象或者值。<a href="https://developer.apple.com/documentation/foundation/collections" target="_blank" rel="external">详情传送门</a></p>
-<p>包括：</p>
-<p><strong>struct</strong> : <code>Array</code>,<code>Dictionary</code>,<code>Set</code>,    <code>IndexPath</code>,<code>IndexSet</code>,</p>
-<p><code>NSFastEnumerationIterator</code>,<code>NSIndexSetIterator</code>,<code>NSEnumerationOptions</code>,<code>NSSortOptions</code></p>
-<p><strong>class</strong> : <code>NSCountedSet</code>,<code>NSOrderedSet</code>,<code>NSMutableOrderedSet</code>,<code>NSCache</code>,<code>NSPurgeableData</code>,</p>
-<p><code>NSPointerArray</code>,<code>NSMapTable</code>,<code>NSHashTable</code>,<code>NSEnumerator</code>,<code>NSNull</code></p>
-<p><strong>protocol</strong> : <code>NSFastEnumeration</code></p>
-<p><strong>let</strong> : <code>NSNotFound</code></p>
-<h6 id="Dates-和-Times"><a href="#Dates-和-Times" class="headerlink" title="Dates 和 Times"></a>Dates 和 Times</h6><p>这部分主要包括日期和时间的比较、日历和时间域的计算。<a href="https://developer.apple.com/documentation/foundation/dates_and_times" target="_blank" rel="external">详情传送门</a></p>
-<p><strong>struct</strong> : <code>Date</code>,<code>DateInterval</code>,<code>DateComponents</code>,<code>Calendar</code>,<code>TimeZone</code>,<code>Locale</code></p>
-<p><strong>typealias</strong> : <code>TimeInterval</code></p>
-<p><strong>class</strong> : <code>DateFormatter</code>,<code>DateComponentsFormatter</code>,<code>DateIntervalFormatter</code>,<code>ISO8601DateFormatter</code></p>
-<h6 id="Units-和-Measurement"><a href="#Units-和-Measurement" class="headerlink" title="Units 和 Measurement"></a>Units 和 Measurement</h6><p>这部分主要是物理参数的测量和单位转换。<a href="https://developer.apple.com/documentation/foundation/units_and_measurement" target="_blank" rel="external">详情传送门</a></p>
-<p><strong>struct</strong> : <code>Measurement</code></p>
-<p><strong>class</strong> <code>Unit</code>,<code>Dimension</code>,<code>UnitConverter</code>,<code>UnitConverterLinear</code>,<code>UnitArea</code>,</p>
-<p><code>UnitLength</code>,<code>UnitVolume</code>,<code>UnitAngle</code>,<code>UnitMass</code>,<code>UnitPressure</code>,</p>
-<p><code>UnitAcceleration</code>,<code>UnitDuration</code>,<code>UnitFrequency</code>,<code>UnitSpeed</code>,<code>UnitEnergy</code>,</p>
-<p><code>UnitPower</code>,<code>UnitTemperature</code>,<code>UnitIlluminance</code>,<code>UnitElectricCharge</code>,<code>UnitElectricCurrent</code>,</p>
-<p><code>UnitElectricPotentialDifference</code>,<code>UnitElectricResistance</code>,<code>UnitConcentrationMass</code>,<code>UnitDispersion</code>,<code>UnitFuelEfficiency</code></p>
-<h6 id="Data-Formatting"><a href="#Data-Formatting" class="headerlink" title="Data Formatting"></a>Data Formatting</h6><p>主要是 number, date, measurement 以及一些其他值的文本转换。<a href="https://developer.apple.com/documentation/foundation/data_formatting" target="_blank" rel="external">详情传送门</a></p>
-<p><strong>class</strong> : <code>NumberFormatter</code>,<code>PersonNameComponentFormatter</code>,<code>DateFormatter</code>,<code>DateComponentsFormatter</code>,<code>DateIntervalFormatter</code>,</p>
-<p><code>ISO8601DateFormatter</code>,<code>ByteCountFormatter</code>,<code>MeasurementFormatter</code>,<code>Formatter</code>,<code>LengthFormatter</code>,</p>
-<p><code>MassFormatter</code>,<code>EnergyFormatter</code></p>
-<p><strong>struct</strong> :     <code>PersonNameComponents</code>,<code>Locale</code></p>
-<h6 id="Filter-和-Sorting"><a href="#Filter-和-Sorting" class="headerlink" title="Filter 和 Sorting"></a>Filter 和 Sorting</h6><p>主要包含使用 predicate（谓词），expression（表达式）和 sort descriptors（排序描述）来过滤和排序集合中的元素。<a href="https://developer.apple.com/documentation/foundation/filters_and_sorting" target="_blank" rel="external">详情传送门</a></p>
-<p><strong>class</strong> : <code>NSPredicate</code>,<code>NSExpression</code>,<code>NSComparisonPredicate</code>,<code>NSCompoundPredicate</code>,<code>NSSortDescriptor</code></p>
-<p><strong>enum</strong> : <code>ComparisonResult</code></p>
-<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p><em>欢迎在本文下面留言一起交流心得或错误指正…</em></p>
-<p><em>如果本文能给你带来一定的帮助，在自己有能力的情况下，不妨赞助一下，表示对博主辛勤耕作的支持！</em></p>
+<p>在 AVFoundation 中：</p>
+<ul>
+<li>播放音频数据，你可以使用 AVAudioPlayer 类，如果你想配置音频的行为，你可以使用 AVAudioSession 类。</li>
+<li>录音，你可以使用 AVAudioRecorder 类。</li>
+</ul>
+<h2 id="聊聊-Asset-和-Video-的播放"><a href="#聊聊-Asset-和-Video-的播放" class="headerlink" title="聊聊 Asset 和 Video 的播放"></a>聊聊 Asset 和 Video 的播放</h2><p>AVAsset 是 AVFoundation 框架中最基础的代表视频资源的类。一个 AVAsset 的实例可以理解为是一种包含多种数据的一个集合。我们可以从文件、Photo library 或 iPod library 中生成这个实例。</p>
+<p>可以通过一个 URL 来生成一个 AVURLAsset 的实例。其中第二个 options 参数，用来表示是否允许随机精确时间访问。如果你仅仅是为了播放 asset，这个参数可以传 nil，如果你想要加入 AVMutableComposition 中进行视频编辑，则需要传入一个包含 key 为 AVURLAssetPreferPreciseDurationAndTimingKey， value 为 @YES 的 dictionary。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSURL</span> *url = &lt;<span class="meta">#A URL that identifies an audiovisual asset such as a movie file#&gt;;</span></div><div class="line"><span class="built_in">NSDictionary</span> *options = @&#123;<span class="built_in">AVURLAssetPreferPreciseDurationAndTimingKey</span> : @YES &#125;;</div><div class="line"><span class="built_in">AVURLAsset</span> *anAssetToUseInAComposition = [[<span class="built_in">AVURLAsset</span> alloc] initWithURL:url options:options];</div></pre></td></tr></table></figure>
+<p>【1】、如果想要访问用户相册中的 asset，可以通过 Photos framework 中的 PHPhotoLibrary 类来管理和访问 photo library，在相册中分别用 PHAsset 和 PHCollection 来表示相册和分组信息。</p>
+<p>【2】、如果想要获取一个 video 中的任意时刻的 image，可以通过 AVAssetImageGenerator 来生成。有几个事项需要注意下：</p>
+<ul>
+<li>1、确保这个视频的 AVAsset 中有视频轨数据，可以通过 <code>[anAsset tracksWithMediaType:AVMediaTypeVideo] count]</code> 是否大于 0 来判断。</li>
+<li>2、当生成多张 image 时，generator 是一张一张异步生成的，我们需要对 generator 强引用，直到所有的 image 都创建完成。</li>
+</ul>
+<p>如果想要对 video 编辑、截取等处理，可以通过 AVAssetExportSession 类来完成。底部有示例 demo 地址。</p>
+<p>【3】、如果想要播放 video，根据播放源的不同，目前有两种视频播放方式，一种是基于文件（来源于本地资源）的，另一种是基于数据流（来源于互联网）的。</p>
+<p>加载并播放一个本地视频可以简单概括为以下步骤：</p>
+<ul>
+<li>1、用 AVURLAsset 创建一个 asset。</li>
+<li>2、用 AVPlayerItem 创建一个以 asset 为参数的 playItem，然后添加状态的 KVO。</li>
+<li>3、用 AVPlayer 创建一个以 palyItem 为参数的 player。</li>
+<li>4、用 AVPlayerLayer 创建一个以 player 为参数的 playerLayer。</li>
+<li>5、将 playerLayer 添加到当前视图的 layer 中，当 status 为 AVPlayerItemStatusReadyToPlay 时就可以播放了。 </li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 添加状态观察</span></div><div class="line">[playerItem addObserver:<span class="keyword">self</span> forKeyPath:<span class="string">@"status"</span> options:<span class="number">0</span> context:&amp;ItemStatusContext];</div></pre></td></tr></table></figure>
+<p>【4】、如果想要将播放点切到指定时间点，可以通过调用 player 的 <code>seekToTime</code> 来完成。</p>
+<p>【5】、如果你想要在 video 播放结束的时候，重头开始播放。你可以对当前播放的 playItem 添加一个 name 为 AVPlayerItemDidPlayToEndTimeNotification 的 observer，这样在收到通知的时候将播放进度调整到 0 即可。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[player seekToTime:kCMTimeZero];</div></pre></td></tr></table></figure>
+<p>【6】、如果你想要获取当前播放的进度来刷新 UI 状态，你可以通过调用 player 的 <code>addPeriodicTimeObserverForInterval:queue:usingBlock:</code> 方法来实现， 在 block 回调中做你想做的事情。</p>
+<p>【7】、想要播放多个 playItem 时，可以使用 AVQueuePlayer 来播放，调用 <code>advanceToNextItem</code> 来播放下一个资源。</p>
+<p>【8】、如果想要对 video 编辑、截取等处理，可以通过 AVAssetExportSession 类来完成。底部有示例 demo 地址。</p>
+<h2 id="聊聊-Video-的编辑"><a href="#聊聊-Video-的编辑" class="headerlink" title="聊聊 Video 的编辑"></a>聊聊 Video 的编辑</h2><p>学习 video 编辑，我们要掌握一个概念 Composition, video 编辑的 API 都是基于 Composition 开展的。Composition 可以理解成一个 video 资源的集合。在这个集合中包含一个或多个 media assets。</p>
+<ul>
+<li>一个 AVAsset 中通常包含一个音轨和视频轨。</li>
+<li>用 AVMutableCompositionTrack 类来表示一个轨道。</li>
+<li>AVMutableComposition 类可以用来组装、管理这些轨道，比如插入，删除等。</li>
+<li>AVMutableAudioMix 类可以对 composition 中的音轨进行操作，比如设置音量、音阶等。</li>
+<li>AVMutableVideoComposition 类可以对 composition 中的视频轨进行操作，比如设置输出视频的渲染尺寸、比例、帧率等。</li>
+<li>AVMutableVideoCompositionInstruction 类可以修改视频的背景色、以及进行一些变换。</li>
+<li>animationTool 可以将一些  Core Animation framework 的动画效果添加到视频中。</li>
+<li>AVAssetExportSession 最终将这些音轨、视频轨、配置数据 合并成一个新的 video。</li>
+</ul>
+<p>下图是一个简单的 export 示意图：</p>
+<p><img src="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Art/puttingitalltogether_2x.png" alt=""></p>
+<h3 id="聊聊-Video-拼接"><a href="#聊聊-Video-拼接" class="headerlink" title="聊聊 Video 拼接"></a>聊聊 Video 拼接</h3><p>举个 demo 中拼接两个 video 的例子，废话少说，直接上代码。</p>
+<p>我们需要经历以下几个过程：</p>
+<p>【1】生成 Composition 、音频轨、视频轨。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建可变集合对象 Composition</span></div><div class="line"><span class="built_in">AVMutableComposition</span> *mutableComposition = [<span class="built_in">AVMutableComposition</span> composition];</div><div class="line"></div><div class="line"><span class="comment">// 创建视频轨对象</span></div><div class="line"><span class="built_in">AVMutableCompositionTrack</span> *videoCompositionTrack = [mutableComposition addMutableTrackWithMediaType:<span class="built_in">AVMediaTypeVideo</span> preferredTrackID:kCMPersistentTrackID_Invalid];</div><div class="line"></div><div class="line"><span class="comment">// 创建音频轨对象</span></div><div class="line"><span class="built_in">AVMutableCompositionTrack</span> *audioCompositionTrack = [mutableComposition addMutableTrackWithMediaType:<span class="built_in">AVMediaTypeAudio</span> preferredTrackID:kCMPersistentTrackID_Invalid];</div></pre></td></tr></table></figure>
+<p>【2】添加 Asset 中的视频轨数据、音频轨数据。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 构建 视频1 视频2 的 asset</span></div><div class="line"><span class="built_in">NSDictionary</span> *opts = [<span class="built_in">NSDictionary</span> dictionaryWithObject:@(<span class="literal">YES</span>) forKey:<span class="built_in">AVURLAssetPreferPreciseDurationAndTimingKey</span>];</div><div class="line"><span class="built_in">AVURLAsset</span> *firstVideoAsset = [[<span class="built_in">AVURLAsset</span> alloc] initWithURL:firstVideoPath options:opts];</div><div class="line"><span class="built_in">AVURLAsset</span> *secondVideoAsset = [[<span class="built_in">AVURLAsset</span> alloc] initWithURL:secondVideoPath options:opts];</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 提取 视频1 视频2 的视频轨数据</span></div><div class="line"><span class="built_in">AVAssetTrack</span> *firstVideoAssetTrack = [[firstVideoAsset tracksWithMediaType:<span class="built_in">AVMediaTypeVideo</span>] objectAtIndex:<span class="number">0</span>];</div><div class="line"><span class="built_in">AVAssetTrack</span> *secondVideoAssetTrack = [[secondVideoAsset tracksWithMediaType:<span class="built_in">AVMediaTypeVideo</span>] objectAtIndex:<span class="number">0</span>];</div><div class="line"></div><div class="line"><span class="comment">// 添加 视频1 视频2 的视频轨数据到 视频轨对象中</span></div><div class="line">[videoCompositionTrack insertTimeRange:<span class="built_in">CMTimeRangeMake</span>(kCMTimeZero, firstVideoAssetTrack.timeRange.duration) ofTrack:firstVideoAssetTrack atTime:kCMTimeZero error:<span class="literal">nil</span>];</div><div class="line">[videoCompositionTrack insertTimeRange:<span class="built_in">CMTimeRangeMake</span>(kCMTimeZero, secondVideoAssetTrack.timeRange.duration) ofTrack:secondVideoAssetTrack atTime:firstVideoAssetTrack.timeRange.duration error:<span class="literal">nil</span>];</div><div class="line"></div><div class="line"><span class="comment">// 提取 视频1 视频2 的音频轨数据</span></div><div class="line"><span class="built_in">AVAssetTrack</span> *firstVideoAudioTrack = [[firstVideoAsset tracksWithMediaType:<span class="built_in">AVMediaTypeAudio</span>] firstObject];</div><div class="line"><span class="built_in">AVAssetTrack</span> *secondVideoAudioTrack = [[secondVideoAsset tracksWithMediaType:<span class="built_in">AVMediaTypeAudio</span>] firstObject];</div><div class="line">    </div><div class="line"><span class="comment">// 添加 视频1 视频2 的音频轨数据到 音频轨对象中</span></div><div class="line">[audioCompositionTrack insertTimeRange:<span class="built_in">CMTimeRangeMake</span>(kCMTimeZero, firstVideoAudioTrack.timeRange.duration) ofTrack:firstVideoAudioTrack atTime:kCMTimeZero error:<span class="literal">nil</span>];</div><div class="line">[audioCompositionTrack insertTimeRange:<span class="built_in">CMTimeRangeMake</span>(kCMTimeZero, secondVideoAudioTrack.timeRange.duration) ofTrack:secondVideoAudioTrack atTime:firstVideoAssetTrack.timeRange.duration error:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<p>【3】检查两个 video 的方向，方向不同的 video 不能拼接</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">BOOL</span> isFirstVideoPortrait = <span class="literal">NO</span>;</div><div class="line"><span class="built_in">CGAffineTransform</span> firstTransform = firstVideoAssetTrack.preferredTransform;</div><div class="line"><span class="keyword">if</span> (firstTransform.a == <span class="number">0</span> &amp;&amp; firstTransform.d == <span class="number">0</span> &amp;&amp; (firstTransform.b == <span class="number">1.0</span> || firstTransform.b == <span class="number">-1.0</span>) &amp;&amp; (firstTransform.c == <span class="number">1.0</span> || firstTransform.c == <span class="number">-1.0</span>)) &#123;</div><div class="line">    isFirstVideoPortrait = <span class="literal">YES</span>;</div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="built_in">BOOL</span> isSecondVideoPortrait = <span class="literal">NO</span>;</div><div class="line"><span class="built_in">CGAffineTransform</span> secondTransform = secondVideoAssetTrack.preferredTransform;</div><div class="line"><span class="keyword">if</span> (secondTransform.a == <span class="number">0</span> &amp;&amp; secondTransform.d == <span class="number">0</span> &amp;&amp; (secondTransform.b == <span class="number">1.0</span> || secondTransform.b == <span class="number">-1.0</span>) &amp;&amp; (secondTransform.c == <span class="number">1.0</span> || secondTransform.c == <span class="number">-1.0</span>)) &#123;</div><div class="line">    isSecondVideoPortrait = <span class="literal">YES</span>;</div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="keyword">if</span> ((isFirstVideoPortrait &amp;&amp; !isSecondVideoPortrait) || (!isFirstVideoPortrait &amp;&amp; isSecondVideoPortrait)) &#123;</div><div class="line">    <span class="built_in">NSError</span> *error = [<span class="keyword">self</span> createNSErrorWithCode:<span class="number">400</span> errorReason:<span class="string">@"视频方向不一致，无法拼接"</span>];</div><div class="line">    resultHandler(<span class="literal">nil</span>, error);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>【4】添加视频处理命令</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 构建视频1 的操作命令</span></div><div class="line"><span class="built_in">AVMutableVideoCompositionInstruction</span> *firstVideoCompositionInstruction = [<span class="built_in">AVMutableVideoCompositionInstruction</span> videoCompositionInstruction];</div><div class="line">firstVideoCompositionInstruction.timeRange = <span class="built_in">CMTimeRangeMake</span>(kCMTimeZero, firstVideoAssetTrack.timeRange.duration);</div><div class="line"><span class="built_in">AVMutableVideoCompositionLayerInstruction</span> *firstVideoLayerInstruction = [<span class="built_in">AVMutableVideoCompositionLayerInstruction</span> videoCompositionLayerInstructionWithAssetTrack:videoCompositionTrack];</div><div class="line">    </div><div class="line"><span class="comment">// 微信拍摄的视频tx错位，需要修复</span></div><div class="line"><span class="built_in">CGRect</span> firstRect = &#123;&#123;<span class="number">0</span>, <span class="number">0</span>&#125;, naturalSizeFirst&#125;;</div><div class="line"><span class="built_in">CGRect</span> firstTransformedRect = <span class="built_in">CGRectApplyAffineTransform</span>(firstRect, firstTransform);</div><div class="line">firstTransform.tx -= firstTransformedRect.origin.x;</div><div class="line">firstTransform.ty -= firstTransformedRect.origin.y;</div><div class="line">[firstVideoLayerInstruction setTransform:firstTransform atTime:kCMTimeZero];</div><div class="line">    </div><div class="line">firstVideoCompositionInstruction.layerInstructions = @[firstVideoLayerInstruction];</div><div class="line">    </div><div class="line">    </div><div class="line"><span class="comment">// 构建视频2 的操作命令</span></div><div class="line"><span class="built_in">AVMutableVideoCompositionInstruction</span> * secondVideoCompositionInstruction = [<span class="built_in">AVMutableVideoCompositionInstruction</span> videoCompositionInstruction];</div><div class="line">secondVideoCompositionInstruction.timeRange = <span class="built_in">CMTimeRangeMake</span>(firstVideoAssetTrack.timeRange.duration, <span class="built_in">CMTimeAdd</span>(firstVideoAssetTrack.timeRange.duration, secondVideoAssetTrack.timeRange.duration));</div><div class="line"><span class="built_in">AVMutableVideoCompositionLayerInstruction</span> *secondVideoLayerInstruction = [<span class="built_in">AVMutableVideoCompositionLayerInstruction</span> videoCompositionLayerInstructionWithAssetTrack:videoCompositionTrack];</div><div class="line">    </div><div class="line"><span class="comment">// 微信拍摄的视频tx错位，需要修复</span></div><div class="line"><span class="built_in">CGRect</span> secondRect = &#123;&#123;<span class="number">0</span>, <span class="number">0</span>&#125;, naturalSizeSecond&#125;;</div><div class="line"><span class="built_in">CGRect</span> secondTransformedRect = <span class="built_in">CGRectApplyAffineTransform</span>(secondRect, secondTransform);</div><div class="line">secondTransform.tx -= secondTransformedRect.origin.x;</div><div class="line">secondTransform.ty -= secondTransformedRect.origin.y;</div><div class="line">    </div><div class="line">[secondVideoLayerInstruction setTransform:secondTransform atTime:firstVideoAssetTrack.timeRange.duration];</div><div class="line">secondVideoCompositionInstruction.layerInstructions = @[secondVideoLayerInstruction];</div><div class="line">    </div><div class="line"><span class="built_in">AVMutableVideoComposition</span> *mutableVideoComposition = [<span class="built_in">AVMutableVideoComposition</span> videoComposition];</div><div class="line">mutableVideoComposition.instructions = @[firstVideoCompositionInstruction, secondVideoCompositionInstruction];</div></pre></td></tr></table></figure>
+<p>【5】添加渲染尺寸和帧率</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">float</span> renderWidth = MAX(fixedSizeFirst.width, fixedSizeSecond.width);</div><div class="line"><span class="keyword">float</span> renderHeight = MAX(fixedSizeFirst.height, fixedSizeSecond.height);</div><div class="line">    </div><div class="line">mutableVideoComposition.renderSize = <span class="built_in">CGSizeMake</span>(renderWidth, renderHeight);</div><div class="line">mutableVideoComposition.frameDuration = <span class="built_in">CMTimeMake</span>(<span class="number">1</span>,<span class="number">30</span>);</div></pre></td></tr></table></figure>
+<p>【6】导出视频并保存到相册</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">AVAssetExportSession</span> *exporter = [[<span class="built_in">AVAssetExportSession</span> alloc] initWithAsset:mutableComposition presetName:<span class="built_in">AVAssetExportPresetHighestQuality</span>];</div><div class="line">exporter.outputURL = videoURL;</div><div class="line">exporter.outputFileType = <span class="built_in">AVFileTypeMPEG4</span>;</div><div class="line">exporter.shouldOptimizeForNetworkUse = <span class="literal">YES</span>;</div><div class="line">exporter.videoComposition = mutableVideoComposition;</div><div class="line">    </div><div class="line">[exporter exportAsynchronouslyWithCompletionHandler:^&#123;</div><div class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</div><div class="line">        <span class="keyword">if</span> (exporter.status == <span class="built_in">AVAssetExportSessionStatusCompleted</span>) &#123;</div><div class="line">            resultHandler(exporter.outputURL, <span class="literal">nil</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">NSError</span> *error = [<span class="keyword">self</span> createNSErrorWithCode:<span class="number">200</span> errorReason:<span class="string">@"视频导出失败"</span>];</div><div class="line">            resultHandler(<span class="literal">nil</span>, error);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<h3 id="聊聊-Video-裁剪"><a href="#聊聊-Video-裁剪" class="headerlink" title="聊聊 Video 裁剪"></a>聊聊 Video 裁剪</h3><p>视频裁剪的 demo，这里就不聊了。感兴趣的可以自己下载底部 demo 研究。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3" target="_blank" rel="external">AVFoundation Programming Guide</a></li>
+<li><a href="https://github.com/muhlenXi-Team/video-edit-demo" target="_blank" rel="external">示例代码 demo</a></li>
+</ul>
 
       
 
@@ -298,29 +309,7 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Foundation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/blog/" class="article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -370,7 +359,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/01/20/About-Foundation/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2019/07/24/talk-about-avfoundation-md/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -384,18 +373,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/02/01/About-UIKit/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          App Frameworks 之 UIKit 框架
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/01/10/Dahua-Design-Pattern/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">大话设计模式---读书笔记</div>
+    <a href="/2019/06/19/talk-about-bubble-sort/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">聊聊冒泡排序 （Bubble Sort）</div>
       <i class="icon-circle-right"></i>
     </a>
   

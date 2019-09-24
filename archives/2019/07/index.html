@@ -6,24 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>App Frameworks 之 Foundation 框架 | muhlenXi</title>
+  <title>Archives: 2019/7 | muhlenXi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。
-导语：
-学习软件开发最好的方式就是去努力学好英语，然后去看官方的第一手资料 - 软件开发指南。本文是关于 Foundation 框架的描述。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="App Frameworks 之 Foundation 框架">
-<meta property="og:url" content="http://yoursite.com/2017/01/20/About-Foundation/index.html">
+  <meta name="description" content="他最大的快乐一直来自学习本身。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="muhlenXi">
+<meta property="og:url" content="http://yoursite.com/archives/2019/07/index.html">
 <meta property="og:site_name" content="muhlenXi">
-<meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。
-导语：
-学习软件开发最好的方式就是去努力学好英语，然后去看官方的第一手资料 - 软件开发指南。本文是关于 Foundation 框架的描述。">
-<meta property="og:updated_time" content="2019-03-06T13:43:58.000Z">
+<meta property="og:description" content="他最大的快乐一直来自学习本身。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="App Frameworks 之 Foundation 框架">
-<meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。
-导语：
-学习软件开发最好的方式就是去努力学好英语，然后去看官方的第一手资料 - 软件开发指南。本文是关于 Foundation 框架的描述。">
+<meta name="twitter:title" content="muhlenXi">
+<meta name="twitter:description" content="他最大的快乐一直来自学习本身。">
   
     <link rel="alternative" href="/atom.xml" title="muhlenXi" type="application/atom+xml">
   
@@ -177,256 +170,49 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-About-Foundation" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      App Frameworks 之 Foundation 框架
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/07/24/talk-about-avfoundation-md/" class="archive-article-date">
+  	<time datetime="2019-07-24T00:21:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/07/24/talk-about-avfoundation-md/">聊聊 AVFoundation 视频编辑</a>
     </h1>
   
 
-        
-        <a href="/2017/01/20/About-Foundation/" class="archive-article-date">
-  	<time datetime="2017-01-20T02:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> <em>版权声明：本文为 muhlenXi 原创文章，欢迎转载，转载请注明来源。</em></p>
-<h3 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h3><blockquote>
-<p>学习软件开发最好的方式就是去努力学好英语，然后去看官方的第一手资料 - 软件开发指南。<br>本文是关于 Foundation 框架的描述。</p>
-</blockquote>
-<a id="more"></a>
-<p>如果你想要学 mac OS / iOS App 开发，你需要参考的第一手资料则是 <a href="https://developer.apple.com/documentation" target="_blank" rel="external">Apple Developer Documentation</a>,在这里，Apple 公司会不定期更新最新的 Kit(开发包)，包括 API reference（API 接口）、技术文章和示例代码等。</p>
-<h3 id="Apple-开发的基础框架"><a href="#Apple-开发的基础框架" class="headerlink" title="Apple 开发的基础框架"></a>Apple 开发的基础框架</h3><p>Apple App 开发涉及到的（Framework）基础框架主要有 6 大部分，分别如下：</p>
-<ul>
-<li><a href="https://developer.apple.com/documentation/appkit" target="_blank" rel="external">AppKit</a></li>
-<li><a href="https://developer.apple.com/documentation/foundation" target="_blank" rel="external">Foundation</a></li>
-<li><a href="https://developer.apple.com/documentation/objectivec" target="_blank" rel="external">Objective-C</a></li>
-<li><a href="https://developer.apple.com/documentation/swift" target="_blank" rel="external">Swift Standard Library</a></li>
-<li><a href="https://developer.apple.com/documentation/uikit" target="_blank" rel="external">UIKit</a></li>
-<li><a href="https://developer.apple.com/documentation/watchkit" target="_blank" rel="external">WatchKit</a></li>
-</ul>
-<p>博客稍后会对每个类别做一个简介，不定时更新，如果感兴趣想深入了解，可以点击链接跳转到官网学习。</p>
-<h4 id="Foundation"><a href="#Foundation" class="headerlink" title="Foundation"></a>Foundation</h4><p>Foundation 是一个基础的框架，用于支持你的 App 的基础功能定义，比如基本数据类型、数据集合和操作系统服务的访问。</p>
-<p>Foundation 框架为你的 App 和其他框架的基础功能提供支持，包括数据的保存和持久化存储，文本处理、日期和时间的计算、排序和过滤，网络等。mac OS，iOS，watchOS，以及 tvOS 的 SDK（软件开发包中）都有使用到 Foundation 框架中定义的类、协议和数据类型等。</p>
-<h5 id="Foundation-基础"><a href="#Foundation-基础" class="headerlink" title="Foundation 基础"></a>Foundation 基础</h5><h6 id="Numbers-Data-和-Basic-Value"><a href="#Numbers-Data-和-Basic-Value" class="headerlink" title="Numbers,Data,和 Basic Value"></a>Numbers,Data,和 Basic Value</h6><p>这部分主要是包含 Cocoa 中使用的基础数据类型。<a href="https://developer.apple.com/documentation/foundation/numbers_data_and_basic_values" target="_blank" rel="external">详情传送门</a></p>
-<p>包括：</p>
-<p><strong>struct</strong> : <code>Int</code>,<code>Double</code>,<code>Decimal</code>,<code>Data</code>,<code>URL</code>,</p>
-<p><code>URLComponents</code>,<code>URLQueryItem</code>,<code>UUID</code>,<code>CGFloat</code>,<code>AffineTransform</code>,</p>
-<p><code>NSEdgeInsets</code></p>
-<p><strong>class</strong> :  <code>NumberFormatter</code>,</p>
-<p><strong>typealias</strong> : <code>NSPoint</code>,<code>NSSize</code>,<code>NSRect</code>,<code>NSRange</code></p>
-<h6 id="Strings-和-Text"><a href="#Strings-和-Text" class="headerlink" title="Strings 和 Text"></a>Strings 和 Text</h6><p>这部分主要包括 Unicode 字符串的创建和处理，使用正则表达式模式查找以及文本的自然语言分析。<a href="https://developer.apple.com/documentation/foundation/strings_and_text" target="_blank" rel="external">详情传送门</a></p>
-<p>包括：</p>
-<p><strong>struct</strong> : <code>String</code>,<code>CharacterSet</code>,<code>Locale</code></p>
-<p><strong>class</strong> : <code>NSAttributedString</code>,<code>NSMutableAttributedString</code>,<code>NSLinguisticTagger</code>,<code>Scanner</code>,<code>NSRegularExpression</code>,</p>
-<p><code>NSDataDetector</code>,<code>NSTextCheckingResult</code>,<code>NSSpellServer</code>,<code>NSOrthography</code></p>
-<p><strong>typealias</strong> : <code>UnicodeScalar</code></p>
-<p><strong>let</strong> : <code>NSNotFound</code></p>
-<p><strong>protocol</strong> : <code>NSSpellServerDelegate</code></p>
-<h6 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h6><p>这部分主要包括 array，set，dictionary 和 专用集合来存储和遍历集合中的对象或者值。<a href="https://developer.apple.com/documentation/foundation/collections" target="_blank" rel="external">详情传送门</a></p>
-<p>包括：</p>
-<p><strong>struct</strong> : <code>Array</code>,<code>Dictionary</code>,<code>Set</code>,    <code>IndexPath</code>,<code>IndexSet</code>,</p>
-<p><code>NSFastEnumerationIterator</code>,<code>NSIndexSetIterator</code>,<code>NSEnumerationOptions</code>,<code>NSSortOptions</code></p>
-<p><strong>class</strong> : <code>NSCountedSet</code>,<code>NSOrderedSet</code>,<code>NSMutableOrderedSet</code>,<code>NSCache</code>,<code>NSPurgeableData</code>,</p>
-<p><code>NSPointerArray</code>,<code>NSMapTable</code>,<code>NSHashTable</code>,<code>NSEnumerator</code>,<code>NSNull</code></p>
-<p><strong>protocol</strong> : <code>NSFastEnumeration</code></p>
-<p><strong>let</strong> : <code>NSNotFound</code></p>
-<h6 id="Dates-和-Times"><a href="#Dates-和-Times" class="headerlink" title="Dates 和 Times"></a>Dates 和 Times</h6><p>这部分主要包括日期和时间的比较、日历和时间域的计算。<a href="https://developer.apple.com/documentation/foundation/dates_and_times" target="_blank" rel="external">详情传送门</a></p>
-<p><strong>struct</strong> : <code>Date</code>,<code>DateInterval</code>,<code>DateComponents</code>,<code>Calendar</code>,<code>TimeZone</code>,<code>Locale</code></p>
-<p><strong>typealias</strong> : <code>TimeInterval</code></p>
-<p><strong>class</strong> : <code>DateFormatter</code>,<code>DateComponentsFormatter</code>,<code>DateIntervalFormatter</code>,<code>ISO8601DateFormatter</code></p>
-<h6 id="Units-和-Measurement"><a href="#Units-和-Measurement" class="headerlink" title="Units 和 Measurement"></a>Units 和 Measurement</h6><p>这部分主要是物理参数的测量和单位转换。<a href="https://developer.apple.com/documentation/foundation/units_and_measurement" target="_blank" rel="external">详情传送门</a></p>
-<p><strong>struct</strong> : <code>Measurement</code></p>
-<p><strong>class</strong> <code>Unit</code>,<code>Dimension</code>,<code>UnitConverter</code>,<code>UnitConverterLinear</code>,<code>UnitArea</code>,</p>
-<p><code>UnitLength</code>,<code>UnitVolume</code>,<code>UnitAngle</code>,<code>UnitMass</code>,<code>UnitPressure</code>,</p>
-<p><code>UnitAcceleration</code>,<code>UnitDuration</code>,<code>UnitFrequency</code>,<code>UnitSpeed</code>,<code>UnitEnergy</code>,</p>
-<p><code>UnitPower</code>,<code>UnitTemperature</code>,<code>UnitIlluminance</code>,<code>UnitElectricCharge</code>,<code>UnitElectricCurrent</code>,</p>
-<p><code>UnitElectricPotentialDifference</code>,<code>UnitElectricResistance</code>,<code>UnitConcentrationMass</code>,<code>UnitDispersion</code>,<code>UnitFuelEfficiency</code></p>
-<h6 id="Data-Formatting"><a href="#Data-Formatting" class="headerlink" title="Data Formatting"></a>Data Formatting</h6><p>主要是 number, date, measurement 以及一些其他值的文本转换。<a href="https://developer.apple.com/documentation/foundation/data_formatting" target="_blank" rel="external">详情传送门</a></p>
-<p><strong>class</strong> : <code>NumberFormatter</code>,<code>PersonNameComponentFormatter</code>,<code>DateFormatter</code>,<code>DateComponentsFormatter</code>,<code>DateIntervalFormatter</code>,</p>
-<p><code>ISO8601DateFormatter</code>,<code>ByteCountFormatter</code>,<code>MeasurementFormatter</code>,<code>Formatter</code>,<code>LengthFormatter</code>,</p>
-<p><code>MassFormatter</code>,<code>EnergyFormatter</code></p>
-<p><strong>struct</strong> :     <code>PersonNameComponents</code>,<code>Locale</code></p>
-<h6 id="Filter-和-Sorting"><a href="#Filter-和-Sorting" class="headerlink" title="Filter 和 Sorting"></a>Filter 和 Sorting</h6><p>主要包含使用 predicate（谓词），expression（表达式）和 sort descriptors（排序描述）来过滤和排序集合中的元素。<a href="https://developer.apple.com/documentation/foundation/filters_and_sorting" target="_blank" rel="external">详情传送门</a></p>
-<p><strong>class</strong> : <code>NSPredicate</code>,<code>NSExpression</code>,<code>NSComparisonPredicate</code>,<code>NSCompoundPredicate</code>,<code>NSSortDescriptor</code></p>
-<p><strong>enum</strong> : <code>ComparisonResult</code></p>
-<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p><em>欢迎在本文下面留言一起交流心得或错误指正…</em></p>
-<p><em>如果本文能给你带来一定的帮助，在自己有能力的情况下，不妨赞助一下，表示对博主辛勤耕作的支持！</em></p>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝百事<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/Alipay.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://7xvffo.com1.z0.glb.clouddn.com/WeChat.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Foundation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/blog/" class="article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/01/20/About-Foundation/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/02/01/About-UIKit/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          App Frameworks 之 UIKit 框架
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/01/10/Dahua-Design-Pattern/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">大话设计模式---读书笔记</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-    <div class="duoshuo"></div>
+    </div></section>
   
 
-
-
-<section id="comments">
-  <div id="disqus_thread"></div>
-    <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'muhlenXi'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</section>
+    
 
 
           </div>
@@ -449,8 +235,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
