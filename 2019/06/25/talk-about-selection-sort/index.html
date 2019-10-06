@@ -16,7 +16,7 @@ Preface排序就是将一组对象按照某种逻辑顺序重新排列的过程�
 <meta property="og:site_name" content="muhlenXi">
 <meta property="og:description" content="版权声明：本文为 muhlenXi 原创文章，未经博主允许不得转载，如有问题，欢迎指正。
 Preface排序就是将一组对象按照某种逻辑顺序重新排列的过程。比如根据数值的大小升序或降序排序。">
-<meta property="og:updated_time" content="2019-09-25T14:53:36.279Z">
+<meta property="og:updated_time" content="2019-10-06T16:06:36.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊 选择排序 (Selection Sort)">
 <meta name="twitter:description" content="版权声明：本文为 muhlenXi 原创文章，未经博主允许不得转载，如有问题，欢迎指正。
@@ -207,7 +207,7 @@ var _hmt = _hmt || [];
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">NSArray</span>*) selectionSort: (<span class="built_in">NSArray</span> *) unsortedArray &#123;</div><div class="line">    <span class="keyword">if</span> (unsortedArray.count &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> unsortedArray;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">NSMutableArray</span> *sortedArray = [unsortedArray mutableCopy];</div><div class="line">    <span class="built_in">NSInteger</span> minValueIndex = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i &lt; sortedArray.count<span class="number">-1</span>; i++) &#123;</div><div class="line">        minValueIndex = i;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">NSInteger</span> j = i + <span class="number">1</span>; j &lt; sortedArray.count; j++) &#123;</div><div class="line">            <span class="keyword">if</span> ([sortedArray[j] integerValue] &lt; [sortedArray[minValueIndex] integerValue]) &#123;</div><div class="line">                minValueIndex = j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (minValueIndex != i) &#123;</div><div class="line">            [sortedArray exchangeObjectAtIndex:minValueIndex withObjectAtIndex:i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> [sortedArray <span class="keyword">copy</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] selectionSort(<span class="keyword">int</span>[] array) &#123;</div><div class="line">    <span class="keyword">if</span>(array.length &lt; <span class="number">2</span>) &#123;</div><div class="line">        <span class="keyword">return</span> array;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span>[] result = array;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i ++) &#123;</div><div class="line">        <span class="keyword">int</span> minValueIndex = i;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; result.length; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (result[j] &lt; result[minValueIndex]) &#123;</div><div class="line">                minValueIndex = j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(minValueIndex != i) &#123;</div><div class="line">            <span class="keyword">int</span> temp = result[minValueIndex];</div><div class="line">            result[minValueIndex] = result[i];</div><div class="line">            result[i] = temp;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="验证算法"><a href="#验证算法" class="headerlink" title="验证算法"></a>验证算法</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> list = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">6</span> ,<span class="number">10</span> ,<span class="number">1</span>, <span class="number">9</span>]</div><div class="line"><span class="comment">// 将会打印 [2, 3, 5, 7, 4, 8, 6 ,10 ,1, 9]</span></div><div class="line"><span class="built_in">print</span>(list) </div><div class="line"><span class="comment">// 进行选择排序</span></div><div class="line">selectionSort(unsortedArray: &amp;list)</div><div class="line"><span class="comment">// 将会打印 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span></div><div class="line"><span class="built_in">print</span>(list)</div></pre></td></tr></table></figure>
-<h2 id="算法总结"><a href="#算法总结" class="headerlink" title="算法总结"></a>算法总结</h2><p><code>稳定性</code> ：是稳定算法，因为排序过程中相邻会依次比较，不会打乱相同元素的相对位置。</p>
+<h2 id="算法总结"><a href="#算法总结" class="headerlink" title="算法总结"></a>算法总结</h2><p><code>稳定性</code> ：是非稳定算法，因为排序过程中会打乱相同元素的相对位置。</p>
 <p><code>空间复杂度</code>：整个排序过程是在原数组上进行排序的，所以是 O(1)。</p>
 <p><code>时间复杂度</code>：排序算法包含双层嵌套循环，故为 O（n^2）。</p>
 
@@ -444,10 +444,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Foundation</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
               </li>
              
@@ -461,6 +457,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Auto Connecting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Foundation</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -488,15 +488,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">大话设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FMDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,10 +504,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -520,11 +512,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">高德地图SDK</a>
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+                <a href="javascript:void(0)" class="js-tag color2">大话设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,6 +540,18 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -552,23 +560,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NSURLConnection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">地图导航</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Swift开发者必备Tips</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,6 +569,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">程序员修炼之道</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">写博客起因</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,6 +585,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">把你的英语用起来</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Swift3初体验</a>
               </li>
              
               <li class="article-tag-list-item">
